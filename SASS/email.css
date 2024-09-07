@@ -133,7 +133,7 @@ h3 {
   justify-content: center;
   align-items: center;
   background: #f1f1f1;
-  animation: fadeOut 2s ease 3s forwards;
+  animation: fadeOut 2s ease 1.5s forwards;
   z-index: 9999;
   visibility: visible;
 }
@@ -160,14 +160,6 @@ h3 {
     transform: translateY(-30px);
   }
 }
-.homepage {
-  opacity: 0;
-  transition: opacity 1.8s ease, visibility 0s linear 3s;
-  z-index: -1;
-  position: relative;
-  visibility: hidden;
-}
-
 .loader + .homepage {
   animation: fadeIn;
   visibility: visible;
@@ -295,14 +287,22 @@ header .location-search .fa-location-dot {
 body {
   min-height: 100%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 header {
-  border-bottom: black double;
+  display: flex;
+  flex-direction: row-reverse;
   gap: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   padding: 0 0 5px;
   font-size: 28px;
+}
+
+.fa-arrow-left {
+  position: relative;
+  right: 90px;
+  font-size: 24px;
 }
 
 main {
@@ -310,7 +310,7 @@ main {
 }
 
 .main-email {
-  height: 70vh;
+  height: 55vh;
   padding-left: 15px;
   font-size: 18px;
 }
@@ -351,14 +351,13 @@ main {
 .main-email h4 {
   color: white;
   font-weight: 400;
-  font-size: 18px;
   margin-top: 0;
 }
 
-footer {
-  padding-top: 15px;
-  height: 100%;
+.emailfooter {
+  padding-top: 39px;
+  height: 30vh;
 }
-footer footer h4 {
+.emailfooter footer h4 {
   color: white;
 }/*# sourceMappingURL=email.css.map */

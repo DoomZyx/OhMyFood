@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     background: #f1f1f1;
-    animation: fadeOut 2s ease 3s forwards;
+    animation: fadeOut 2s ease 1.5s forwards;
     z-index: 9999;
     visibility: visible;
 }
@@ -42,13 +42,6 @@
 
 // loading to homepage//////////////////////////////////////////////////
 
-.homepage {
-    opacity: 0;
-    transition: opacity 1.8s ease, visibility 0s linear 3s;
-    z-index: -1;
-    position: relative;
-    visibility: hidden;
-}
 
 .loader + .homepage {
     animation: fadeIn;

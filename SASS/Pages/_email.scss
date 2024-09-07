@@ -1,22 +1,30 @@
 body {
     min-height: 100%;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 header {
-    border-bottom: black double;
+    display: flex;
+    flex-direction: row-reverse;
     gap: 5px;
     box-shadow: $light_shadow;
     padding: 0 0 5px;
     font-size: $title-menu;
 }
 
+    .fa-arrow-left {
+        position: relative;
+        right: 90px;
+        font-size: $title-size;
+    }
+
 main {
     height: 100%;
 }
 
 .main-email {
-    height: 70vh;
+    height: 55vh;
     padding-left: 15px;
     font-size: $taller;
 }
@@ -55,13 +63,13 @@ main {
         .main-email h4 {
             color: white;
             font-weight: 400;
-            font-size: $taller;
             margin-top: 0;
         }
 
-footer {
-    padding-top: 15px;
-    height: 100%;
+
+.emailfooter {
+    padding-top: 39px;
+    height: 30vh;
 
     footer h4 {
         color: white;
