@@ -1,0 +1,15 @@
+// Cartes // 
+
+@mixin card_ {
+    width: 80vw;
+    height: 240px;
+    border: 1px solid $background_grey__medium ;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+@mixin card_img {
+    width: 79.5vw;
+    height: 170px;
+    border-radius: 15px 15px 0px 0px;
+}
