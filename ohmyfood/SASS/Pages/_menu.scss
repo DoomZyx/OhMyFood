@@ -1,0 +1,145 @@
+
+
+header {
+    @include flex__row;
+    position: relative;
+}
+
+    .fa-arrow-left {
+    position: absolute;
+    right: 92%; bottom: 35%;
+    font-size: 20px;
+    }
+
+    .image__brand img {
+        object-fit: cover;
+        font-size: $taller;
+        width: 100vw;
+        height: 275px;
+    }
+
+.menu__content {
+    background-color: $background_grey__light;
+    border-radius: 40px 40px 0 0;
+    border: none;
+    position: relative;
+    bottom: 60px;
+    z-index: 2;
+    padding-left: 10px;
+    gap: 10px;
+}
+
+.title-menu {
+    @include flex__row;
+    gap: 50px;
+    position: relative;
+}
+
+.btn__like {
+    position: absolute;
+    left: 80%; 
+}
+.main__course {
+    @include flex__column;
+    gap: 10px;
+    width: 99%;
+}
+
+h1 {
+    font-family: "Shrikhand", cursive;
+    font-weight: $medium_weight;
+    padding-left: 10px;
+}
+
+.menu h2 {
+    font-weight: $tine_weight;
+    font-size: $normal;
+    padding-bottom: 5px;
+    border-bottom: 3px solid;
+    border-color: $color_tertiary;
+    width: 40px;
+}
+
+
+.plate__list {
+    @include flex__column;
+    position: relative;
+    width: 90vw;
+    height: 72px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    padding-left: 10px;
+    padding-top: 12px;
+    height: 50px;
+    line-height: 0.01;
+}
+
+    h3 {
+        font-weight: $medium_weight;
+    }
+
+    h4 {
+        margin-top: 18px;
+        font-weight: $tine_weight;
+        font-size: $small;
+    }
+
+    .plate__price {
+        position: absolute;
+        left: 90%; bottom: 40%;
+        font-weight: $medium_weight;
+    }
+
+    .fa-check {
+        display: none;
+    }
+
+    .btn_place_m {
+        @include flex__center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    footer {
+        margin-top: -90px;
+        padding-top: 10px;
+    }
+
+    @include desktop {
+
+
+        .image__brand img {
+            height: 383px;
+        }
+
+        body .menu__content {
+            @include flex__center;
+            align-self: center;
+            margin: 0 auto;
+            width: 80%;
+            position: relative;
+            bottom: 80px;
+        }
+        
+        .menu__content .title-menu  {
+            padding: 35px;
+            @include flex__center_row;
+            margin: 0 auto;
+            gap: 0px;
+        }
+
+        .title-menu .fa-heart {
+            position: relative;
+            right: 100%;
+        }
+
+        .plate__list {
+            width: 50vw;
+        }
+
+        .plate__price {
+            position: absolute;
+            left: 95%;
+        }
+    }
