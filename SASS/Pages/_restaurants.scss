@@ -1,0 +1,90 @@
+.restaurant-title {
+    font-size: $taller;
+    padding-left: 30px;
+    }
+
+    .restaurant {
+        background-color: $background_grey__light;
+        padding-top: 1em;
+        
+        .flex-card {
+        @include flex__center;
+        padding-bottom: 8em;
+        gap: 20px;
+        }
+    
+        .card {
+            @include card_;
+            background-color: white;
+            position: relative; // Ajoutez cette ligne pour que .new se positionne par rapport à .card
+        }
+    
+        .card img {
+            @include card_img;
+            object-fit: cover;
+        }
+    
+        .new {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: small;
+            background-color: $color_tertiary;
+            color: #008766;
+            border-radius: 5px;
+            padding: 0.3em 0.675em;
+            width: auto;  // Supprimez les propriétés qui pourraient causer des problèmes d'élasticité.
+        }
+
+        .card .btn__like {
+            position: absolute;
+            bottom: 10%; left: 85%;
+            border: none;
+            background: none;
+        }
+        .card-txt {
+            padding-left: 0.5em;
+    
+            h3 {
+                padding-top: 0.3em;
+            }
+    
+            p {
+                font-weight: 300;
+            }
+        }
+    }
+
+    @include desktop {
+
+        main .restaurant .flex-card {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2,auto);
+            width: 70%;
+            margin: 0 auto;
+            position: relative;
+            left: 85px;
+        }
+
+        main .restaurant h2 {
+            padding-left: 18.2%;
+        }
+
+        .restaurant .card {
+            width: 75%;
+            height: 251px;
+            box-sizing: border-box;
+        }
+
+        .restaurant .card img {
+            width: 100%;
+            height: 180px;
+        }
+
+        .restaurant .card .btn__like {
+            position: absolute;
+            left: 90%;
+        }
+
+    }
