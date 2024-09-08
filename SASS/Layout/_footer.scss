@@ -1,25 +1,13 @@
 .layout {
-    width: 100%;
-    background-color: $background_grey__dark;
-    color: white;
-    gap: 20px;
+    @include stylin_footer;
 
     h4 {
-        padding-left: 25px;
-        padding-top: 15px;
-        margin-bottom: 20px;
-        font-weight: 400;
-        font-size: $taller;
+        @include position_title__footer;
     }
 
     a {
         @include flex__row;
-        padding-left: 25px;
-        padding-bottom: 5px;
-        font-weight: 400;
-        font-size: $small;
-        gap: 11px;
-        color: #FFFFFF;
+        @include stylin_hyperlink__footer;
     }
 
     i {
@@ -32,18 +20,14 @@
 @include desktop {
 
     footer .layout {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        @include flex__row_end;
+        @include relative_parent;
         width: 100%;
-        position: relative;
     }
 
     .foottitle {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        position: relative;
+        @include flex__row_centerY;
+        @include relative_parent;
         left: 700px; bottom: 6px
     }
 

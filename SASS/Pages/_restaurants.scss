@@ -25,15 +25,7 @@
         }
     
         .new {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: small;
-            background-color: $color_tertiary;
-            color: #008766;
-            border-radius: 5px;
-            padding: 0.3em 0.675em;
-            width: auto;  
+            @include stylin__new
         }
 
         .card .btn__like {
@@ -62,14 +54,7 @@
     @include desktop {
 
         main .restaurant .flex-card {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2,auto);
-            width: 70%;
-            margin: 0 auto;
-            position: relative;
-            left: 85px;
-            margin-bottom: 50px;
+            @include settlement__card__desktop;
         }
 
         main .restaurant h2 {

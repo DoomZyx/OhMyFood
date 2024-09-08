@@ -24,6 +24,12 @@ flex-wrap: wrap;
     align-items: center;
     flex-wrap: wrap;
 }
+
+@mixin flex__row_centerY {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 //////////////////////////////////////////////////
 /// Flexbox ////////////////
 
@@ -33,20 +39,22 @@ flex-wrap: wrap;
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+@mixin flex__row_end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
 /////////////////////////////////////////////////
 
-
-
-
-
-//Ombres
+//Ombres/////////////////////////////////////////
 
 @mixin shadow {
     box-shadow: $light_shadow;
 }
 ///////////////////////////////////////////////////////
 
-// Décalage
+// Décalage + positionnement absolu relatif à un parent positionné
 
 @mixin shift_top {
     position: relative;
@@ -71,15 +79,88 @@ flex-wrap: wrap;
     position: relative;
     left: 3em;
 }
-/////////////////////////////
 
-//Barre de recherche
+@mixin relative_parent {
+    position: relative;
+}
+
+
+/////////////////////////////
+////////Header//////////////
+
+@mixin header_size_img {
+    height: 50px;
+    width: 177px;
+}
+
+@mixin header_img_desktop {
+    padding: 15px;
+    width: 200px;
+    height: 50px;
+}
+
+//Barre de recherche///////////////////////////////////////////////////////////////////////////
 
 @mixin input_style {
     font-weight: 540;
     font-size: $normal;
     color: $darken;
     border: none;
+}
+
+@mixin center_form {
+    padding-top: $center;
+    padding-left: 6em;
+    gap: 0.5em;
+}
+
+@mixin no-style {
+    border: none;
+    background: none;
+}
+
+@mixin styling_placeholder {
+    color: black;
+    font-weight: 400;
+    font-size: $small;
+}
+
+//////////////////////////////////////////////
+
+@mixin stylin_functionning {
+    width: 85vw;
+        height: 72px;
+        border: none;
+        border-radius: 20px;
+        background-color: $background_grey__light;
+        gap: 20px;
+        box-shadow: $light_shadow
+}
+
+////////////////////////////////////////////////
+
+@mixin stylin_footer {
+    width: 100%;
+    background-color: $background_grey__dark;
+    color: white;
+    gap: 20px;
+}
+
+@mixin position_title__footer {
+    padding-left: 25px;
+        padding-top: 15px;
+        margin-bottom: 20px;
+        font-weight: 400;
+        font-size: $taller;
+} 
+
+@mixin stylin_hyperlink__footer {
+    padding-left: 25px;
+        padding-bottom: 5px;
+        font-weight: 400;
+        font-size: $small;
+        gap: 11px;
+        color: #FFFFFF;
 }
 
 ///////////////////////////////////////////////

@@ -2,8 +2,7 @@ header {
     @include flex__center;
     
     img {
-        height: 50px;
-        width: 177px;
+        @include header_size_img;
         @include flex__center;
     }
 
@@ -25,9 +24,7 @@ header {
 @include desktop {
     
         header img {
-            padding: 15px;
-            width: 200px;
-            height: 50px;
+            @include header_img_desktop;
         }
 
         header .location-search {

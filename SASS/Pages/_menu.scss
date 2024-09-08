@@ -2,37 +2,28 @@
 
 header {
     @include flex__row;
-    position: relative;
+    @include relative_parent;
 }
 
-    .fa-arrow-left {
+.fa-arrow-left {
     position: absolute;
     right: 92%; bottom: 35%;
     font-size: 20px;
-    }
+}
 
-    .image__brand img {
-        object-fit: cover;
-        font-size: $taller;
-        width: 100vw;
-        height: 275px;
-    }
+.image__brand img {
+        @include stylin_img__brand;
+}
 
 .menu__content {
-    background-color: $background_grey__light;
-    border-radius: 40px 40px 0 0;
-    border: none;
-    position: relative;
-    bottom: 60px;
-    z-index: 2;
-    padding-left: 10px;
-    gap: 10px;
+    @include stylin_card__menu;
+    @include relative_parent;
 }
 
 .title-menu {
     @include flex__row;
+    @include relative_parent;
     gap: 50px;
-    position: relative;
 }
 
 .btn__like {
@@ -53,63 +44,52 @@ h1 {
 }
 
 .menu h2 {
-    font-weight: $tine_weight;
-    font-size: $normal;
-    padding-bottom: 5px;
-    border-bottom: 3px solid;
-    border-color: $color_tertiary;
-    width: 40px;
+    @include stylin_title__menu;
 }
 
 
 .plate__list {
     @include flex__column;
-    position: relative;
-    width: 90vw;
-    height: 65px;
-    border: none;
-    border-radius: 20px;
-    background-color: white;
-    padding-left: 10px;
+    @include relative_parent;
+    @include plate__list__style;
     overflow: hidden;
 }
 
-    .plate__list h3 {
-        font-weight: $medium_weight;
-    }
+.plate__list h3 {
+    font-weight: $medium_weight;
+}
 
-    .plate__list h3,h4 {
-        margin-bottom: 1px;
+.plate__list h3,h4 {
+    margin-bottom: 1px;
+    line-height: 0.785;
+}
 
-        line-height: 0.785;
-    }
+.main__course .plate__list h4 {
+    font-weight: $tine_weight;
+    font-size: $small;
+    position: relative;
+    bottom: 12px;
+}
 
-    .main__course .plate__list h4 {
-        font-weight: $tine_weight;
-        font-size: $small;
-        position: relative;
-        bottom: 12px;
-    }
-
-    .plate__price {
-        position: absolute;
-        left: 89%; 
-        bottom: 40%;
-        font-weight: $medium_weight;
-        transition: left 0.5s ease; 
-    }
+.plate__price {
+     position: absolute;
+     left: 89%; 
+     bottom: 40%;
+     font-weight: $medium_weight;
+     transition: left 0.5s ease; 
+}
 
 
-    .btn_place_m {
-        @include flex__center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
+.btn_place_m {
+     @include flex__center;
+     padding-top: 40px;
+     padding-bottom: 40px;
+}
 
-    footer {
-        margin-top: -90px;
-        padding-top: 10px;
-    }
+footer {
+     margin-top: -90px;
+     padding-top: 10px;
+}
 
     @include desktop {
 

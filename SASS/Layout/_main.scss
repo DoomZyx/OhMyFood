@@ -1,20 +1,15 @@
 form {
     @include flex__center_row;
-    padding-top: $center;
-    padding-left: 6em;
-    gap: 0.5em;
+    @include center_form;
 }
 
 
 input[type=search] {
     @include input_style;
-    border: none;
-    background: none;
+    @include no-style;
 
     &::placeholder {
-        color: black;
-        font-weight: 400;
-        font-size: $small;
+        @include styling_placeholder;
     }
 }
 
@@ -41,9 +36,9 @@ main .und_header {
 }
 
 .und_header h3 {
+    @include shift_bottom;
     font-size: $taller;
     font-weight: $tine_weight;
-    @include shift_bottom;
     width: 100%;
 } 
 

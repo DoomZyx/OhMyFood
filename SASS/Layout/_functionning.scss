@@ -15,13 +15,7 @@
     
     .functionning-step {
         @include flex__row;
-        width: 85vw;
-        height: 72px;
-        border: none;
-        border-radius: 20px;
-        background-color: $background_grey__light;
-        gap: 20px;
-        box-shadow: $light_shadow
+        @include stylin_functionning;
     }
 
     .functionning-step .fa-mobile-screen-button, .fa-list-ul {

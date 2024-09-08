@@ -197,8 +197,8 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    width: 100%;
     position: relative;
+    width: 100%;
   }
   .foottitle {
     display: flex;
