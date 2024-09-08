@@ -16,7 +16,7 @@
         .card {
             @include card_;
             background-color: white;
-            position: relative; // Ajoutez cette ligne pour que .new se positionne par rapport à .card
+            position: relative; 
         }
     
         .card img {
@@ -33,7 +33,7 @@
             color: #008766;
             border-radius: 5px;
             padding: 0.3em 0.675em;
-            width: auto;  // Supprimez les propriétés qui pourraient causer des problèmes d'élasticité.
+            width: auto;  
         }
 
         .card .btn__like {

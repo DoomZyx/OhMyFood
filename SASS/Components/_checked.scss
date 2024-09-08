@@ -30,9 +30,9 @@
 }
 
 .plate__list:hover h3, .plate__list.active h4 {
-    white-space: nowrap;      // Empêche le texte de passer à la ligne suivante
+    white-space: nowrap;      
     overflow: hidden;     
-    text-overflow: ellipsis;    // Cache le contenu qui déborde du conteneur de l'élément
+    text-overflow: ellipsis;    
     max-width: 50%;  
 }
 

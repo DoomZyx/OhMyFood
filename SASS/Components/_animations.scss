@@ -33,10 +33,10 @@
 
 @keyframes slideIn {
     0% {
-        right: -60px;  // Commence hors du conteneur
+        right: -60px; 
     }
     100% {
-        right: 0px;  // Finit à l'intérieur du conteneur
+        right: 0px; 
     }
 }
 
@@ -54,7 +54,7 @@
 }
 
 .menu__content {
-    opacity: 0;  // Départ avec l'opacité à 0 pour permettre l'animation
+    opacity: 0; 
     animation: fadeInUp 0.8s ease-out forwards;
     animation-delay: 3s;
 }
