@@ -1,0 +1,43 @@
+.plate__validation {
+    position: absolute;
+    right: -60px;  
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 65px;
+    background-color: $color_tertiary;
+    border-radius: 0 1rem 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.8 ease;
+}
+
+.fa-check {
+    color: white;
+}
+
+.plate__list:hover .plate__validation {
+    animation: slideIn 0.5s forwards;
+}
+
+.plate__list.plate__list:hover .plate__validation i {
+    animation: checked-spin 0.5s forwards;
+}
+
+.plate__list:hover .plate__price {
+    left: 72%;
+}
+
+.plate__list:hover h3, .plate__list.active h4 {
+    white-space: nowrap;      // Empêche le texte de passer à la ligne suivante
+    overflow: hidden;     
+    text-overflow: ellipsis;    // Cache le contenu qui déborde du conteneur de l'élément
+    max-width: 50%;  
+}
+
+@include desktop {
+    .plate__list:hover .plate__price {
+        left: 90%;
+    }
+}

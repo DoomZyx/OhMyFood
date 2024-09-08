@@ -34,43 +34,26 @@
     display: none; 
 }
 
-.card .fa-regular, .menu .fa-regular {
-    font-size: $taller;
+.card .fa-regular, .title-menu .fa-regular {
+    font-size: 24px;
     transform: scale(0.9);
     opacity: 0.7;
     position: relative;
     top: 0px;
 }
 
-.card .fa-solid, .menu .fa-solid {
-    font-size: $taller;
-    color: transparent;
-    background-image: $button_background;
-    background-clip: text;
-    -webkit-background-clip: text;
-    position: absolute; 
-    left: 0;
-    top: 0;
-    transform: scale(0.9);
-    transition: all 200ms ease-in-out;
-    opacity: 0; 
-}
-
-.toggle-heart:checked + .fa-regular + .fa-solid {
-    opacity: 1;
-    transform: scale(1.2);
-}
 
 @include desktop {
     .menu .fa-regular {
         position: relative;
         top: 0px;
+        left: 5px;
         
     }
 
-    .menu .fa-solid {
+    .title-menu .fa-solid {
         position: absolute;
-        left: -55px;
+        left: -15px;
         top: 0;
     }
 }

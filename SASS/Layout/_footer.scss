@@ -1,12 +1,13 @@
 .layout {
     width: 100%;
-    height: 100%;
     background-color: $background_grey__dark;
     color: white;
+    gap: 20px;
 
     h4 {
         padding-left: 25px;
         padding-top: 15px;
+        margin-bottom: 20px;
         font-weight: 400;
         font-size: $taller;
     }

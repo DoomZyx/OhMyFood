@@ -13,7 +13,7 @@ a {
 }
 
 ::placeholder, .und_header, .functionning, .restaurant, footer a  {
-    font-size: $font_primary;
+    font-family: $font_primary;
 }
 
 .layout h4 {
@@ -29,6 +29,3 @@ p {
     margin: 0;
 }
 
-h3 {
-    margin: 5px 0;
-}

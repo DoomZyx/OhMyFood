@@ -12,7 +12,7 @@ a {
 }
 
 ::placeholder, .und_header, .functionning, .restaurant, footer a {
-  font-size: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .layout h4 {
@@ -25,10 +25,6 @@ a {
 
 p {
   margin: 0;
-}
-
-h3 {
-  margin: 5px 0;
 }
 
 .btn-place {
@@ -66,41 +62,23 @@ h3 {
   display: none;
 }
 
-.card .fa-regular, .menu .fa-regular {
-  font-size: 18px;
+.card .fa-regular, .title-menu .fa-regular {
+  font-size: 24px;
   transform: scale(0.9);
   opacity: 0.7;
   position: relative;
   top: 0px;
 }
 
-.card .fa-solid, .menu .fa-solid {
-  font-size: 18px;
-  color: transparent;
-  background-image: linear-gradient(193.33deg, #9356DC -11.44%, #FF79DA 123.93%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: scale(0.9);
-  transition: all 200ms ease-in-out;
-  opacity: 0;
-}
-
-.toggle-heart:checked + .fa-regular + .fa-solid {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
 @media screen and (min-width: 1065px) {
   .menu .fa-regular {
     position: relative;
     top: 0px;
+    left: 5px;
   }
-  .menu .fa-solid {
+  .title-menu .fa-solid {
     position: absolute;
-    left: -55px;
+    left: -15px;
     top: 0;
   }
 }
@@ -187,13 +165,14 @@ h3 {
 }
 .layout {
   width: 100%;
-  height: 100%;
   background-color: #383838;
   color: white;
+  gap: 20px;
 }
 .layout h4 {
   padding-left: 25px;
   padding-top: 15px;
+  margin-bottom: 20px;
   font-weight: 400;
   font-size: 18px;
 }
@@ -292,16 +271,20 @@ body {
 
 header {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   gap: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   padding: 0 0 5px;
   font-size: 28px;
+  position: relative;
+  left: 0px;
+  top: 0px;
 }
 
 .fa-arrow-left {
-  position: relative;
-  right: 90px;
+  position: absolute;
+  right: 94%;
+  bottom: 30%;
   font-size: 24px;
 }
 
@@ -310,7 +293,12 @@ main {
 }
 
 .main-email {
-  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 74.5vh;
   padding-left: 15px;
   font-size: 18px;
 }
@@ -319,6 +307,9 @@ main {
   font-weight: 400;
   font-size: 28px;
   padding-top: 10px;
+  position: relative;
+  bottom: 40px;
+  right: 5px;
 }
 
 .main-email h2 {
@@ -337,9 +328,9 @@ main {
   border: none;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   border-radius: 15px;
-  width: 82vw;
+  width: 70vw;
   position: relative;
-  bottom: 10px;
+  top: 20px;
 }
 
 .main-email h3 {
@@ -354,10 +345,31 @@ main {
   margin-top: 0;
 }
 
-.emailfooter {
-  padding-top: 39px;
-  height: 30vh;
-}
-.emailfooter footer h4 {
-  color: white;
+@media screen and (min-width: 1065px) {
+  header .fa-arrow-left {
+    position: absolute;
+    right: 96%;
+    bottom: 35%;
+  }
+  .main-email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 82vh;
+    position: relative;
+    bottom: 40px;
+    gap: 0px;
+    padding: 0;
+  }
+  .main-email h1, h2 {
+    position: relative;
+    bottom: 50px;
+  }
+  .main-email .mail {
+    width: 70vw;
+    position: relative;
+    top: 0px;
+  }
 }/*# sourceMappingURL=email.css.map */
