@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: right 0.8 ease;
+    transition: right 0.8s ease;
 }
 
 .fa-check {
@@ -38,6 +38,6 @@
 
 @include desktop {
     .plate__list:hover .plate__price {
-        left: 90%;
+        left: 84%;
     }
 }

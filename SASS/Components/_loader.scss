@@ -44,11 +44,6 @@
 // loading to homepage//////////////////////////////////////////////////
 
 
-.loader + .homepage {
-    animation: fadeIn;
-    visibility: visible;
-    z-index: 0;
-}
 
 @keyframes fadeOut {
     0% {
@@ -60,15 +55,5 @@
         opacity: 0;
         visibility: hidden;
         z-index: -1;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
     }
 }

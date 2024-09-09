@@ -23,12 +23,12 @@ header {
 .title-menu {
     @include flex__row;
     @include relative_parent;
-    gap: 50px;
+    gap: 0px;
 }
 
 .btn__like {
     position: absolute;
-    left: 80%; 
+    left: 340px; 
 }
 .main__course {
     @include flex__column;
@@ -37,8 +37,9 @@ header {
     margin-bottom: 15px;
 }
 
-h1 {
+.title-menu h1 {
     font-family: "Shrikhand", cursive;
+    font-size: 32px;
     font-weight: $medium_weight;
     padding-left: 10px;
 }
@@ -114,10 +115,11 @@ footer {
             gap: 0px;
         }
 
-        .title-menu .fa-heart {
-            position: relative;
-            right: 100%;
+        .btn__like {
+            position: absolute;
+            left: 80%;
         }
+
 
         .plate__list {
             width: 50vw;
