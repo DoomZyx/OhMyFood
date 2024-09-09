@@ -4,12 +4,12 @@
     font-size: 24PX;
     color: transparent;
     background-image: $button_background;
-    background-clip: text;
-    -webkit-background-clip: text;
     position: absolute; 
     left: 0;
     top: 0;
     transform: scale(0.9);
+    background-clip: text;
+    -webkit-background-clip: text;
     transition: all 200ms ease-in-out;
     opacity: 0; 
 }
