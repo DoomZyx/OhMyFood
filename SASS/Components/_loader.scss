@@ -12,6 +12,7 @@
     z-index: 9999;
     visibility: visible;
     animation: fadeOut 2s ease 1.5s forwards;
+    transition: opacity 1s ease-in-out;
 }
 
 .circles {
