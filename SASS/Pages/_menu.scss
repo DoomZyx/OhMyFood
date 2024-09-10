@@ -23,13 +23,9 @@ header {
 .title-menu {
     @include flex__row;
     @include relative_parent;
-    gap: 0px;
+    gap: 20px;
 }
 
-.btn__like {
-    position: absolute;
-    left: 340px; 
-}
 .main__course {
     @include flex__column;
     gap: 10px;
@@ -106,12 +102,7 @@ footer {
             padding: 35px;
             @include flex__center_row;
             margin: 0 auto;
-            gap: 0px;
-        }
-
-        .btn__like {
-            position: absolute;
-            left: 80%;
+            gap: 20px;
         }
 
 
