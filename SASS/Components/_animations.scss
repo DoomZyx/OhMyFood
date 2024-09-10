@@ -1,23 +1,6 @@
 // Button /////////////////////////////////////////////
 
-.card .fa-solid, .title-menu .fa-solid {
-    font-size: 18PX;
-    color: transparent;
-    background-image: $button_background;
-    position: absolute; 
-    left: 0;
-    top: 0;
-    transform: scale(0.9);
-    background-clip: text;
-    -webkit-background-clip: text;
-    transition: all 200ms ease-in-out;
-    opacity: 0; 
-}
 
-.toggle-heart:checked + .fa-regular + .fa-solid {
-    opacity: 1;
-    transform: scale(1.2);
-}
 
 
 // Checked ////////////////////////////////////////////////////////

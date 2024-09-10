@@ -1,4 +1,4 @@
-//// Bouton "Explorez nos restaurants"/////////////////
+//// Bouton Explore & Order /////////////////
 
 .btn-place {
     @include flex__center_row;
@@ -7,7 +7,13 @@
     padding: $center;
 }
 
-.explore-btn {
+.btn_place_o {
+    @include flex__center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.explore-btn, .order-btn {
     width: 218px;
     height: 50px;
     border-radius: $button__radius;
@@ -17,11 +23,11 @@
     box-shadow: 0px 4px 10px 0px #00000040;
 }
 
-.explore-btn:hover {
+.explore-btn:hover, .order-btn:hover {
     opacity: 0.8;
 }
 
-/////////////////////////////////////////////////////////////////
+////// Heart ///////////////////////////////////////////////////////////
 
 .btn__like {
     @include relative_parent; 
@@ -35,6 +41,25 @@
 
 .toggle-heart {
     display: none; 
+}
+
+.card .fa-solid, .title-menu .fa-solid {
+    font-size: 18PX;
+    color: transparent;
+    background-image: $button_background;
+    position: absolute; 
+    left: 0;
+    top: 1px;
+    transform: scale(0.9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: all 200ms ease-in-out;
+    opacity: 0; 
+}
+
+.toggle-heart:checked + .fa-regular + .fa-solid {
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 .card .fa-regular, .title-menu .fa-regular {
@@ -57,7 +82,7 @@
 
     .title-menu .fa-solid {
         position: absolute;
-        left: -15px;
-        top: 0;
+        left: 8px;
+        top: 3px;
     }
 }
