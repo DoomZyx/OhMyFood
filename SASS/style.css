@@ -395,10 +395,10 @@ p {
     flex-wrap: wrap;
   }
   .functionning h2 {
-    padding-left: 19%;
+    padding-left: 14.5%;
   }
   .functionning .functionning-step {
-    width: 25vw;
+    width: 21.9vw;
   }
   .functionning-txt {
     font-size: 16px;
@@ -740,7 +740,7 @@ footer {
     margin-bottom: 50px;
   }
   main .restaurant h2 {
-    padding-left: 13.6%;
+    padding-left: 14%;
   }
   .restaurant .card {
     width: 85%;
