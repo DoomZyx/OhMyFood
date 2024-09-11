@@ -21,7 +21,7 @@
     animation: slideIn 0.5s forwards;
 }
 
-.plate__list.plate__list:hover .plate__validation i {
+.plate__list:hover .plate__validation i {
     animation: checked-spin 0.5s forwards;
 }
 

@@ -49,6 +49,7 @@ header {
     @include flex__column;
     @include relative_parent;
     @include plate__list__style;
+    flex-wrap: nowrap;
     overflow: hidden;
 }
 
@@ -108,6 +109,8 @@ footer {
 
         .plate__list {
             width: 50vw;
+            height: 65px;
+            line-height: 0.05;
         }
 
         .plate__price {
