@@ -44,6 +44,7 @@
 
     .functionning .functionning-group {
         @include flex__row;
+        padding-left: 6.5%;
     }
 
     .functionning h2 {
@@ -51,7 +52,7 @@
     }
 
     .functionning .functionning-step {
-        width: 21.9vw;
+        width: 24vw;
     }
 
     .functionning-txt {

@@ -393,12 +393,13 @@ p {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    padding-left: 6.5%;
   }
   .functionning h2 {
     padding-left: 14.5%;
   }
   .functionning .functionning-step {
-    width: 21.9vw;
+    width: 24vw;
   }
   .functionning-txt {
     font-size: 16px;
@@ -733,7 +734,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
-    width: 70%;
+    width: 77.8%;
     margin: 0 auto;
     position: relative;
     left: 85px;
