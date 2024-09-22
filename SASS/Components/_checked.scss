@@ -1,44 +1,45 @@
+// Sélecteur de plat
+
 .plate__validation {
-    position: absolute;
-    right: -60px;  
-    top: 50%;
-    transform: translateY(-50%); //Permet de centrer verticalement
-    width: 60px;
-    height: 65px;
-    background-color: $color_tertiary;
-    border-radius: 0 1rem 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: right 0.8s ease;
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 65px;
+  background-color: $color_tertiary;
+  border-radius: 0 1rem 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fa-check {
-    color: white;
+  color: white;
 }
 
-
-.plate__list:hover .plate__validation {
-    animation: slideIn 0.5s forwards;
+.toggle-heart:checked + .plate__list .plate__validation {
+  animation: slideIn 0.5s forwards;
 }
 
-.plate__list:hover .plate__validation i {
-    animation: checked-spin 0.5s forwards;
+.toggle-heart:checked + .plate__list .plate__validation i {
+  animation: checked-spin 0.5s forwards;
 }
 
-.plate__list:hover .plate__price {
-    left: 72%;
+.toggle-heart:checked + .plate__list .plate__price {
+  left: calc(87% - 60px);
 }
 
-.plate__list:hover h3, .plate__list.active h4 {
-    white-space: nowrap;      
-    overflow: hidden;     
-    text-overflow: ellipsis;    
-    max-width: 50%;  
+.toggle-heart:checked + .plate__list h3,
+.toggle-heart:checked + .plate__list h4 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 60%;
 }
 
 @include desktop {
-    .plate__list:hover .plate__price {
-        left: 84%;
-    }
+  .plate__list:hover .plate__price {
+    left: 84%;
+  }
 }

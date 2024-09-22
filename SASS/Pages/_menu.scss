@@ -1,120 +1,116 @@
-
-
 header {
-    @include flex__row;
-    @include relative_parent;
+  @include flex__row;
+  @include relative_parent;
 }
 
 .fa-arrow-left {
-    position: absolute;
-    right: 92%; bottom: 35%;
-    font-size: 20px;
+  position: absolute;
+  right: 92%;
+  bottom: 35%;
+  font-size: 20px;
 }
 
 .image__brand img {
-        @include stylin_img__brand;
+  @include stylin_img__brand;
 }
 
 .menu__content {
-    @include stylin_card__menu;
-    @include relative_parent;
+  @include stylin_card__menu;
+  @include relative_parent;
 }
 
 .title-menu {
-    @include flex__row;
-    @include relative_parent;
-    gap: 20px;
+  @include flex__row;
+  @include relative_parent;
+  gap: 20px;
 }
 
 .main__course {
-    @include flex__column;
-    gap: 10px;
-    width: 99%;
-    margin-bottom: 15px;
+  @include flex__column;
+  gap: 10px;
+  width: 99%;
+  margin-bottom: 15px;
 }
 
 .title-menu h1 {
-    font-family: "Shrikhand", cursive;
-    font-size: 32px;
-    font-weight: $medium_weight;
-    padding-left: 10px;
+  font-family: "Shrikhand", cursive;
+  font-size: 1.6em;
+  font-weight: $medium_weight;
+  padding-left: 10px;
 }
 
 .menu h2 {
-    @include stylin_title__menu;
+  @include stylin_title__menu;
 }
 
-
 .plate__list {
-    @include flex__column;
-    @include relative_parent;
-    @include plate__list__style;
-    flex-wrap: nowrap;
-    overflow: hidden;
+  @include flex__column;
+  @include relative_parent;
+  @include plate__list__style;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .plate__list h3 {
-    font-weight: $medium_weight;
+  font-weight: $medium_weight;
+  font-size: 1em;
 }
 
-.plate__list h3,h4 {
-    margin-bottom: 1px;
-    line-height: 0.785;
+.plate__list h3,
+h4 {
+  margin-bottom: 1px;
+  line-height: 0.785;
 }
 
 .main__course .plate__list h4 {
-    font-weight: $tine_weight;
-    font-size: $small;
-    position: relative;
-    bottom: 12px;
+  font-weight: $tine_weight;
+  font-size: $small;
+  position: relative;
+  bottom: 12px;
 }
 
 .plate__price {
-     position: absolute;
-     left: 89%; 
-     bottom: 40%;
-     font-weight: $medium_weight;
-     transition: left 0.5s ease; 
+  position: absolute;
+  left: 89%;
+  bottom: 40%;
+  font-weight: $medium_weight;
+  transition: left 0.5s ease;
 }
-
 
 footer {
-     margin-top: -90px;
-     padding-top: 10px;
+  margin-top: -90px;
+  padding-top: 10px;
 }
 
-    @include desktop {
+@include desktop {
+  .image__brand img {
+    height: 383px;
+  }
 
+  body .menu__content {
+    @include flex__center;
+    align-self: center;
+    margin: 0 auto;
+    width: 80%;
+    position: relative;
+    bottom: 80px;
+  }
 
-        .image__brand img {
-            height: 383px;
-        }
+  .menu__content .title-menu {
+    padding: 35px;
+    @include flex__center_row;
+    margin: 0 auto;
+    gap: 20px;
+  }
 
-        body .menu__content {
-            @include flex__center;
-            align-self: center;
-            margin: 0 auto;
-            width: 80%;
-            position: relative;
-            bottom: 80px;
-        }
-        
-        .menu__content .title-menu  {
-            padding: 35px;
-            @include flex__center_row;
-            margin: 0 auto;
-            gap: 20px;
-        }
+  .plate__list {
+    width: 50vw;
+    height: 65px;
+    line-height: 0.05;
+  }
 
-
-        .plate__list {
-            width: 50vw;
-            height: 65px;
-            line-height: 0.05;
-        }
-
-        .plate__price {
-            position: absolute;
-            left: 90%;
-        }
-    }
+  .plate__price {
+    position: absolute;
+    left: 90%;
+  }
+}

@@ -1,66 +1,65 @@
 .functionning {
-    @include flex__column;
-    padding-bottom: 5em;
+  @include flex__column;
+  padding-bottom: 5em;
 
-    h2 {
-        @include shift_left;
-        @include shift_bottom;
-        padding-top: $center;
-    }
+  h2 {
+    @include shift_left;
+    @include shift_bottom;
+    padding-top: $center;
+  }
 
-    .functionning-group {
-        @include flex__center;
-        gap: 25px;
-    }
-    
-    .functionning-step {
-        @include flex__row;
-        @include stylin_functionning;
-    }
+  .functionning-group {
+    @include flex__center;
+    gap: 25px;
+  }
 
-    .functionning-step .fa-mobile-screen-button, .fa-list-ul {
-        @include shift_right;
-        color: $grey_primary;
-        font-size: $taller;
-    }
+  .functionning-step {
+    @include flex__row;
+    @include stylin_functionning;
+  }
 
-    .fa-store {
-        color: $color_primary;
-        @include shift_right;
-    }
+  .functionning-step .fa-mobile-screen-button,
+  .fa-list-ul {
+    @include shift_right;
+    color: $grey_primary;
+    font-size: $taller;
+  }
 
-    .functionning-txt {
-        font-weight: $medium_weight;
-        color: black;
-    }
+  .fa-store {
+    color: $color_primary;
+    @include shift_right;
+  }
 
+  .functionning-txt {
+    font-weight: $medium_weight;
+    color: black;
+    @include shift_right;
+  }
 }
 
 @include desktop {
+  .functionning {
+    padding-bottom: 3em;
+  }
 
-    .functionning {
-        padding-bottom: 3em;
-    }
+  .functionning .functionning-group {
+    @include flex__row;
+    padding-left: 6.5%;
+  }
 
-    .functionning .functionning-group {
-        @include flex__row;
-        padding-left: 6.5%;
-    }
+  .functionning h2 {
+    padding-left: 14.5%;
+  }
 
-    .functionning h2 {
-        padding-left: 14.5%;
-    }
+  .functionning .functionning-step {
+    width: 24vw;
+  }
 
-    .functionning .functionning-step {
-        width: 24vw;
-    }
+  .functionning-txt {
+    font-size: $normal;
+  }
 
-    .functionning-txt {
-        font-size: $normal;
-    }
-
-    .functionning-step i {
-        font-size: 1em;
-    }
-
+  .functionning-step i {
+    font-size: 1em;
+  }
 }

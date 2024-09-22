@@ -1,171 +1,166 @@
 //Flexbox + centrage
 
 @mixin flex__center {
-
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-
 @mixin flex__center_row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @mixin flex__row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @mixin flex__row_centerY {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 //////////////////////////////////////////////////
 /// Flexbox ////////////////
 
 @mixin flex__column {
-
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 @mixin flex__row_end {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 /////////////////////////////////////////////////
 
 //Ombres/////////////////////////////////////////
 
 @mixin shadow {
-    box-shadow: $light_shadow;
+  box-shadow: $light_shadow;
 }
 ///////////////////////////////////////////////////////
 
 // Décalage + positionnement absolu relatif à un parent positionné
 
 @mixin shift_top {
-    position: relative;
-    top : 15px;
+  position: relative;
+  top: 15px;
 }
 
 @mixin shift_bottom {
-    position: relative;
-    bottom: 15px;    
+  position: relative;
+  bottom: 15px;
 }
 
 @mixin shift_left {
-    position: relative;
-    left: 15px;
+  position: relative;
+  left: 15px;
 }
 
 @mixin shift_right {
-    position: relative;
-    right: 15px;
+  position: relative;
+  right: 15px;
 }
 @mixin center_content {
-    position: relative;
-    left: 3em;
+  position: relative;
+  left: 3em;
 }
 
 @mixin relative_parent {
-    position: relative;
+  position: relative;
 }
-
 
 /////////////////////////////
 ////////Header//////////////
 
 @mixin header_size_img {
-    height: 50px;
-    width: 177px;
+  height: 50px;
+  width: 177px;
 }
 
 @mixin header_img_desktop {
-    padding: 15px;
-    width: 200px;
-    height: 50px;
+  padding: 15px;
+  width: 200px;
+  height: 50px;
 }
 
 //Barre de recherche///////////////////////////////////////////////////////////////////////////
 
 @mixin input_style {
-    font-weight: 540;
-    font-size: $normal;
-    color: $darken;
-    border: none;
+  font-weight: 540;
+  font-size: $normal;
+  color: $darken;
+  border: none;
 }
 
 @mixin center_form {
-    padding-top: $center;
-    padding-left: 6em;
-    gap: 0.5em;
+  padding-top: $center;
+  padding-left: 4.8em;
+  gap: 0.5em;
 }
 
 @mixin no-style {
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 }
 
 @mixin styling_placeholder {
-    color: black;
-    font-weight: 400;
-    font-size: $small;
+  color: black;
+  font-weight: 400;
+  font-size: $small;
 }
 
 //////////////////////////////////////////////
 
 @mixin stylin_functionning {
-    width: 85vw;
-        height: 72px;
-        border: none;
-        border-radius: 20px;
-        background-color: $background_grey__light;
-        gap: 20px;
-        box-shadow: $light_shadow
+  width: 85vw;
+  height: 72px;
+  border: none;
+  border-radius: 20px;
+  background-color: $background_grey__light;
+  gap: 20px;
+  box-shadow: $light_shadow;
 }
 
 ////////////////////////////////////////////////
 
 @mixin stylin_footer {
-    width: 100%;
-    background-color: $background_grey__dark;
-    color: white;
-    gap: 20px;
+  width: 100%;
+  background-color: $background_grey__dark;
+  color: white;
+  gap: 20px;
 }
 
 @mixin position_title__footer {
-    padding-left: 25px;
-        padding-top: 15px;
-        margin-bottom: 20px;
-        font-weight: 400;
-        font-size: $taller;
-} 
+  padding-left: 25px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: $taller;
+}
 
 @mixin stylin_hyperlink__footer {
-    padding-left: 25px;
-        padding-bottom: 5px;
-        font-weight: 400;
-        font-size: $small;
-        gap: 11px;
-        color: #FFFFFF;
+  padding-left: 25px;
+  padding-bottom: 5px;
+  font-weight: 400;
+  font-size: $small;
+  gap: 11px;
+  color: #ffffff;
 }
 
 ///////////////////////////////////////////////
 @mixin icon-size {
-    width: 12px;
-    height: 16px;
-    
+  width: 12px;
+  height: 16px;
 }

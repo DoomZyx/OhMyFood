@@ -1,90 +1,90 @@
 //// Bouton Explore & Order /////////////////
 
 .btn-place {
-    @include flex__center_row;
-    position: relative;
-    left: 5px;
-    padding: $center;
+  @include flex__center_row;
+  position: relative;
+  left: 5px;
+  padding: $center;
 }
 
 .btn_place_o {
-    @include flex__center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+  @include flex__center;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.explore-btn, .order-btn {
-    width: 218px;
-    height: 50px;
-    border-radius: $button__radius;
-    background: $button_background;
-    color: white;
-    border: none;
-    box-shadow: 0px 4px 10px 0px #00000040;
+.explore-btn,
+.order-btn {
+  width: 218px;
+  height: 50px;
+  border-radius: $button__radius;
+  background: $button_background;
+  color: white;
+  border: none;
+  box-shadow: 0px 4px 10px 0px #00000040;
 }
 
-.explore-btn:hover, .order-btn:hover {
-    opacity: 0.8;
+.explore-btn:hover,
+.order-btn:hover {
+  opacity: 0.8;
 }
 
 ////// Heart ///////////////////////////////////////////////////////////
 
 .btn__like {
-    @include relative_parent; 
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
+  @include relative_parent; // Suivi des éléments enfants sur l'élément parent(1)
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
 
 .toggle-heart {
-    display: none; 
+  display: none; // Disparition de la case à cocher
 }
 
-
-.card .fa-regular, .title-menu .fa-regular {
-    font-size: 24px;
-    transform: scale(0.9);
-    opacity: 0.7;
-    position: relative;
-    top: 0;
-    left: 0;
+.card .fa-regular,
+.title-menu .fa-regular {
+  font-size: 24px;
+  transform: scale(0.9);
+  opacity: 0.7;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
-.card .fa-solid, .title-menu .fa-solid {
-    font-size: 18PX;
-    color: transparent;
-    background-image: $button_background;
-    position: absolute; 
-    left: 3px;
-    top: 3px;
-    transform: scale(0.9);
-    background-clip: text;
-    -webkit-background-clip: text;
-    transition: all 200ms ease-in-out;
-    opacity: 0; 
+.card .fa-solid,
+.title-menu .fa-solid {
+  font-size: 18px;
+  color: transparent;
+  background-image: $button_background;
+  position: absolute;
+  left: 3px;
+  top: 4px;
+  transform: scale(0.9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: all 200ms ease-in-out;
+  opacity: 0;
 }
 
 .toggle-heart:checked + .fa-regular + .fa-solid {
-    opacity: 1;
-    transform: scale(1.2);
+  opacity: 1;
+  transform: scale(1.2);
 }
 
-
 @include desktop {
+  .menu .fa-regular {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
 
-    .menu .fa-regular {
-        position: relative;
-        top: 0px;
-        left: 0px;
-        
-    }
-
-    .title-menu .fa-solid {
-        position: absolute;
-        left: 3px;
-        top: 3px;
-    }
+  .title-menu .fa-solid {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+  }
 }

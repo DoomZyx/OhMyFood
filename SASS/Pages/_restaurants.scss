@@ -1,80 +1,79 @@
 .restaurant-title {
-    font-size: $taller;
-    padding-left: 30px;
+  font-size: $taller;
+  padding-left: 30px;
+}
+
+.restaurant {
+  background-color: $background_grey__light;
+  padding-top: 1em;
+
+  .flex-card {
+    @include flex__center;
+    padding-bottom: 6em;
+    gap: 20px;
+  }
+
+  .card {
+    @include card_;
+    background-color: white;
+    position: relative;
+  }
+
+  .card img {
+    @include card_img;
+    object-fit: cover;
+  }
+
+  .new {
+    @include stylin__new;
+  }
+
+  .card .btn__like {
+    position: absolute;
+    bottom: 10%;
+    left: 85%;
+    border: none;
+    background: none;
+  }
+  .card-txt {
+    padding-left: 0.9em;
+
+    .card-txt h3 {
+      padding-top: 0em;
+      font-size: $taller;
     }
 
-    .restaurant {
-        background-color: $background_grey__light;
-        padding-top: 1em;
-        
-        .flex-card {
-        @include flex__center;
-        padding-bottom: 6em;
-        gap: 20px;
-        }
-    
-        .card {
-            @include card_;
-            background-color: white;
-            position: relative; 
-        }
-    
-        .card img {
-            @include card_img;
-            object-fit: cover;
-        }
-    
-        .new {
-            @include stylin__new
-        }
-
-        .card .btn__like {
-            position: absolute;
-            bottom: 10%; left: 85%;
-            border: none;
-            background: none;
-        }
-        .card-txt {
-            padding-left: 0.9em;
-    
-            .card-txt h3 {
-                padding-top: 0.3em;
-                font-size: $taller;
-            }
-    
-            p {
-                font-size: $small;
-                font-weight: 400;
-                position: relative;
-                bottom: 12px;
-            }
-        }
+    p {
+      font-size: $small;
+      font-weight: 400;
+      position: relative;
+      bottom: 18px;
     }
+  }
+}
 
-    @include desktop {
+@include desktop {
+  main .restaurant .flex-card {
+    @include settlement__card__desktop;
+  }
 
-        main .restaurant .flex-card {
-            @include settlement__card__desktop;
-        }
+  main .restaurant h2 {
+    padding-left: 14%;
+  }
 
-        main .restaurant h2 {
-            padding-left: 14%;
-        }
+  .restaurant .card {
+    width: 85%;
+    height: 260px;
+    box-sizing: border-box;
+  }
 
-        .restaurant .card {
-            width: 85%;
-            height: 260px;
-            box-sizing: border-box;
-        }
+  .restaurant .card img {
+    width: 100%;
+    height: 180px;
+  }
 
-        .restaurant .card img {
-            width: 100%;
-            height: 180px;
-        }
-
-        .restaurant .card .btn__like {
-            position: absolute;
-            left: 90%;
-        }
-
-    }
+  .restaurant .card .btn__like {
+    position: absolute;
+    left: 90%;
+  }
+}

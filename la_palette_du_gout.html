@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap"
-      rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com" >
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Shrikhand&display=swap"
-      rel="stylesheet">
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <!-- Link CSS Folder -->
-    <link rel="stylesheet" href="./SASS/style.css">
+    <link rel="stylesheet" href="./SASS/style.css" />
 
     <title>Ohmyfood - La Palette Du Goût</title>
   </head>
@@ -60,6 +63,8 @@
           <div class="main__course">
             <h2>ENTRÉES</h2>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Fricasée d'escargot</h3>
               <h4>Au piment d'espelette</h4>
@@ -68,7 +73,10 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
-
+          </label>
+            
+          <label> 
+            <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Foie gras de canard mi-cuit</h3>
               <h4>Et ses copeaux de truffe noir</h4>
@@ -77,20 +85,25 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
+          </label>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Oeuf au plat</h3>
               <h4>Assaisonné à la truffe sur lit de caviar</h4>
               <span class="plate__price"> 20€ </span>
               <div class="plate__validation">
                 <i class="fa-solid fa-check"></i>
-              </div>
             </div>
           </div>
+        </label>
 
           <div class="main__course">
             <h2>PLATS</h2>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Filet de boeuf aux herbes</h3>
               <h4>Accompagné de sa ribambelle de légumes</h4>
@@ -99,7 +112,10 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
+          </label>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Parmentier de queue de boeuf</h3>
               <h4>À la truffe noire sur sa purée de panais</h4>
@@ -108,20 +124,25 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
+          </label>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Filet de turbot</h3>
               <h4>Aux agrumes</h4>
               <span class="plate__price"> 44€ </span>
               <div class="plate__validation">
                 <i class="fa-solid fa-check"></i>
-              </div>
             </div>
           </div>
+        </label>
 
           <div class="main__course">
             <h2>DESSERTS</h2>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Paris-Brest</h3>
               <h4>Revisité</h4>
@@ -130,7 +151,10 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
+          </label>
 
+            <label> 
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
               <h3>Macaron au chocolat d'exception</h3>
               <h4>Et glace à la vanille de Madagascar</h4>
@@ -139,16 +163,20 @@
                 <i class="fa-solid fa-check"></i>
               </div>
             </div>
+          </label>
 
+            <label>
+              <input type="checkbox" class="toggle-heart"/>
             <div class="plate__list">
-              <h3>Mousse au chocolat</h3>
-              <h4>Au piment d'espelette et à la truffe noir</h4>
-              <span class="plate__price">23€</span>
-              <div class="plate__validation">
-                <i class="fa-solid fa-check"></i>
-              </div>
-            </div>
-          </div>
+                  <h3>Mousse au chocolat</h3>
+                  <h4>Au piment d'espelette et à la truffe noire</h4>
+                  <span class="plate__price">23€</span>
+                  <div class="plate__validation">
+                      <i class="fa-solid fa-check"></i>
+                  </div>
+                </div>
+              </label>
+          
           <div class="btn_place_o">
             <button class="order-btn">Commander</button>
           </div>
