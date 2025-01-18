@@ -1,5 +1,5 @@
 @import './Utils/variables';
-@import './Utils/mixins.scss';
+@import './Utils/mixins';
 @import './Utils/mixin_menu&cards';
 @import './Utils/placeholders';
 @import './Utils/responsive';
@@ -16,7 +16,6 @@
 @import './Layout/footer';
 @import './Layout/functionning';
 @import './Layout/header';
-@import './Layout/main';
 
 @import './Pages/menu';
-@import './Pages/restaurants';
+@import './Pages/homepage';
