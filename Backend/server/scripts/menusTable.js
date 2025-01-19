@@ -1,7 +1,7 @@
-const db = require("../databse/db");
+const db = require("../database/db");
 
 db.serialize(() => {
- db.run(`CREATE TABLE IF NOT EXISTS menus (
+  db.run(`CREATE TABLE IF NOT EXISTS menus (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   restaurant_id INTEGER NOT NULL,
   ordre TEXT,
@@ -9,7 +9,7 @@ db.serialize(() => {
   namesuite TEXT,
   price REAL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
-  )`)
+  )`);
   db.run(`INSERT INTO menus (ordre, name, namesuite, price) VALUES
   (1, 'ENTREES', 'Fricassée d'escargot', 'Au piment d'espelette', 25€ ),
   (1, 'ENTREES', 'Foie gras de canard mi-cuit', 'Et ses copeaux de truffe noir', 35€),
@@ -48,7 +48,7 @@ db.serialize(() => {
   (4, 'DESSERTS', 'Farandole de desserts', 'Du chef', 18€),
   (4, 'DESSERTS', 'Crème brulée', 'Revisitée', 22€),
   (4, 'DESSERTS', 'Tiramisu', 'À la noisette', 23€)`);
-  console.log('Table menus et données ajoutés avec succés')
+  console.log("Table menus et données ajoutés avec succés");
 });
 
 db.close();
