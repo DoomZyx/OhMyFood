@@ -15,7 +15,19 @@ export async function getRestaurants() {
   }
 }
 
-// Appel de la fonction pour tester
 getRestaurants().then((data) => {
   console.log("Données reçues :", data);
 });
+
+export async function getMenus(restaurantId) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/menus/${restaurantId}`);
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la requête :", error);
+    return [];
+  }
+}
