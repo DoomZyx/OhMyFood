@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../database/db');
 
 // Récupérer tous les restaurants
-router.get('/', (req, res) => {
+router.get('/restaurants', (req, res) => {
   db.all('SELECT * FROM restaurants', [], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
