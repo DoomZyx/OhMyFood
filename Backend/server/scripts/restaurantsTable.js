@@ -8,7 +8,7 @@ db.serialize(() => {
     lieu TEXT NOT NULL
   )`);
 
-  // Ajouter des données
+  // Ajouter des données + Ajout des photos directement dans la db 
   db.run(`INSERT INTO restaurants (name, lieu) VALUES
     ('La palette du goût', 'Ménilmontant'),
     ('La note enchantée', 'Charonne'),
