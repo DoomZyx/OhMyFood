@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { getMenus, getRestaurants } from "../../API/API";
+import { useParams } from "react-router-dom";
+
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
 function Menus({ restaurantId }) {
   const [data, setData] = useState([]);
   const [menus, setMenus] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,52 +22,93 @@ function Menus({ restaurantId }) {
         );
       }
     };
-  
+
     fetchData();
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await getMenus(restaurantId);
-      setMenus(result);
-    };
+    if (id) {
+      const fetchData = async () => {
+        try {
+          const result = await getMenus(id);
+          setMenus(result);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des menus :", error);
+        }
+      };
 
-    fetchData();
-  }, [restaurantId]);
-  
+      fetchData();
+    }
+  }, [id]);
+
+  const groupedMenus = menus.reduce((acc, menu) => {
+    if (!acc[menu.ordre]) {
+      acc[menu.ordre] = [];
+    }
+    acc[menu.ordre].push(menu);
+    return acc;
+  }, {});
+
   return (
     <>
+      <div className="loader">
+        <div className="circles c1"></div>
+        <div className="circles c2"></div>
+        <div className="circles c3"></div>
+      </div>
+
       <Header />
+
+      {data && data.length > 0 ? (
+        data
+          .filter((restaurant) => String(restaurant.id) === String(id))
+          .map((restaurant) => (
+            <div className="image__brand" key={restaurant.id}>
+              <img
+                src={`http://localhost:3001${restaurant.photo}`}
+                alt={restaurant.name}
+                className="restaurant-image"
+              />
+            </div>
+          ))
+      ) : (
+        <p>Chargement en cours...</p>
+      )}
+
       <main className="menu__content">
         <section className="menu">
-          <div className="title-menu">
-            <h1>
-              {data.find((restaurant) => restaurant.id === restaurantId)
-                ?.name || "Chargement..."}
-            </h1>
-
-            <label htmlFor="" className="btn__like">
-              <input type="checkbox" className="toggle-heart" />
-              <i className="fa-regular fa-heart"></i>
-              <i className="fa-solid fa-heart"></i>
-            </label>
-          </div>
+          {data
+            .filter((restaurant) => String(restaurant.id) === String(id))
+            .map((restaurant) => (
+              <div key={restaurant.id} className="title-menu">
+                <h1>{restaurant.name}</h1>
+                <label htmlFor="" className="btn__like">
+                  <input type="checkbox" className="toggle-heart" />
+                  <i className="fa-regular fa-heart"></i>
+                  <i className="fa-solid fa-heart"></i>
+                </label>
+              </div>
+            ))}
 
           {menus.length > 0 ? (
-            menus.map((menu) => (
-              <div key={menu.id} className="main__course">
-                <h2>{menu.ordre}</h2>
-                <label htmlFor="">
-                  <input type="checkbox" className="toggle-heart" />
-                  <div className="plate__list">
-                    <h3>{menu.name}</h3>
-                    <h4>{menu.namesuite}</h4>
-                    <span className="plate__price">{menu.price} €</span>
-                    <div className="plate__validation">
-                      <i className="fa-solid fa-check"></i>
-                    </div>
+            Object.keys(groupedMenus).map((ordre) => (
+              <div key={ordre} className="menu-group">
+                <h2>{ordre}</h2>
+                {groupedMenus[ordre].map((menu) => (
+                  <div key={menu.id} className="main__course">
+                    <label htmlFor="">
+                      <input type="checkbox" className="toggle-heart" />
+                      <div className="plate__list">
+                        <h3>{menu.name}</h3>
+                        <h4>{menu.namesuite}</h4>
+                        <span className="plate__price">{menu.price} €</span>
+                        <div className="plate__validation">
+                          <i className="fa-solid fa-check"></i>
+                        </div>
+                      </div>
+                    </label>
                   </div>
-                </label>
+                ))}
               </div>
             ))
           ) : (

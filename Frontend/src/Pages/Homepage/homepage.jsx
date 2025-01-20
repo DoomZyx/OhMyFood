@@ -1,6 +1,8 @@
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
+import { Link } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { getRestaurants } from "../../API/API";
 
@@ -46,15 +48,17 @@ function Homepage() {
               {data && data.length > 0 ? (
                 data.map((restaurant) => (
                   <article className="card" key={restaurant.id}>
-                    <img
-                      src={`http://localhost:3001${restaurant.photo}`}
-                      alt={restaurant.name}
-                      className="restaurant-image"
-                    />
-                    <div className="card-txt">
-                      <h3>{restaurant.name}</h3>
-                      <p>{restaurant.lieu}</p>
-                    </div>
+                    <Link to={`/menus/${restaurant.id}`} className="card">
+                      <img
+                        src={`http://localhost:3001${restaurant.photo}`}
+                        alt={restaurant.name}
+                        className="restaurant-image"
+                      />
+                      <div className="card-txt">
+                        <h3>{restaurant.name}</h3>
+                        <p>{restaurant.lieu}</p>
+                      </div>
+                    </Link>
                     <label className="btn__like">
                       <input type="checkbox" className="toggle-heart" />
                       <i className="fa-regular fa-heart"></i>

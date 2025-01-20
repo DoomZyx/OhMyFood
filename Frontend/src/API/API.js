@@ -7,7 +7,6 @@ export async function getRestaurants() {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
     const restaurants = await response.json();
-    console.log(restaurants);
     return restaurants;
   } catch (error) {
     console.error("Erreur lors de la requête :", error);
@@ -15,9 +14,6 @@ export async function getRestaurants() {
   }
 }
 
-getRestaurants().then((data) => {
-  console.log("Données reçues :", data);
-});
 
 export async function getMenus(restaurantId) {
   try {
