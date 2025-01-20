@@ -38,8 +38,4 @@
   max-width: 60%;
 }
 
-@include desktop {
-  .plate__list:hover .plate__price {
-    left: 84%;
-  }
-}
+

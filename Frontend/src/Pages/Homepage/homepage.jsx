@@ -1,3 +1,4 @@
+import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
@@ -20,12 +21,8 @@ function Homepage() {
 
   return (
     <>
+      <Loader />
       <Header />
-      <div className="loader">
-        <div className="circles c1"></div>
-        <div className="circles c2"></div>
-        <div className="circles c3"></div>
-      </div>
 
       <div className="homepage">
         <main>

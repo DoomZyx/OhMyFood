@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getMenus, getRestaurants } from "../../API/API";
 import { useParams } from "react-router-dom";
 
+import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
@@ -51,11 +52,7 @@ function Menus({ restaurantId }) {
 
   return (
     <>
-      <div className="loader">
-        <div className="circles c1"></div>
-        <div className="circles c2"></div>
-        <div className="circles c3"></div>
-      </div>
+      <Loader />
 
       <Header />
 
@@ -82,7 +79,7 @@ function Menus({ restaurantId }) {
             .map((restaurant) => (
               <div key={restaurant.id} className="title-menu">
                 <h1>{restaurant.name}</h1>
-                <label htmlFor="" className="btn__like">
+                <label className="btn__like">
                   <input type="checkbox" className="toggle-heart" />
                   <i className="fa-regular fa-heart"></i>
                   <i className="fa-solid fa-heart"></i>
@@ -96,7 +93,7 @@ function Menus({ restaurantId }) {
                 <h2>{ordre}</h2>
                 {groupedMenus[ordre].map((menu) => (
                   <div key={menu.id} className="main__course">
-                    <label htmlFor="">
+                    <label>
                       <input type="checkbox" className="toggle-heart" />
                       <div className="plate__list">
                         <h3>{menu.name}</h3>
