@@ -5,6 +5,7 @@ header {
         height: 50px;
         width: 177px;
         @include flex__center;
+        padding: 1em;
     }
 
     .location-search {

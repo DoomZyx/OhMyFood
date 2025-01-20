@@ -26,16 +26,4 @@
   animation: checked-spin 0.5s forwards;
 }
 
-.toggle-heart:checked + .plate__list .plate__price {
-  left: calc(89% - 60px);
-}
-
-.toggle-heart:checked + .plate__list h3,
-.toggle-heart:checked + .plate__list h4 {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 60%;
-}
-
 
