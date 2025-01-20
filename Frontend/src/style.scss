@@ -6,16 +6,16 @@
 
 @import './Base/base';
 
-@import './Components/animations';
-@import './Components/buttons';
-@import './Components/circle';
-@import './Components/loader';
-@import './Components/checked.scss';
+@import './Components/Animations/animations';
+@import './Components/Buttons/buttons';
+@import './Components/Animations/Loader/circle';
+@import './Components/Animations/Loader/loader';
+@import './Components/MenuChecked/checked';
 
 
-@import './Layout/footer';
-@import './Layout/functionning';
-@import './Layout/header';
+@import './Components/Footer/footer';
+@import './Pages/Homepage/functionning';
+@import './Components/Header/header';
 
-@import './Pages/menu';
-@import './Pages/homepage';
+@import './Pages/MenuPage/menu';
+@import './Pages/Homepage/homepage';
