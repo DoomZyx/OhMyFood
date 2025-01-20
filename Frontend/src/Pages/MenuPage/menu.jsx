@@ -9,10 +9,17 @@ function Menus({ restaurantId }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getRestaurants();
-      setData(result);
+      try {
+        const result = await getRestaurants();
+        setData(result);
+      } catch (error) {
+        console.error(
+          "Erreur lors de la récupération des restaurants :",
+          error
+        );
+      }
     };
-
+  
     fetchData();
   }, []);
 
@@ -24,6 +31,7 @@ function Menus({ restaurantId }) {
 
     fetchData();
   }, [restaurantId]);
+  
   return (
     <>
       <Header />
