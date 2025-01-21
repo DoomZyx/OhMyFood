@@ -106,10 +106,12 @@ main .und_header {
 @include desktop {
   main .restaurant .flex-card {
     @include settlement__card__desktop;
+    position: relative;
+    left: 3%;
   }
 
   main .restaurant h2 {
-    padding-left: 14%;
+    padding-left: 12%;
   }
 
   .restaurant .card {

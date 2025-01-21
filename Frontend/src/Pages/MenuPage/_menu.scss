@@ -3,13 +3,6 @@ header {
   @include relative_parent;
 }
 
-.fa-arrow-left {
-  position: absolute;
-  right: 92%;
-  bottom: 35%;
-  font-size: 20px;
-}
-
 .image__brand img {
   @include stylin_img__brand;
 }

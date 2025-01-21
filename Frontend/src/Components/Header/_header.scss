@@ -1,4 +1,12 @@
 header {
+
+    .fa-arrow-left:before  {
+        position: absolute;
+        right: 95%;
+        bottom: 58%;
+        font-size: 20px;
+      }
+
     @include flex__center;
     
     img {
