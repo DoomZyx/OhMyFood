@@ -71,7 +71,7 @@ h4 {
 
 .plate__price {
   position: absolute;
-  left: 89%;
+  left: 95%;
   bottom: 40%;
   font-weight: $medium_weight;
   transition: left 0.5s ease;
@@ -111,6 +111,20 @@ footer {
 
   .plate__price {
     position: absolute;
-    left: 90%;
+    left: 92%;
+  }
+}
+
+@include tablet {
+  .plate__price {
+    position: absolute;
+    left: 94%;
+  }
+}
+
+@include mobile {
+  .plate__price {
+    position: absolute;
+    left: 89%;
   }
 }
