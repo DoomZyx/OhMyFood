@@ -45,7 +45,7 @@ function Homepage() {
               {data && data.length > 0 ? (
                 data.map((restaurant) => (
                   <article className="card" key={restaurant.id}>
-                    <Link to={`/menus/${restaurant.id}`} className="card">
+                    <Link to={`/menus/${restaurant.id}`} className="card-link">
                       <img
                         src={`${import.meta.env.VITE_API_URL}${restaurant.photo}`}
                         alt={restaurant.name}

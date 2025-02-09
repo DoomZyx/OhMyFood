@@ -1,3 +1,7 @@
+@use "../../Utils/variables" as variables;
+@use "../../utils" as *;
+
+
 header {
   @include flex__row;
   @include relative_parent;
@@ -28,7 +32,7 @@ header {
 .title-menu h1 {
   font-family: "Shrikhand", cursive;
   font-size: 1.6em;
-  font-weight: $medium_weight;
+  font-weight: variables.$medium_weight;
   padding-left: 10px;
 }
 
@@ -45,7 +49,7 @@ header {
 }
 
 .plate__list h3 {
-  font-weight: $medium_weight;
+  font-weight: variables.$medium_weight;
   font-size: 1em;
 }
 
@@ -56,8 +60,8 @@ h4 {
 }
 
 .main__course .plate__list h4 {
-  font-weight: $tine_weight;
-  font-size: $small;
+  font-weight: variables.$tine_weight;
+  font-size: variables.$small;
   position: relative;
   bottom: 12px;
 }
@@ -66,7 +70,7 @@ h4 {
   position: absolute;
   left: 95%;
   bottom: 40%;
-  font-weight: $medium_weight;
+  font-weight: variables.$medium_weight;
   transition: left 0.5s ease;
 }
 

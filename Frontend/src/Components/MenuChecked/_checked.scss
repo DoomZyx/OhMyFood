@@ -1,3 +1,5 @@
+@use "../../Utils/variables" as variables;
+
 // Sélecteur de plat
 
 .plate__validation {
@@ -7,7 +9,7 @@
   transform: translateY(-50%);
   width: 80px;
   height: 65px;
-  background-color: $color_tertiary;
+  background-color: variables.$color_tertiary;
   border-radius: 0 1rem 1rem 0;
   display: flex;
   justify-content: center;

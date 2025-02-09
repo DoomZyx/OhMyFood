@@ -1,10 +1,13 @@
+@use "../../Utils/variables" as variables;
+@use "../../utils.scss" as *;
+
 //// Bouton Explore & Order /////////////////
 
 .btn-place {
   @include flex__center_row;
   position: relative;
   left: 5px;
-  padding: $center;
+  padding: variables.$center;
 }
 
 .btn_place_o {
@@ -17,8 +20,8 @@
 .order-btn {
   width: 218px;
   height: 50px;
-  border-radius: $button__radius;
-  background: $button_background;
+  border-radius: variables.$button__radius;
+  background: variables.$button_background;
   color: white;
   border: none;
   box-shadow: 0px 4px 10px 0px #00000040;
@@ -59,7 +62,7 @@
 .title-menu .fa-solid {
   font-size: 18px;
   color: transparent;
-  background-image: $button_background;
+  background-image: variables.$button_background;
   position: absolute;
   left: 3px;
   top: 4px;

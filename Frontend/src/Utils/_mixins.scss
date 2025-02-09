@@ -1,3 +1,5 @@
+@use "../Utils/variables" as variables;
+
 //Flexbox + centrage
 
 @mixin flex__center {
@@ -47,7 +49,7 @@
 //Ombres/////////////////////////////////////////
 
 @mixin shadow {
-  box-shadow: $light_shadow;
+  box-shadow: variables.$light_shadow;
 }
 ///////////////////////////////////////////////////////
 
@@ -99,13 +101,13 @@
 
 @mixin input_style {
   font-weight: 540;
-  font-size: $normal;
-  color: $darken;
+  font-size: variables.$normal;
+  color: variables.$darken;
   border: none;
 }
 
 @mixin center_form {
-  padding-top: $center;
+  padding-top: variables.$center;
   padding-left: 4.8em;
   gap: 0.5em;
 }
@@ -118,7 +120,7 @@
 @mixin styling_placeholder {
   color: black;
   font-weight: 400;
-  font-size: $small;
+  font-size: variables.$small;
 }
 
 //////////////////////////////////////////////
@@ -128,18 +130,17 @@
   height: 72px;
   border: none;
   border-radius: 20px;
-  background-color: $background_grey__light;
+  background-color: variables.$background_grey__light;
   gap: 20px;
-  box-shadow: $light_shadow;
+  box-shadow: variables.$light_shadow;
 }
 
 ////////////////////////////////////////////////
 
 @mixin stylin_footer {
   width: 100%;
-  background-color: $background_grey__dark;
+  background-color: variables.$background_grey__dark;
   color: white;
-  gap: 20px;
 }
 
 @mixin position_title__footer {
@@ -147,14 +148,13 @@
   padding-top: 15px;
   margin-bottom: 20px;
   font-weight: 400;
-  font-size: $taller;
+  font-size: variables.$taller;
 }
 
 @mixin stylin_hyperlink__footer {
   padding-left: 25px;
-  padding-bottom: 5px;
   font-weight: 400;
-  font-size: $small;
+  font-size: variables.$small;
   gap: 11px;
   color: #ffffff;
 }

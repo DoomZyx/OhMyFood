@@ -62,7 +62,7 @@ function Menus({ restaurantId }) {
           .map((restaurant) => (
             <div className="image__brand" key={restaurant.id}>
               <img
-                src={`http://localhost:3001${restaurant.photo}`}
+                src={`${import.meta.env.VITE_API_URL}${restaurant.photo}`}
                 alt={restaurant.name}
                 className="restaurant-image"
               />
@@ -119,3 +119,4 @@ function Menus({ restaurantId }) {
 }
 
 export default Menus;
+

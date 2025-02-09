@@ -1,9 +1,13 @@
+@use "../../../Utils/variables" as variables;
+@use "../../../utils.scss" as *;
+
+
 @mixin designing__circle {
   width: 24px;
   height: 24px;
   border-radius: 50%;
   border: none;
-  background-color: $color_primary;
+  background-color: variables.$color_primary;
 }
 
 // Design du cercle
@@ -15,7 +19,7 @@
 
   .number {
     color: white;
-    font-size: $small;
+    font-size: variables.$small;
   }
 }
 
@@ -24,7 +28,7 @@
   height: 50px;
   border-radius: 50%;
   margin: 0 15px;
-  background: $button_background;
+  background: variables.$button_background;
   animation: loader infinite 0.5s alternate;
 }
 

@@ -1,3 +1,6 @@
+@use "../../utils.scss" as *;
+@use "../../Utils/variables" as variables;
+
 .functionning {
   @include flex__column;
   padding-bottom: 5em;
@@ -5,7 +8,7 @@
   h2 {
     @include shift_left;
     @include shift_bottom;
-    padding-top: $center;
+    padding-top: variables.$center;
   }
 
   .functionning-group {
@@ -21,17 +24,17 @@
   .functionning-step .fa-mobile-screen-button,
   .fa-list-ul {
     @include shift_right;
-    color: $grey_primary;
-    font-size: $taller;
+    color: variables.$grey_primary;
+    font-size: variables.$taller;
   }
 
   .fa-store {
-    color: $color_primary;
+    color: variables.$color_primary;
     @include shift_right;
   }
 
   .functionning-txt {
-    font-weight: $medium_weight;
+    font-weight: variables.$medium_weight;
     color: black;
     @include shift_right;
   }
@@ -56,7 +59,7 @@
   }
 
   .functionning-txt {
-    font-size: $normal;
+    font-size: variables.$normal;
   }
 
   .functionning-step i {

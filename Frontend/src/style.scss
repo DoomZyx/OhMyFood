@@ -1,21 +1,18 @@
-@import './Utils/variables';
-@import './Utils/mixins';
-@import './Utils/mixin_menu&cards';
-@import './Utils/placeholders';
-@import './Utils/responsive';
+@use './Utils/variables';
+@use "./utils.scss";
 
-@import './Base/base';
+@use './Base/base';
 
-@import './Components/Animations/animations';
-@import './Components/Buttons/buttons';
-@import './Components/Animations/Loader/circle';
-@import './Components/Animations/Loader/loader';
-@import './Components/MenuChecked/checked';
+@use './Components/Animations/animations';
+@use './Components/Buttons/buttons';
+@use './Components/Animations/Loader/circle';
+@use './Components/Animations/Loader/loader';
+@use './Components/MenuChecked/checked';
 
 
-@import './Components/Footer/footer';
-@import './Pages/Homepage/functionning';
-@import './Components/Header/header';
+@use './Components/Footer/footer';
+@use './Pages/Homepage/functionning';
+@use './Components/Header/header';
 
-@import './Pages/MenuPage/menu';
-@import './Pages/Homepage/homepage';
+@use './Pages/MenuPage/menu';
+@use './Pages/Homepage/homepage';

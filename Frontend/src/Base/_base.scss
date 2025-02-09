@@ -1,5 +1,7 @@
+@use "../Utils/variables" as variables; 
+
 body {
-  font-family: $font-primary;
+  font-family: variables.$font_primary; 
   margin: 0 auto;
   padding: 0;
   width: 100%;
@@ -8,7 +10,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 ::placeholder,
@@ -16,19 +18,15 @@ a {
 .functionning,
 .restaurant,
 footer a {
-  font-family: $font_primary;
+  font-family: variables.$font_primary;
 }
 
 .layout h4 {
-  font-family: $font_secondary;
+  font-family: variables.$font_secondary;
 }
 
 ::placeholder,
 button,
 .layout a {
-  font-size: $normal;
-}
-
-p {
-  margin: 0;
+  font-size: variables.$normal;
 }

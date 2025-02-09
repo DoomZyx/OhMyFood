@@ -1,3 +1,6 @@
+@use "../../utils.scss" as *;
+@use "../../Utils/variables" as variables;
+
 form {
   @include flex__center_row;
   @include center_form;
@@ -21,8 +24,8 @@ main {
 main .und_header {
   @include flex__column;
   width: 100%;
-  background-color: $background_grey__light;
-  padding-bottom: $center;
+  background-color: variables.$background_grey__light;
+  padding-bottom: variables.$center;
 }
 
 .und_header h2, .und_header h3 {
@@ -32,13 +35,13 @@ main .und_header {
 
 .und_header h2 {
   width: 100%;
-  font-size: $title-menu;
+  font-size: variables.$title-menu;
 }
 
 .und_header h3 {
   @include shift_bottom;
-  font-size: $taller;
-  font-weight: $tine_weight;
+  font-size: variables.$taller;
+  font-weight: variables.$tine_weight;
   width: 100%;
 } 
 
@@ -46,16 +49,16 @@ main .und_header {
   @include flex__center_row;
   position: relative;
   left: 5px;
-  padding: $center;
+  padding: variables.$center;
 }
 
 .restaurant-title {
-  font-size: $taller;
+  font-size: variables.$taller;
   padding-left: 30px;
 }
 
 .restaurant {
-  background-color: $background_grey__light;
+  background-color: variables.$background_grey__light;
   padding-top: 1em;
 
   .flex-card {
@@ -91,11 +94,11 @@ main .und_header {
 
     .card-txt h3 {
       padding-top: 0em;
-      font-size: $taller;
+      font-size: variables.$taller;
     }
 
     p {
-      font-size: $small;
+      font-size: variables.$small;
       font-weight: 400;
       position: relative;
       bottom: 18px;

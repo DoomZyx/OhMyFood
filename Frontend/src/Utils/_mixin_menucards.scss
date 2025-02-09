@@ -1,9 +1,11 @@
+@use "../Utils/variables" as variables;
+
 // Cartes // 
 
 @mixin card_ {
     width: 80vw;
     height: 245px;
-    border: 1px solid $background_grey__medium ;
+    border: 1px solid variables.$background_grey__medium ;
     border-radius: 15px;
     box-sizing: border-box;
 }
@@ -19,7 +21,7 @@
     top: 10px;
     right: 10px;
     font-size: small;
-    background-color: $color_tertiary;
+    background-color: variables.$color_tertiary;
     color: #008766;
     border-radius: 5px;
     padding: 0.3em 0.675em;
@@ -41,13 +43,13 @@
 
 @mixin stylin_img__brand {
     object-fit: cover;
-    font-size: $taller;
+    font-size: variables.$taller;
     width: 100vw;
     height: 275px;
 }
 
 @mixin stylin_card__menu {
-    background-color: $background_grey__light;
+    background-color: variables.$background_grey__light;
     border-radius: 40px 40px 0 0;
     border: none;
     bottom: 60px;
@@ -57,11 +59,11 @@
 }
 
 @mixin stylin_title__menu {
-    font-weight: $tine_weight;
-    font-size: $normal;
+    font-weight: variables.$tine_weight;
+    font-size: variables.$normal;
     padding-bottom: 5px;
     border-bottom: 3px solid;
-    border-color: $color_tertiary;
+    border-color: variables.$color_tertiary;
     width: 40px;
 }
 
