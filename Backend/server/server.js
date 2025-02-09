@@ -4,21 +4,19 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://192.168.1.17:5173"], // Autorise localhost et IP locale
   })
 );
+
 app.use(express.json());
 
-
 // Routes principales
-app.use("/api/restaurants", require("../server/routes/restaurants"));
+app.use("/api/restaurants", require("./routes/restaurants"));
 
-app.use("/api/menus", require("../server/routes/menus"));
+app.use("/api/menus", require("./routes/menus"));
 
 app.use("/restaurants", express.static("public/restaurants"));
-// Lancer le serveur
-const port = 3001;
 
-app.listen(port, () => {
-  console.log(`Serveur lancé sur le port ${port}`);
+app.listen(3001, "0.0.0.0", () => {
+  console.log("Serveur en écoute sur le port 3001");
 });

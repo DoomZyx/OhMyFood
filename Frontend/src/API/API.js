@@ -1,8 +1,6 @@
-const API_BASE_URL = "http://localhost:3001/api";
-
 export async function getRestaurants() {
   try {
-    const response = await fetch(`${API_BASE_URL}/restaurants`);
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants`);
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }
@@ -14,10 +12,11 @@ export async function getRestaurants() {
   }
 }
 
-
 export async function getMenus(restaurantId) {
   try {
-    const response = await fetch(`${API_BASE_URL}/menus/${restaurantId}`);
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/menus/${restaurantId}`
+    );
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);
     }

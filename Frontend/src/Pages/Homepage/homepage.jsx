@@ -47,7 +47,7 @@ function Homepage() {
                   <article className="card" key={restaurant.id}>
                     <Link to={`/menus/${restaurant.id}`} className="card">
                       <img
-                        src={`http://localhost:3001${restaurant.photo}`}
+                        src={`${import.meta.env.VITE_API_URL}${restaurant.photo}`}
                         alt={restaurant.name}
                         className="restaurant-image"
                       />
