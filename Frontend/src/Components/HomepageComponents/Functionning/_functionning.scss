@@ -1,5 +1,5 @@
-@use "../../utils.scss" as *;
-@use "../../Utils/variables" as variables;
+@use "../../../utils.scss" as *;
+@use "../../../Utils/variables" as variables;
 
 .functionning {
   @include flex__column;
