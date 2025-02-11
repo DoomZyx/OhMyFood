@@ -35,6 +35,7 @@
 
     footer .first {
         @include flex__row;
+
     }
 
     footer .second {
@@ -46,5 +47,9 @@
         position: relative;
         right: 20%;
     }
+
+}
+
+@include mobile {
 
 }

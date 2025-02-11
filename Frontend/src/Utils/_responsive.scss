@@ -8,18 +8,18 @@ $breakpoints:
 
 @mixin desktop {
     @media screen and (min-width: map-get($breakpoints,"desktop")) {
-        @content
+        @content;
     }
 };
 
 @mixin tablet {
     @media screen and (max-width: map-get($breakpoints,"tablet")) {
-        @content
+        @content;
     }
 };
 
 @mixin mobile {
     @media screen and (max-width: map-get($breakpoints,"mobile")) {
-        @content
+        @content;
     }
 }
