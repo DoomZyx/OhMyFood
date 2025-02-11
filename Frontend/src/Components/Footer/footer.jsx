@@ -1,30 +1,32 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
-    <>
-      <footer>
-        <div className="layout">
-          <div className="foottitle">
-            <h4>ohmyfood</h4>
-          </div>
-          <div className="first">
-            <a href="#">
-              <i className="fa-solid fa-utensils"></i>
-              <p>Proposer un restaurant</p>
-            </a>
-            <a href="#">
-              <i className="fa-solid fa-handshake-angle"></i>
-              <p>Devenir partenaire</p>
-            </a>
-          </div>
-          <div className="second">
-            <a href="#">
-              <p>Mention légales</p>
-            </a>
-            <a href="mailto:ohmyfood@gmail.com"> Contact </a>
-          </div>
+    <footer>
+      <div className="layout">
+        <div className="foottitle">
+          <h4>ohmyfood</h4>
         </div>
-      </footer>
-    </>
+        <div className="first">
+          <Link to="#" className="footer-link">
+            <i className="fa-solid fa-utensils"></i>
+            <span>Proposer un restaurant</span>
+          </Link>
+          <Link to="#" className="footer-link">
+            <i className="fa-solid fa-handshake-angle"></i>
+            <span>Devenir partenaire</span>
+          </Link>
+        </div>
+        <div className="second">
+          <Link to="#" className="footer-link">
+            Mention légales
+          </Link>
+          <Link to="mailto:ohmyfood@gmail.com" className="footer-link">
+            Contact
+          </Link>
+        </div>
+      </div>
+    </footer>
   );
 }
 
