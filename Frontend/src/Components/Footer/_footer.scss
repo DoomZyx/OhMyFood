@@ -1,4 +1,4 @@
-@use ".."
+@use "../../utils.scss" as *;
 
 .layout {
     @include stylin_footer;
