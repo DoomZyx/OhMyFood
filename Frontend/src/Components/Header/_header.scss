@@ -38,8 +38,8 @@ header {
     
         header img {
             padding: 15px;
-            width: 200px;
-            height: 50px;
+            width: 250px;
+            height: 80px;
         }
 
         header .location-search {
@@ -54,6 +54,11 @@ header {
         position: absolute;
         right: 92%;
       }
+
+      header img {
+        width: 200px;
+        height: 60px;
+      }
 }
 
 @include mobile {
@@ -61,4 +66,9 @@ header {
         position: absolute;
         right: 90%;
       } 
+
+      header img {
+        width: 170px;
+        height: 50px;
+      }
 }

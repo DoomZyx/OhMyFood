@@ -15,8 +15,8 @@ function Homepage() {
           <Presentation />
           <Functionning />
           <Restaurants />
+          <Footer />
         </main>
-        <Footer />
       </div>
     </>
   );

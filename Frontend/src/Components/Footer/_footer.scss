@@ -1,7 +1,8 @@
 @use "../../utils.scss" as *;
 
+
 .layout {
-    @include stylin_footer;
+    @include stylin_footer;;
 
     h4 {
         @include position_title__footer;
@@ -23,6 +24,7 @@
         @include flex__row_end;
         @include relative_parent;
         width: 100%;
+        ;
     }
 
     .foottitle {
@@ -45,9 +47,5 @@
         position: relative;
         right: 20%;
     }
-
-}
-
-@include mobile {
 
 }
