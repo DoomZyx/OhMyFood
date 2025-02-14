@@ -12,10 +12,10 @@ export async function getRestaurants() {
   }
 }
 
-export async function getMenus(restaurantId) {
+export async function getMenus(restaurant_id) {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/menus/${restaurantId}`
+      `${import.meta.env.VITE_API_URL}/api/menus/${restaurant_id}`
     );
     if (!response.ok) {
       throw new Error(`Erreur HTTP : ${response.status}`);

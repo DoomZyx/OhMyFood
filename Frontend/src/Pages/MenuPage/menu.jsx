@@ -6,7 +6,7 @@ import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
-function Menus({ restaurantId }) {
+function Menus({ restaurant_id }) {
   const [data, setData] = useState([]);
   const [menus, setMenus] = useState([]);
   const { id } = useParams();
@@ -58,11 +58,11 @@ function Menus({ restaurantId }) {
 
       {data && data.length > 0 ? (
         data
-          .filter((restaurant) => String(restaurant.id) === String(id))
+          .filter((restaurant) => String(restaurant._id) === String(id))
           .map((restaurant) => (
-            <div className="image__brand" key={restaurant.id}>
+            <div className="image__brand" key={restaurant._id}>
               <img
-                src={`${import.meta.env.VITE_API_URL}${restaurant.photo}`}
+                src={`${import.meta.env.VITE_API_URL}${restaurant.imageUrl}`}
                 alt={restaurant.name}
                 className="restaurant-image"
               />
@@ -75,9 +75,9 @@ function Menus({ restaurantId }) {
       <main className="menu__content">
         <section className="menu">
           {data
-            .filter((restaurant) => String(restaurant.id) === String(id))
+            .filter((restaurant) => String(restaurant._id) === String(id))
             .map((restaurant) => (
-              <div key={restaurant.id} className="title-menu">
+              <div key={restaurant._id} className="title-menu">
                 <h1>{restaurant.name}</h1>
                 <label className="btn__like">
                   <input type="checkbox" className="toggle-heart" />
