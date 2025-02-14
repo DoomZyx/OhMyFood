@@ -21,11 +21,11 @@ function Restaurants() {
       </div>
       <div className="flex-card">
         {data && data.length > 0 ? (
-          data.map((restaurant) => (
-            <article className="card" key={restaurant.id}>
+          data.map((restaurant, index) => (
+            <article className="card" key={restaurant.id || index}>
               <Link to={`/menus/${restaurant.id}`} className="card-link">
                 <img
-                  src={`${import.meta.env.VITE_API_URL}${restaurant.photo}`}
+                  src={`${import.meta.env.VITE_API_URL}${restaurant.imageUrl}`}
                   alt={restaurant.name}
                   className="restaurant-image"
                 />

@@ -19,7 +19,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://192.168.1.17:5173"], // Autorise localhost et IP locale
+    origin: ["http://localhost:5173", "http://192.168.1.17:5173"], 
   })
 );
 
@@ -27,6 +27,6 @@ app.use(bodyParser.json());
 
 app.use("/api/restaurants", restaurantsRoutes);
 app.use("/api/menus", menusRoutes);
-app.use("./images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
