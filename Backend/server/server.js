@@ -17,6 +17,6 @@ app.use("/api/menus", require("./routes/menus"));
 
 app.use("/restaurants", express.static("public/restaurants"));
 
-app.listen(3001, "0.0.0.0", () => {
-  console.log("Serveur en écoute sur le port 3001");
+app.listen(4000, "0.0.0.0", () => {
+  console.log("Serveur en écoute sur le port 4000");
 });
