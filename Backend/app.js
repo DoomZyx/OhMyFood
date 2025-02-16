@@ -6,7 +6,7 @@ const mongoose = require("./connection/connection");
 const restaurantsRoutes = require("./routes/restaurants");
 const menusRoutes = require("./routes/menus");
 
-
+const userRoutes = require("./routes/auth");
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/api/restaurants", restaurantsRoutes);
 app.use("/api/menus", menusRoutes);
+app.use("/api/auth", userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
