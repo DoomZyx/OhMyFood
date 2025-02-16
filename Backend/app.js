@@ -1,17 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const path = require("path");
 
 const restaurantsRoutes = require("./routes/restaurants");
 const menusRoutes = require("./routes/menus");
 
-mongoose
-  .connect(
-    "mongodb+srv://DoomZy:Biloute0310!@cluster0.9ape7.mongodb.net/ohmyfood?retryWrites=true&w=majority&appName=Cluster0"
-  )
-  .then(() => console.log("Connexion à MongoDB réussie !"))
-  .catch(() => console.log("Connexion à MongoDB échouée !"));
+
 
 const app = express();
 

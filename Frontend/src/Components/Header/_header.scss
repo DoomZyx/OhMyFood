@@ -9,9 +9,24 @@ header {
         bottom: 58%;
         font-size: 30px;
       }
-
-    @include flex__center;
     
+      .logo {
+        position: relative;
+        left: 37rem;
+      }
+
+      .layout-cart-user {
+        display: flex;
+        gap: 6em;
+        position: relative;
+        left: 50rem;
+        .fa-store,
+        .fa-cart-shopping,
+        .fa-user {
+            font-size: 2rem;
+        }
+      }
+
     img {
         height: 50px;
         width: 177px;
