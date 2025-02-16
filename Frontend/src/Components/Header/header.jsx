@@ -19,7 +19,7 @@ function Header() {
           <img src={logo} alt="logo" />
         </div>
         <div className="layout-cart-user">
-          <Link to="">
+          <Link to="#">
           <i className="fa-solid fa-store"></i>
           </Link>
           <Link to="/cart">
