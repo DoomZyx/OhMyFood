@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { signupThunk } from "../FetchDataAPI/GetDataUser/ThunkAPI";
 
 const authSlice = createSlice({
   name: "auth",
@@ -17,14 +18,13 @@ const authSlice = createSlice({
     login: (state, action) => {
       const { token } = action.payload;
       state.token = token;
-      //  sessionStorage.setItem("token", token)
+      sessionStorage.setItem("token", token);
       state.isAuthenticated = true;
       state.user = action.payload;
     },
     logout: (state) => {
-      (state.token = null),
-        //  sessionStorage.removeItem("token")
-        (state.isAuthenticated = false);
+      (state.token = null), sessionStorage.removeItem("token");
+      state.isAuthenticated = false;
       state.user = {
         id: "",
         userName: "",
@@ -33,6 +33,7 @@ const authSlice = createSlice({
         email: "",
       };
     },
+
     setUser: (state, action) => {
       state.user = action.payload;
     },
@@ -40,7 +41,23 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    // Gestion de signup
+    builder
+      // Attente de requête
+      .addCase(signupThunk.pending, (state) => {
+        state.error = null;
+      })
+      // requête accepté
+      .addCase(signupThunk.fulfilled, (state, action) => {
+        state.user = action.payload; // Mettre à jour les données utilisateur
+      })
+      // Requête rejeté
+      .addCase(signupThunk.rejected, (state, action) => {
+        state.error = action.payload; // Enregistrer l'erreur
+      });
+  },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setUser, setError } = authSlice.actions;
 export default authSlice.reducer;

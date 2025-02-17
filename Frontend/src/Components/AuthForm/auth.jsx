@@ -1,18 +1,63 @@
 import { useState } from "react";
 import "../AuthForm/_authForm.scss";
 
+import { useNavigate } from "react-router-dom";
+
+import { signupUser } from "../../API/API";
+import { loginUser } from "../../API/API";
+
 function AuthForms() {
   const [activeForm, setActiveForm] = useState("inscription");
+  const navigate = useNavigate();
 
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [name, setName ] = useState("");
+  const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [errorRegister, setErrorRegister] = useState("");
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // Fonction appelée lors de la soumission du formulaire d'inscription
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await signupUser({
+        email: emailRegister,
+        password: passwordRegister,
+        firstName,
+        lastName: lastName,
+        phoneNumber: number,
+      });
+
+      console.log("Inscription réussie :", data);
+      setActiveForm("connexion")
+    } catch (error) {
+      // Gestion d'erreur
+      if (error.response) {
+        setErrorRegister(error.message || "Impossible de contacter le serveur");
+      }
+    }
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await loginUser({ email, password });
+      console.log("Connexion réussie :", data);
+      navigate("/");
+      sessionStorage.setItem();
+    } catch (error) {
+      if (error.response) {
+        setErrorLogin(error.message || "Erreur lors de la connexion");
+      }
+    }
+  };
 
   return (
     <div className="form-container">
@@ -28,7 +73,7 @@ function AuthForms() {
           Connexion
         </button>
         <h2 className="register-title">S'inscrire</h2>
-        <form className="registerForm" onSubmit="">
+        <form className="registerForm" onSubmit={handleRegister}>
           <label htmlFor="email"></label>
           <input
             type="email"
@@ -50,14 +95,15 @@ function AuthForms() {
           ></input>
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             placeholder="Votre nom"
           ></input>
-          <input type="text"
-           value={number}
-           onChange={(e) => setNumber(e.target.value)}
-           placeholder="Votre numéro de téléphone"
+          <input
+            type="text"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            placeholder="Votre numéro de téléphone"
           ></input>
           <button type="submit" className="register-button">
             S'inscrire
@@ -78,7 +124,7 @@ function AuthForms() {
           S'inscrire
         </button>
         <h2 className="login-title">Connexion</h2>
-        <form className="loginForm" onSubmit="">
+        <form className="loginForm" onSubmit={handleLogin}>
           <label htmlFor="email"></label>
           <input
             type="email"
@@ -95,6 +141,7 @@ function AuthForms() {
           <button type="submit" className="register-button">
             Se connecter
           </button>
+          {errorLogin && <p style={{ color: "red" }}>{errorLogin}</p>}
           <p className="passwordForgotten">Mot de passe oublié</p>
         </form>
       </div>

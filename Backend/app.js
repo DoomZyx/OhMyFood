@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/api/restaurants", restaurantsRoutes);
 app.use("/api/menus", menusRoutes);
-app.use("/api/auth", userRoutes);
+app.use("/api/", userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
