@@ -9,10 +9,22 @@ header {
         bottom: 58%;
         font-size: 30px;
       }
+
+      .Sidebar {
+        border: none;
+        background: white;
+      }
+
+      .fa-bars {
+        position: relative;
+        left: 1em;
+        font-size: 1.7em;
+        cursor: pointer;
+      }
     
       .logo {
         position: relative;
-        left: 38rem;
+        left: 36rem;
       }
 
       .layout-cart-user {
@@ -22,10 +34,25 @@ header {
         left: 50rem;
         .fa-store,
         .fa-cart-shopping,
-        .fa-user {
+        .fa-user,
+        .fa-right-from-bracket,
+        .fa-bars {
             font-size: 2rem;
         }
+
+        .logout-but,
+        .fa-bars {
+          border: none;
+          background: white;
+          cursor: pointer,
+        }
       }
+
+    .sidebar-layout {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
 
     img {
         height: 50px;

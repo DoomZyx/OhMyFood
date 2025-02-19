@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../AuthForm/_authForm.scss";
 
+import { useDispatch } from "react-redux";
+import { login } from "../../Store/User/authSlice";
 import { useNavigate } from "react-router-dom";
 
 import { signupUser } from "../../API/API";
@@ -16,6 +18,8 @@ function AuthForms() {
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [errorRegister, setErrorRegister] = useState("");
+
+  const dispatch = useDispatch()
 
   // Fonction appelée lors de la soumission du formulaire d'inscription
   const handleRegister = async (e) => {
@@ -33,7 +37,6 @@ function AuthForms() {
       console.log("Inscription réussie :", data);
       setActiveForm("connexion")
     } catch (error) {
-      // Gestion d'erreur
       if (error.response) {
         setErrorRegister(error.message || "Impossible de contacter le serveur");
       }
@@ -46,12 +49,15 @@ function AuthForms() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
       const data = await loginUser({ email, password });
       console.log("Connexion réussie :", data);
+      
+      // Dispatch l'action login avec le token et les données utilisateur
+      dispatch(login({ token: data.token, ...data.user }));
+      
       navigate("/");
-      sessionStorage.setItem();
     } catch (error) {
       if (error.response) {
         setErrorLogin(error.message || "Erreur lors de la connexion");

@@ -78,3 +78,24 @@ export async function loginUser({ email, password }) {
     throw error;
   }
 }
+
+
+export async function getUserProfile(token) {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/profile`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP : ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur lors de la requête :", error);
+    return [];
+  }
+}
