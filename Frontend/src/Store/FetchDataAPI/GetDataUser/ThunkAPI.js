@@ -14,14 +14,17 @@ export const signupThunk = createAsyncThunk(
   }
 );
 
+
 export const loginThunk = (email, password) => async (dispatch) => {
   try {
     const result = await loginUser({ email, password });
     if (result && result.token) {
-      dispatch(login(result.token));
-      const userProfile = await getUserProfile(result.token);
-      console.log("User profile récupéré :", userProfile);
-      dispatch(setUser(userProfile));
+      dispatch(login({ token: result.token, user: {} })); // Initialise Redux avec un token et un user vide
+      
+      // 🔥 Maintenant, on récupère l'utilisateur via `fetchUserProfile`
+      dispatch(fetchUserProfile(result.token));
+
+      console.log("📌 Après dispatch login :", { token: result.token });
     } else {
       dispatch(setError("Email ou mot de passe incorrect."));
     }
@@ -29,3 +32,15 @@ export const loginThunk = (email, password) => async (dispatch) => {
     dispatch(setError("Une erreur s'est produite lors de la connexion"));
   }
 };
+
+export const fetchUserProfile = createAsyncThunk(
+  "auth/fetchUserProfile",
+  async (token, thunkAPI) => {
+    try {
+      const userProfile = await getUserProfile(token);
+      return userProfile;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

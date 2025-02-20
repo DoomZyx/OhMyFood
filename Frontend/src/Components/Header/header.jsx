@@ -1,10 +1,11 @@
 import logo from "../../../assets/logo/ohmyfood.png";
-import { useState } from "react";
+import {  useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../Store/User/authSlice";
-import Modal from "../Modal/menu_modal";
+import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
+import SideModal from "../../Components/Modal/modal_side";
 
 function Header() {
   const location = useLocation();
@@ -19,13 +20,12 @@ function Header() {
     navigate("/");
   };
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  useEffect(() => {
+    if (isAuthenticated && user.id === "") {
+      dispatch(fetchUserProfile(sessionStorage.getItem("token")));
+    }
+  }, [dispatch, isAuthenticated, user.id]);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
-
-  console.log(user)
 
   return (
     <>
@@ -36,20 +36,7 @@ function Header() {
           </Link>
         ) : (
           <>
-            <button onClick={toggleSidebar} className="Sidebar">
-              <i className="fa-solid fa-bars"></i>
-            </button>
-            <Modal isOpen={isSidebarOpen} onClose={toggleSidebar}>
-            <div className="sidebar-layout">
-              <Link to="#">
-                <i className="fa-solid fa-user"></i>
-                {isAuthenticated && <p className="user-firstName">{user.firstName}</p>}
-              </Link>
-              <Link to="#">
-              <i className="fa-solid fa-basket-shopping"></i> 
-              </Link>
-            </div>
-            </Modal>
+            <SideModal />
           </>
         )}
         <div className="logo">

@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signupThunk } from "../FetchDataAPI/GetDataUser/ThunkAPI";
+import { signupThunk, fetchUserProfile } from "../FetchDataAPI/GetDataUser/ThunkAPI";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    //  token: sessionStorage.setItem("token") || null,
+    token: sessionStorage.getItem("token") || null,
     isAuthenticated: !!sessionStorage.getItem("token"),
     user: {
       id: "",
@@ -16,11 +16,11 @@ const authSlice = createSlice({
   },
   reducers: {
     login: (state, action) => {
-      const { token } = action.payload;
+      const { token, user } = action.payload;
       state.token = token;
       sessionStorage.setItem("token", token);
       state.isAuthenticated = true;
-      state.user = action.payload;
+      state.user = user; 
     },
     logout: (state) => {
       (state.token = null), sessionStorage.removeItem("token");
@@ -50,11 +50,21 @@ const authSlice = createSlice({
       })
       // requête accepté
       .addCase(signupThunk.fulfilled, (state, action) => {
-        state.user = action.payload; // Mettre à jour les données utilisateur
+        state.user = action.payload; 
       })
       // Requête rejeté
       .addCase(signupThunk.rejected, (state, action) => {
-        state.error = action.payload; // Enregistrer l'erreur
+        state.error = action.payload; 
+      });
+
+      builder.addCase(fetchUserProfile.pending, (state) => {
+        state.error = null
+      })
+      builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.user = action.payload; 
+      })
+      builder.addCase(fetchUserProfile.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });
