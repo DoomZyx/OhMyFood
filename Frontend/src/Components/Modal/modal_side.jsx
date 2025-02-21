@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./menu_modal";
 import logo from "../../../assets/logo/ohmyfood.png";
+import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
+import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
 
 function SideModal() {
   const { user } = useSelector((state) => state.auth);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated && (!user || user.id === "")) {
+      dispatch(fetchUserProfile(sessionStorage.getItem("token")));
+    }
+  }, [dispatch, isAuthenticated, user?.id]);
+  
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

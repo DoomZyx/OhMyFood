@@ -1,16 +1,13 @@
 import logo from "../../../assets/logo/ohmyfood.png";
-import {  useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../Store/User/authSlice";
-import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
 import SideModal from "../../Components/Modal/modal_side";
 
 function Header() {
   const location = useLocation();
   const hideArrowOnpaths = ["/"];
-  const { user } = useSelector((state) => state.auth);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,11 +17,6 @@ function Header() {
     navigate("/");
   };
 
-  useEffect(() => {
-    if (isAuthenticated && user.id === "") {
-      dispatch(fetchUserProfile(sessionStorage.getItem("token")));
-    }
-  }, [dispatch, isAuthenticated, user.id]);
 
 
   return (
