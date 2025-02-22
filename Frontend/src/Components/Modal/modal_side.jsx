@@ -5,6 +5,7 @@ import Modal from "./menu_modal";
 import logo from "../../../assets/logo/ohmyfood.png";
 import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
+import "./_modal_side.scss"
 
 function SideModal() {
   const { user } = useSelector((state) => state.auth);
@@ -57,7 +58,7 @@ function SideModal() {
             <i className="fa-solid fa-heart"></i>
             <p className="favorite">Mes favoris</p>
           </Link>
-          <Link className="our-restaurants">
+          <Link className="our-restaurants" to="/">
             <i className="fa-solid fa-utensils"></i>
             <p className="restaurants">Les restaurants</p>
           </Link>

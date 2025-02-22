@@ -1,0 +1,15 @@
+@use "../../../utils.scss" as *;
+@use "../../../Utils/variables" as variables;
+
+.location-search {
+ width: 100%;
+ height: 50px;
+ background-color: variables.$background_grey__medium;
+ @include shadow;
+
+.fa-location-dot {
+     color: variables.$darken;
+     font-size: variables.$small;
+ }
+
+}
