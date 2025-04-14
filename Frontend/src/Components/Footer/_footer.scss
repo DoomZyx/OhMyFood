@@ -2,7 +2,7 @@
 
 
 .layout {
-    @include stylin_footer;;
+    @include stylin_footer;
 
     h4 {
         @include position_title__footer;
@@ -17,9 +17,6 @@
         font-size: 15px;
     }
 }
-
-@include desktop {
-
     footer .layout {
         @include flex__row_end;
         @include relative_parent;
@@ -48,4 +45,3 @@
         right: 20%;
     }
 
-}

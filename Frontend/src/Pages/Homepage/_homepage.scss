@@ -26,12 +26,14 @@ main .und_header {
   @include flex__column;
   width: 100%;
   background-color: variables.$background_grey__light;
-  padding-bottom: variables.$center;
+  padding-bottom: 2em;
 }
 
 .und_header h2, .und_header h3 {
   @include flex__center_row;
   text-align: center;
+  position: relative;
+  top: 0.5em;
 }
 
 .und_header h2 {
@@ -42,7 +44,7 @@ main .und_header {
 .und_header h3 {
   @include shift_bottom;
   font-size: variables.$taller;
-  font-weight: variables.$tine_weight;
+  font-weight: 300;
   width: 100%;
 } 
 
@@ -50,12 +52,13 @@ main .und_header {
   @include flex__center_row;
   position: relative;
   left: 5px;
+  top: 1em;
   padding: variables.$center;
 }
 
 .restaurant-title {
   font-size: variables.$taller;
-  padding-left: 30px;
+  padding-left: 245px;
 }
 
 .restaurant {
@@ -64,6 +67,9 @@ main .und_header {
 
   .flex-card {
     @include flex__center;
+    position: relative;
+    left: 34px;
+    @include settlement__card__desktop;
     padding-bottom: 6em;
     gap: 20px;
   }
@@ -86,7 +92,7 @@ main .und_header {
   .card .btn__like {
     position: absolute;
     bottom: 10%;
-    left: 85%;
+    left: 90%;
     border: none;
     background: none;
   }

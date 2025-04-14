@@ -74,12 +74,6 @@ h4 {
   transition: left 0.5s ease;
 }
 
-footer {
-  margin-top: -90px;
-  padding-top: 10px;
-}
-
-@include desktop {
   .image__brand img {
     height: 383px;
   }
@@ -110,7 +104,7 @@ footer {
     position: absolute;
     left: 92%;
   }
-}
+
 
 @include tablet {
   .plate__price {

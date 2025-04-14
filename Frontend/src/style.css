@@ -80,6 +80,7 @@ button,
   height: 50px;
   border-radius: 25px;
   background: linear-gradient(193.33deg, #9356dc -11.44%, #ff79da 123.93%);
+  font-weight: 800;
   color: white;
   border: none;
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.2509803922);
@@ -134,7 +135,7 @@ button,
   transform: scale(1.2);
 }
 
-@media screen and (min-width: 1065px) {
+@media screen and (max-width: 1065px) {
   .menu .fa-regular {
     position: relative;
     top: 0px;
@@ -295,59 +296,59 @@ button,
   font-size: 15px;
 }
 
-@media screen and (min-width: 1065px) {
-  footer .layout {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    position: relative;
-    width: 100%;
-  }
-  .foottitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    left: 700px;
-    bottom: 6px;
-  }
-  footer .first {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  footer .second {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  footer .first, .second {
-    padding-left: 100px;
-    position: relative;
-    right: 20%;
-  }
+footer .layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
 }
+
+.foottitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 700px;
+  bottom: 6px;
+}
+
+footer .first {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .second {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .first, .second {
+  padding-left: 100px;
+  position: relative;
+  right: 20%;
+}
+
 .functionning {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding-bottom: 5em;
+  flex-direction: row;
+  padding-bottom: 7em;
 }
 .functionning h2 {
   position: relative;
-  left: 15px;
+  left: 130px;
   position: relative;
   bottom: 15px;
   padding-top: 1em;
 }
 .functionning .functionning-group {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  position: relative;
+  top: 80px;
   gap: 25px;
 }
 .functionning .functionning-step {
@@ -355,7 +356,7 @@ button,
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  width: 85vw;
+  width: 28vw;
   height: 72px;
   border: none;
   border-radius: 20px;
@@ -382,7 +383,7 @@ button,
   right: 15px;
 }
 
-@media screen and (min-width: 1065px) {
+@media screen and (max-width: 1065px) {
   .functionning {
     padding-bottom: 3em;
   }
@@ -408,16 +409,12 @@ button,
 }
 header {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
 }
-header .fa-arrow-left:before {
-  position: absolute;
-  right: 95%;
-  bottom: 58%;
-  font-size: 30px;
+header .logo {
+  position: relative;
+  left: 150px;
 }
 header img {
   height: 50px;
@@ -429,37 +426,31 @@ header img {
   flex-wrap: wrap;
   padding: 1em;
 }
-header .location-search {
-  width: 100%;
-  height: 50px;
-  background-color: #e9e9e9;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
-}
-header .location-search .fa-location-dot {
-  color: #383838;
-  font-size: 14px;
-}
 
-@media screen and (min-width: 1065px) {
+@media screen and (max-width: 1065px) {
   header img {
     padding: 15px;
-    width: 200px;
-    height: 50px;
+    width: 250px;
+    height: 80px;
   }
   header .location-search {
     box-shadow: none;
   }
 }
 @media screen and (max-width: 767px) {
-  header .fa-arrow-left:before {
-    position: absolute;
-    right: 92%;
+  header img {
+    width: 200px;
+    height: 60px;
   }
 }
 @media screen and (max-width: 585px) {
   header .fa-arrow-left:before {
     position: absolute;
     right: 90%;
+  }
+  header img {
+    width: 170px;
+    height: 50px;
   }
 }
 header {
@@ -564,47 +555,45 @@ h4 {
   transition: left 0.5s ease;
 }
 
-footer {
-  margin-top: -90px;
-  padding-top: 10px;
+.image__brand img {
+  height: 383px;
 }
 
-@media screen and (min-width: 1065px) {
-  .image__brand img {
-    height: 383px;
-  }
-  body .menu__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    align-self: center;
-    margin: 0 auto;
-    width: 80%;
-    position: relative;
-    bottom: 80px;
-  }
-  .menu__content .title-menu {
-    padding: 35px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    gap: 20px;
-  }
-  .plate__list {
-    width: 50vw;
-    height: 65px;
-    line-height: 0.05;
-  }
-  .plate__price {
-    position: absolute;
-    left: 92%;
-  }
+body .menu__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-self: center;
+  margin: 0 auto;
+  width: 80%;
+  position: relative;
+  bottom: 80px;
 }
+
+.menu__content .title-menu {
+  padding: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.plate__list {
+  width: 50vw;
+  height: 65px;
+  line-height: 0.05;
+}
+
+.plate__price {
+  position: absolute;
+  left: 92%;
+}
+
 @media screen and (max-width: 767px) {
   .plate__price {
     position: absolute;
@@ -658,7 +647,7 @@ main .und_header {
   flex-wrap: wrap;
   width: 100%;
   background-color: #f6f6f6;
-  padding-bottom: 1em;
+  padding-bottom: 2em;
 }
 
 .und_header h2, .und_header h3 {
@@ -668,6 +657,8 @@ main .und_header {
   align-items: center;
   flex-wrap: wrap;
   text-align: center;
+  position: relative;
+  top: 0.5em;
 }
 
 .und_header h2 {
@@ -691,12 +682,13 @@ main .und_header {
   flex-wrap: wrap;
   position: relative;
   left: 5px;
+  top: 1em;
   padding: 1em;
 }
 
 .restaurant-title {
   font-size: 1em;
-  padding-left: 30px;
+  padding-left: 245px;
 }
 
 .restaurant {
@@ -709,11 +701,19 @@ main .und_header {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  left: 34px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  width: 77.8%;
+  margin: 0 auto;
+  margin-bottom: 50px;
   padding-bottom: 6em;
   gap: 20px;
 }
 .restaurant .card {
-  width: 80vw;
+  width: 34vw;
   height: 245px;
   border: 1px solid #e9e9e9;
   border-radius: 15px;
@@ -722,7 +722,7 @@ main .und_header {
   position: relative;
 }
 .restaurant .card img {
-  width: 79.5vw;
+  width: 33.85vw;
   height: 170px;
   border-radius: 15px 15px 0px 0px;
   -o-object-fit: cover;
@@ -760,7 +760,7 @@ main .und_header {
   bottom: 18px;
 }
 
-@media screen and (min-width: 1065px) {
+@media screen and (max-width: 1065px) {
   main .restaurant .flex-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

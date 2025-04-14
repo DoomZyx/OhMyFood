@@ -64,7 +64,7 @@ function SideModal() {
           </Link>
           <Link className="prenium-case">
             <i className="fa-solid fa-bookmark"></i>
-            <p className="prenium">Prenium</p>
+            <p className="premium">Premium</p>
           </Link>
           <Link className="contact-us">
             <i className="fa-solid fa-phone"></i>

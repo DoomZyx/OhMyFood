@@ -1,8 +1,10 @@
+@use "../../../Utils/responsive" as *;
+
+
 .layout-cart-user {
- display: flex;
- gap: 6em;
- position: relative;
- left: 34rem;
+    display: flex;
+    gap: 6em;
+    margin-right: 2rem;
  .fa-store,
  .fa-cart-shopping,
  .fa-user,
@@ -10,4 +12,25 @@
  .fa-bars {
      font-size: 2rem;
  }
+}
+
+@include desktop {
+    header .layout-cart-user {
+        display: flex;
+        gap: 6em;
+        margin-right: 2rem;
+     .fa-store,
+     .fa-cart-shopping,
+     .fa-user,
+     .fa-right-from-bracket,
+     .fa-bars {
+         font-size: 1.4rem;
+     }
+    }
+}
+
+@include tablet {
+    .layout-cart-user {
+     display: none;
+    }
 }

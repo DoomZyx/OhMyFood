@@ -2,17 +2,21 @@
 @use "../../../Utils/variables" as variables;
 
 .functionning {
-  @include flex__column;
-  padding-bottom: 5em;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 7em;
 
   h2 {
-    @include shift_left;
+    position: relative;
+    left: 130px;
     @include shift_bottom;
     padding-top: variables.$center;
   }
 
   .functionning-group {
-    @include flex__center;
+    display: flex;
+    position: relative;
+    top: 80px;
     gap: 25px;
   }
 

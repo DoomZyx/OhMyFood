@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getMenus, getRestaurants } from "../../API/API";
 import { useParams } from "react-router-dom";
 
+import "../../Components/Buttons/_buttons.scss"
+
 import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
@@ -111,6 +113,9 @@ function Menus({ restaurant_id }) {
           ) : (
             <p>Chargement des menus...</p>
           )}
+          <div className="btn_place_o">
+            <button className="order-btn">Commander</button>
+          </div>
         </section>
       </main>
       <Footer />

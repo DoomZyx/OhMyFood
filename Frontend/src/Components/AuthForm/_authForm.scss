@@ -1,10 +1,11 @@
 @use "../../Utils/variables" as variables;
 
 .form-container {
- position: relative;
  width: 100%;   
- height: 120vh;  
+ height: 100%;  
  overflow: hidden;
+ z-index: 2;
+ position: absolute;
 }
 .form {
  position: absolute;
@@ -36,9 +37,10 @@
  display: flex;
  justify-content: center;
  align-items: center;
- font-size: 3em;
+ font-size: 2em;
  position: relative;
  bottom: 1em;
+ color: white;
 }
 .registerForm,
 .loginForm {
@@ -51,7 +53,7 @@
  bottom: 4em;
  & input {
   width: 30rem;
-  height: 3vh;
+  height: 2vh;
   border: none;
   border-radius: 10px;
   padding: 1em;
@@ -78,6 +80,7 @@
 
 .passwordForgotten {
  padding-top: 1.5em;
+ color: white;
 }
 
 

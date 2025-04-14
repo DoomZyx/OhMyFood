@@ -3,7 +3,7 @@
 // Cartes // 
 
 @mixin card_ {
-    width: 80vw;
+    width: 34vw;
     height: 245px;
     border: 1px solid variables.$background_grey__medium ;
     border-radius: 15px;
@@ -11,7 +11,7 @@
 }
 
 @mixin card_img {
-    width: 79.5vw;
+    width: 33.85vw;
     height: 170px;
     border-radius: 15px 15px 0px 0px;
 }

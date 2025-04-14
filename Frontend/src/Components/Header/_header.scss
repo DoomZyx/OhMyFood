@@ -4,12 +4,12 @@
 header {
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
 
     .logo {
       position: relative;
-      left: 8.5rem;
+      left: 150px;
      }
 
     img {
