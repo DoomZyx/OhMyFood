@@ -57,6 +57,7 @@ function Menus({ restaurant_id }) {
   const handleAddToCart = async (menuId) => {
     try {
       await addToCart(menuId, 1);
+      console.log("token", sessionStorage.getItem("token"))
       console.log("Ajouté au panier");
     } catch (err) {
       console.error("Erreur lors de l'ajout au panier");

@@ -102,18 +102,32 @@ export async function getUserProfile(token) {
 }
 
 export const addToCart = async (menuId, quantity) => {
-  const token = localStorage.getItem("token");
-  console.log("TOKEN:", token)
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/post`,{
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ menuId, quantity }),
-  }); 
-  if (!response.ok) {
-    throw new Error('Erreur lors de l\'ajout au panier');
+  const token = sessionStorage.getItem("token");
+
+  if (!token) {
+    console.warn("Aucun token trouvé. Redirection nécessaire ou blocage de l'appel.");
+    throw new Error("Utilisateur non authentifié");
   }
-  return await response.json();
-}
+
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ menuId, quantity }),
+    });
+
+    if (!response.ok) {
+      const message = await response.text();
+      console.error("Erreur serveur :", message);
+      throw new Error(`Erreur API : ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (err) {
+    console.error("Erreur lors de l'ajout au panier :", err);
+    throw err;
+  }
+};

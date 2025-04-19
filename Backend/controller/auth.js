@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+
 exports.signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -34,11 +35,14 @@ exports.login = (req, res, next) => {
                        .status(401)
                        .json({ error: "Mot de passe incorrect !" });
                  }
+                 if (!process.env.RANDOM_SECRET_KEY) {
+                  throw new Error("env non chargé ou clé manquante");
+                }
                  res.status(200).json({
                    userId: user._id,
                    token: jwt.sign(
                      { userId: user._id },
-                     "RANDOM_TOKEN_SECRET",
+                     process.env.RANDOM_SECRET_KEY,
                      { expiresIn: "24h" }
                    ),
                  });
@@ -54,8 +58,11 @@ exports.getUserProfile = (req, res, next) => {
     if (!authHeader) {
       return res.status(401).json({ error: "Token manquant" });
     }
+    if (!process.env.RANDOM_SECRET_KEY) {
+      throw new Error("env non chargé ou clé manquante");
+    }
     const token = authHeader.split(" ")[1];
-    const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+    const decodedToken = jwt.verify(token, process.env.RANDOM_SECRET_KEY,);
 
     User.findOne({ _id: decodedToken.userId })
       .then((user) => {

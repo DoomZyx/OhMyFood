@@ -52,6 +52,7 @@ function AuthForms() {
   
     try {
       const data = await loginUser({ email, password });
+      sessionStorage.getItem("token", data.token);
       console.log("Connexion réussie :", data);
       
       // Dispatch l'action login avec le token et les données utilisateur
