@@ -56,8 +56,8 @@ function Menus({ restaurant_id }) {
   
   const handleAddToCart = async (menuId) => {
     try {
-      await addToCart(String(menuId), 1); //Converti l'id en chaine pour suivre le model mongoose
-      console.log("token", sessionStorage.getItem("token"))
+      await addToCart(Number(menuId), 1); //Converti l'id en chaine pour suivre le model mongoose
+      console.log("token", sessionStorage.getItem("token"));
       console.log("Ajouté au panier");
     } catch (err) {
       console.error("Erreur lors de l'ajout au panier");
@@ -114,7 +114,11 @@ function Menus({ restaurant_id }) {
                     style={{ cursor: "pointer" }}
                   >
                     <label>
-                      <input type="checkbox" className="toggle-heart" />
+                      <input
+                        type="checkbox"
+                        onClick={(e) => e.stopPropagation()}
+                        className="toggle-heart"
+                      />
                       <div className="plate__list">
                         <h3>{menu.name}</h3>
                         <h4>{menu.namesuite}</h4>
