@@ -22,10 +22,10 @@ exports.addToCart = async (req, res) => {
 
   try {
     // On récupère le menu à ajouter selon le restaurant qui lui est attribué
-    const menuItem = await Menu.findbyId(menuId);
+    const menuItem = await Menu.findById(menuId);
     if (!menuItem) return res.status(404).json({ message: "Menu introuvable" });
 
-    const restaurantId = menuItem.restaurant;
+    const restaurantId = menuItem.restaurant_id;
     // Récupére le panier de l'utilisayeur
     let cart = await Cart.findOne({ user: req.user.id });
     // Si le panier n'existe pas, on en créer un nouveau

@@ -1,3 +1,5 @@
+// Affiche les menus et restaurants
+
 export async function getRestaurants() {
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants`);
@@ -29,7 +31,6 @@ export async function getMenus(restaurant_id) {
 
 // signup 
 
-// api.js
 export async function signupUser(userData) {
   const response = await fetch(
    `${import.meta.env.VITE_API_URL}/api/signup`, {
@@ -98,4 +99,21 @@ export async function getUserProfile(token) {
     console.error("Erreur lors de la requête :", error);
     return [];
   }
+}
+
+export const addToCart = async (menuId, quantity) => {
+  const token = localStorage.getItem("token");
+  console.log("TOKEN:", token)
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/cart/post`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ menuId, quantity }),
+  }); 
+  if (!response.ok) {
+    throw new Error('Erreur lors de l\'ajout au panier');
+  }
+  return await response.json();
 }

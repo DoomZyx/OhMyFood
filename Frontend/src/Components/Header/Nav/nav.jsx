@@ -1,27 +1,35 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../../Store/User/authSlice";
+import Cart from "../../Modal/Cart";
 import "./_nav.scss";
 
 function Nav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [isModalCart, setModalCart] = useState(false);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/");
   };
 
+  const toggleCart = () => {
+
+  }
+
   return (
     <div className="layout-cart-user">
       <Link to="/">
         <i className="fa-solid fa-store"></i>
       </Link>
-      <Link to="/cart">
+      <button className="cart-but" onClick={() => setModalCart(true)}>
         <i className="fa-solid fa-cart-shopping"></i>
-      </Link>
+      </button>
+      <Cart isOpen={isModalCart} onClose={() => setModalCart(false)} />
       {isAuthenticated ? (
         <button onClick={handleLogout} className="logout-but">
           <i className="fa-solid fa-right-from-bracket"></i>

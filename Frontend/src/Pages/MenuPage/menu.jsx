@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { getMenus, getRestaurants } from "../../API/API";
+import { addToCart } from "../../API/API";
+
 import { useParams } from "react-router-dom";
 
-import "../../Components/Buttons/_buttons.scss"
+import "../../Components/Buttons/_buttons.scss";
 
 import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
@@ -51,6 +53,16 @@ function Menus({ restaurant_id }) {
     acc[menu.ordre].push(menu);
     return acc;
   }, {});
+  
+  const handleAddToCart = async (menuId) => {
+    try {
+      await addToCart(menuId, 1);
+      console.log("Ajouté au panier");
+    } catch (err) {
+      console.error("Erreur lors de l'ajout au panier");
+      console.error(err);
+    }
+  };
 
   return (
     <>
@@ -94,7 +106,12 @@ function Menus({ restaurant_id }) {
               <div key={ordre} className="menu-group">
                 <h2>{ordre}</h2>
                 {groupedMenus[ordre].map((menu) => (
-                  <div key={menu.id} className="main__course">
+                  <div
+                    key={menu._id}
+                    className="main__course"
+                    onClick={() => handleAddToCart(menu._id)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <label>
                       <input type="checkbox" className="toggle-heart" />
                       <div className="plate__list">
@@ -113,9 +130,6 @@ function Menus({ restaurant_id }) {
           ) : (
             <p>Chargement des menus...</p>
           )}
-          <div className="btn_place_o">
-            <button className="order-btn">Commander</button>
-          </div>
         </section>
       </main>
       <Footer />
