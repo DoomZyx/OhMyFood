@@ -8,6 +8,7 @@ module.exports = (req, res, next) => {
       throw new Error("env non chargé ou clé manquante");
     }
     const decodedToken = jwt.verify(token, process.env.RANDOM_SECRET_KEY);    
+    req.user = { id: decodedToken.userId };
     const userId = decodedToken.userId;
     req.auth = {
       userId: userId,

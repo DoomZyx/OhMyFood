@@ -17,10 +17,6 @@ function Nav() {
     navigate("/");
   };
 
-  const toggleCart = () => {
-
-  }
-
   return (
     <div className="layout-cart-user">
       <Link to="/">
