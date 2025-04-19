@@ -1,7 +1,9 @@
 const express = require("express");
+require('dotenv').config()
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("./connection/connection");
+
 
 const restaurantsRoutes = require("./routes/restaurants");
 const menusRoutes = require("./routes/menus");
