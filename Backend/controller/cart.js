@@ -6,9 +6,6 @@ const Restaurant = require('../models/restaurants');
 exports.getCart = async (req, res) => {
   try {
    const cart = await Cart.findOne({ user: req.user._id})
-   .populate('items.item')
-   .populate('restaurant');
-
    if (!cart) return res.status(404).json({ message: 'Panier vide' });
    res.status(200).json(cart);
   } catch (err) {
@@ -19,43 +16,46 @@ exports.getCart = async (req, res) => {
 
 exports.addToCart = async (req, res) => {
   const { menuId, quantity } = req.body;
-
   try {
-    // On récupère le menu à ajouter selon le restaurant qui lui est attribué
-    const menuItem = await Menu.findById(menuId);
-    if (!menuItem) return res.status(404).json({ message: "Menu introuvable" });
+    // Utilisateur connecté
+    const userId = req.user.id;
 
-    const restaurantId = menuItem.restaurant_id;
-    // Récupére le panier de l'utilisateur
-    let cart = await Cart.findOne({ user: req.user.id });
-    // Si le panier n'existe pas, on en créer un nouveau
+    // 🔎 Vérifie si le menu existe (et récupère son restaurant associé)
+    const menu = await Menu.findOne({ _id: menuId });
+    if (!menu) return res.status(404).json({ error: "Menu introuvable" });
+
+    const restaurantId = menu.restaurant_id;
+
+    // Cherche le panier de l'utilisateur
+    let cart = await Cart.findOne({ user: userId });
+
     if (!cart) {
+      // Si aucun panier, en créer un nouveau
       cart = new Cart({
-        user: req.user.id,
+        user: userId,
         restaurant: restaurantId,
         items: [{ item: menuId, quantity }],
       });
     } else {
-      // On vérifie si le menu commandé est du meme restaurant
-      if (cart.restaurant.toString() !== restaurantId.toString()) {
+      // Si panier existant mais resto différent, on reset
+      if (cart.restaurant !== restaurantId) {
         cart.restaurant = restaurantId;
         cart.items = [{ item: menuId, quantity }];
       } else {
-        // On check si l'article est déja dans le panier si non on l'ajoute
-        const index = cart.items.findIndex((i) => i.item.toString() === menuId);
-        if (index > -1) {
+        // Sinon on ajoute ou incrémente
+        const index = cart.items.findIndex(i => i.item === menuId);
+        if (index !== -1) {
           cart.items[index].quantity += quantity;
         } else {
           cart.items.push({ item: menuId, quantity });
         }
       }
     }
-    await cart.save(); // Sauvegarde du panier
-    const populatedCart = await cart
-      .populate("items.item")
-      .populate("restaurant"); // Remplacement de l'id par les vrais menus et restaurants
-    res.status(200).json(populatedCart); // OK, on renvoie le panier au client
+
+    await cart.save();
+    res.status(200).json(cart);
   } catch (err) {
+    console.error("Erreur addToCart:", err);
     res.status(500).json({ error: err.message });
   }
 };
