@@ -1,5 +1,5 @@
 /* L'overlay du modal */
-.modal-overlay {
+.modal-side-overlay {
  position: fixed;
  top: 0;
  left: 0;
@@ -9,7 +9,7 @@
  z-index: 1000;
 }
 
-.modal-content {
+.modal-side-content {
  position: fixed;
  top: 0;
  left: 0;

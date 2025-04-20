@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import Modal from "./modal";
+import ModalSide from "./Model/modal.-side-model";
 import logo from "../../../assets/logo/ohmyfood.png";
 import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
@@ -31,7 +31,7 @@ function SideModal() {
       <button onClick={toggleSidebar} className="Sidebar">
         <i className="fa-solid fa-bars"></i>
       </button>
-      <Modal isOpen={isSidebarOpen} onClose={toggleSidebar}>
+      <ModalSide isOpen={isSidebarOpen} onClose={toggleSidebar}>
         <div className="sidebar-layout">
           <div className="profile-link">
             <div className="user-circle">
@@ -93,7 +93,7 @@ function SideModal() {
         <div className="side-logo">
           <img src={logo} alt="logo" />
         </div>
-      </Modal>
+      </ModalSide>
     </>
   );
 }
