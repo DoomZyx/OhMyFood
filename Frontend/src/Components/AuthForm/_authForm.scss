@@ -1,4 +1,4 @@
-@use "../../Utils/variables" as variables;
+@use "../../Utils/variables" as *;
 
 .form-container {
  width: 100%;   
@@ -6,6 +6,18 @@
  overflow: hidden;
  z-index: 2;
  position: absolute;
+}
+.form-sub-wrapper {
+ width: 700px;
+ height: auto;
+ padding: 1em;
+}
+.form-login-wrapper {
+ height: 500px;
+ width: 700px;
+ background-color: white;
+ border-radius: 200px;
+ padding: 1em;
 }
 .form {
  position: absolute;
@@ -17,6 +29,8 @@
 }
 .register-switch,
 .connection-switch {
+ position: relative;
+ left: 70em;
  width: 130px;
  border: none;
  border-radius: 20px;
@@ -25,7 +39,7 @@
  background-color: black;
  color: white;
  font-weight: 900;
- cursor: pointer;
+ cursor: pointer;;
 }
 .register-switch:hover,
 .connection-switch:hover {
@@ -38,9 +52,12 @@
  justify-content: center;
  align-items: center;
  font-size: 3em;
- position: relative;
- bottom: 1em;
- color: white;
+ margin-bottom: 2em;
+ color: black;
+}
+.register-title {
+ text-shadow: 0 0 10px #000;
+ color: white !important;
 }
 .registerForm,
 .loginForm {
@@ -59,18 +76,28 @@
   padding: 1em;
   background-color: #F3F3F3 !important;
  }
+ ::placeholder {
+  font-size: 1em;
+ }
  & button {
   font-weight: 900;
   font-size: 1.1em;
   width: 15em;
-  position: relative;
-  top: 3rem;
   border-radius: 40px;
   border: none;
   padding: 1em;
   cursor: pointer;
-  background: variables.$button_background;
+  background:$button_background;
   color:white;
+ }
+ .rest-link {
+  color: black;
+  font-size: 1em;
+  font-weight: 300;
+ }
+ .rest-sub-link {
+  color: white;
+  font-weight: 400;
  }
 }
 .registerForm button:hover,
@@ -79,13 +106,13 @@
 }
 
 .passwordForgotten {
- padding-top: 1.5em;
- color: white;
+ position: relative;
+ bottom: 1.5em;
 }
 
 
 .form.active {
- transform: translateX(0);
+ transform: translateX(24%);
 }
 
 .inscriptionForm.inactive {
