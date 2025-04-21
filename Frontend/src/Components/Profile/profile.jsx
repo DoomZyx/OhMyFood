@@ -11,6 +11,7 @@ import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI"
 function UserInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  console.log(user.imageUrl);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   // Appel du profil utilisateur si authentifié mais pas encore chargé
@@ -26,6 +27,7 @@ function UserInfo() {
     showNom: false,
     showPrenom: false,
     showPhone: false,
+    showImage: false,
   });
 
   // Affiche ou cache dynamiquement un input
@@ -41,7 +43,9 @@ function UserInfo() {
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    avatar: "",
   });
+  console.log(formData);
 
   // Remplit formData avec les valeurs de l'utilisateur (à l’arrivée des données)
   useEffect(() => {
@@ -50,6 +54,7 @@ function UserInfo() {
         firstName: user.firstName || "",
         lastName: user.lastName || "",
         phoneNumber: user.phoneNumber || "",
+        avatar: user.imageUrl || "",
       });
     }
   }, [user]);
@@ -68,7 +73,7 @@ function UserInfo() {
     form.append("firstName", formData.firstName);
     form.append("lastName", formData.lastName);
     form.append("phoneNumber", formData.phoneNumber);
-  
+
     if (formData.avatar) {
       form.append("avatar", formData.avatar);
     }
@@ -92,11 +97,67 @@ function UserInfo() {
 
       <div className="profile-container">
         <div className="layout-user-profile">
-          <div className="user-circle">
-            <i className="fa-solid fa-user"></i>
-          </div>
           {isAuthenticated && user && (
             <>
+              {!visibleInputs.showImage ? (
+                user.imageUrl ? (
+                  <>
+                    <img
+                      src={`http://localhost:3000${user.imageUrl}`}
+                      alt="Photo de profil"
+                      className="profile-img"
+                    />
+                    <button
+                      className="modify-userImage"
+                      onClick={() => toggleInput("showImage")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <div className="layout-nopic">
+                      <div className="user-circle">
+                        <i className="fa-solid fa-user"></i>
+                      </div>
+                      <button
+                        className="modify-userImage"
+                        onClick={() => toggleInput("showImage")}
+                      >
+                        Modifier
+                      </button>
+                    </div>
+                  </>
+                )
+              ) : (
+                <div className="input-upload-photo">
+                  <img
+                    src={`http://localhost:3000${user.imageUrl}`}
+                    alt="Photo de profil"
+                    className="profile-img"
+                  />
+                  <div className="layout-btn-image-profile">
+                  <label htmlFor="avatar-upload" className="upload-btn">
+                  <i className="fa-solid fa-folder"></i>
+                  </label>
+                  <input
+                    id="avatar-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        avatar: e.target.files[0],
+                      }))
+                    }
+                  />
+                  <button onClick={() => handleSave("showImage")}>
+                    <i className="fa-solid fa-check"></i>
+                  </button>
+                  </div>
+                </div>
+              )}
+
               <div className="profile-name">
                 {!visibleInputs.showPrenom ? (
                   <>
@@ -124,7 +185,10 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif" onClick={() => handleSave("showPrenom")}>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showPrenom")}
+                    >
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
@@ -158,7 +222,10 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif" onClick={() => handleSave("showNom")}>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showNom")}
+                    >
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
@@ -192,7 +259,10 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif" onClick={() => handleSave("showPhone")}>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showPhone")}
+                    >
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>

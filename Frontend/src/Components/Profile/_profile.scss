@@ -26,6 +26,12 @@
    display: none;
   }
  .layout-user-profile { 
+  img {
+    object-fit: cover;
+    width: 30%;
+    height: 180px;
+    border-radius: 50%;
+  }
   padding: 1em;
   width: 100%;
   gap: 30px;
@@ -41,13 +47,54 @@
  border: 1px;
  border-radius: 150px;
  background-color: #9356dc;
- margin-bottom: 1em;
  .fa-user {
   font-size: 4rem;
   color: #f4f4f4;
    }
   }
  }
+}
+
+.layout-nopic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-upload-photo {
+  width: 100%;
+  gap: 120px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  input[type="file"] {
+    display: none;
+  }
+  .layout-btn-image-profile {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+  .upload-btn {
+    background: $button_background;
+    border-radius: 50%;
+    padding: 1em;
+    color: white;
+    cursor: pointer;
+    i {
+      font-size: 1.4em;
+    }
+  }
+  .upload-btn:hover {
+    opacity: 0.8;
+  }
+  button {
+    background: $button_background;
+    padding: 0.7em;
+    font-size: 1.4em;
+    border-radius: 50%;
+  }
 }
 
 .profile-name,
@@ -69,16 +116,26 @@
   left: 6%;
  }
 }
-.modify-userdata {
+.modify-userdata,
+.modify-userImage {
  background: $button_background;
  border-radius: 90px;
- width: 100px;
  color: white;
- position: relative;
- left: 37em;
- padding: 1em;
  font-weight: 500;
+ padding: 1em;
 }
+.modify-userImage {
+  font-weight: 900;
+  height: 40px;
+  width: 150px;
+}
+.modify-userdata {
+  font-weight: 900;
+  width: 100px;
+  position: relative;
+  left: 37em;
+}
+
 
 .profile-name input,
 .profile-surname input,

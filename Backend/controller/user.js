@@ -66,8 +66,8 @@ exports.updateUser = async (req, res) => {
    }
 
    if (req.file) {
-      user.profilePicture = req.filename;
-   }
+    user.imageUrl = `/uploads/${req.file.filename}`; 
+  }
 
    await user.save();
 
