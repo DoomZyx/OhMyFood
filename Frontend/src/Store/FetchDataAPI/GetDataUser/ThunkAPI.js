@@ -1,4 +1,4 @@
-import { signupUser, loginUser, getUserProfile } from "../../../API/API";
+import { signupUser, loginUser, getUserProfile } from "../../../API/Account/API";
 import { login, setError, setUser } from "../../User/authSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 

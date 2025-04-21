@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { login } from "../../Store/User/authSlice";
 import { useNavigate } from "react-router-dom";
 
-import { signupUser } from "../../API/API";
-import { loginUser } from "../../API/API";
+import { signupUser } from "../../API/Account/API";
+import { loginUser } from "../../API/Account/API";
 
 function AuthForms() {
   const [activeForm, setActiveForm] = useState("inscription");

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { clearCart, getCart, removeFromCart } from "../../API/API";
+import { clearCart, getCart, removeFromCart } from "../../API/Cart/API";
 import Modal from "../Modal/Model/modal";
 import "./_Cart.scss";
 

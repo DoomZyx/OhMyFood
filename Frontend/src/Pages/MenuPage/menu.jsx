@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { getMenus, getRestaurants } from "../../API/API";
-import { addToCart } from "../../API/API";
+import { getMenus } from "../../API/Menus/API";
+import { getRestaurants } from "../../API/Restaurants/API";
+import { addToCart } from "../../API/Cart/API";
 
 import { useParams } from "react-router-dom";
 

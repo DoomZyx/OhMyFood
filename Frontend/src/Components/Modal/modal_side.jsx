@@ -46,7 +46,7 @@ function SideModal() {
               </>
             )}
           </div>
-          <Link className="my-profile" to="#">
+          <Link className="my-profile" to="/profile">
             <i className="fa-regular fa-address-card"></i>
             <p className="profile">Mon profil</p>
           </Link>
