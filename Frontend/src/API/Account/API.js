@@ -69,7 +69,7 @@ export const updateUserAPI = async (data) => {
   const token = sessionStorage.getItem("token");
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
-    method: "POST", 
+    method: "PUT", 
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -82,5 +82,5 @@ export const updateUserAPI = async (data) => {
     throw new Error(errorData.message || "Erreur lors de la mise à jour");
   }
 
-  return await response.json(); // renvoie le user mis à jour
+  return await response.json(); 
 };

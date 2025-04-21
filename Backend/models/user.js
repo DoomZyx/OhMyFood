@@ -8,4 +8,11 @@ const userSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true }
 });
 
+// Retire le mdp pour éviter de l'envoyer dans les réponses et de l'afficher dans la console 
+userSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
+
 module.exports = mongoose.model("User", userSchema);

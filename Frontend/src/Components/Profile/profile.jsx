@@ -62,6 +62,9 @@ function UserInfo() {
     }));
   };
 
+  if (!user) {
+    return <div>Chargement du profil...</div>;
+  }
 
   return (
     <div className="background-profile">
@@ -89,8 +92,9 @@ function UserInfo() {
                 value={formData.prenom}
                 onChange={handleChange}
               />
+              <button className="cancel-modif" onClick={() => toggleInput("showPrenom")} >Annuler</button>
               <button className="save-name">
-                <i className="fa-solid fa-minus"></i>
+                Sauvegarder
               </button>
             </div>
           )}
