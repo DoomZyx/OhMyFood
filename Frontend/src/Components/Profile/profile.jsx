@@ -10,7 +10,6 @@ import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI"
 function UserInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  console.log("👤 USER DU STORE:", user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   // Appel du profil utilisateur si authentifié mais pas encore chargé
@@ -21,14 +20,13 @@ function UserInfo() {
     }
   }, [dispatch, isAuthenticated, user?.id]);
 
-
   // Contrôle la visibilité des inputs
   const [visibleInputs, setVisibleInputs] = useState({
     showNom: false,
     showPrenom: false,
     showPhone: false,
   });
-  
+
   // Affiche ou cache dynamiquement un input
   const toggleInput = (field) => {
     setVisibleInputs((prev) => ({
@@ -36,7 +34,7 @@ function UserInfo() {
       [field]: !prev[field],
     }));
   };
-  
+
   // Stocke les valeurs modifiables des inputs
   const [formData, setFormData] = useState({
     firstName: "",
@@ -54,7 +52,6 @@ function UserInfo() {
       });
     }
   }, [user]);
-
 
   // Met à jour la valeur d’un input dans formData
   const handleChange = (e) => {
@@ -75,75 +72,112 @@ function UserInfo() {
 
       <div className="profile-container">
         <div className="layout-user-profile">
-
           <div className="user-circle">
             <i className="fa-solid fa-user"></i>
           </div>
           {isAuthenticated && user && (
             <>
               <div className="profile-name">
-                <h3>{user.firstName}</h3>
-                <button onClick={() => toggleInput("showPrenom")}>
-                  Modifier
-                </button>
+                {!visibleInputs.showPrenom ? (
+                  <>
+                    <h4>{user.firstName}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showPrenom")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-firstname">
+                    <label htmlFor="firstName"></label>
+                    <input
+                      id="firstName"
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showPrenom")}
+                    >
+                      Annuler
+                    </button>
+                    <button className="save-modif">
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
               </div>
-              {visibleInputs.showPrenom && (
-                <div className="input-change-surname">
-                  <input
-                    type="text"
-                    name="prenom"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                  />
-                  <button
-                    className="cancel-modif"
-                    onClick={() => toggleInput("showPrenom")}
-                  >
-                    Annuler
-                  </button>
-                  <button className="save-name">Sauvegarder</button>
-                </div>
-              )}
 
               <div className="profile-surname">
-                <h3>{user.lastName}</h3>
-                <button onClick={() => toggleInput("showNom")}>Modifier</button>
+                {!visibleInputs.showNom ? (
+                  <>
+                    <h4>{user.lastName}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showNom")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-lastname">
+                    <label htmlFor="lastName"></label>
+                    <input
+                      id="lastName"
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showNom")}
+                    >
+                      Annuler
+                    </button>
+                    <button className="save-modif">
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
               </div>
-
-              {visibleInputs.showNom && (
-                <div className="input-change-surname">
-                  <input
-                    type="text"
-                    name="nom"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                  />
-                  <button className="save-name">
-                    <i className="fa-solid fa-minus"></i>
-                  </button>
-                </div>
-              )}
 
               <div className="profile-phoneNumber">
-                <h3>{user.phoneNumber}</h3>
-                <button onClick={() => toggleInput("showPhone")}>
-                  Modifier
-                </button>
+                {!visibleInputs.showPhone ? (
+                  <>
+                    <h4>{user.phoneNumber}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showPhone")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-phone">
+                    <label htmlFor="phoneNumber"></label>
+                    <input
+                      id="phoneNumber"
+                      type="text"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showPhone")}
+                    >
+                      Annuler
+                    </button>
+                    <button className="save-modif">
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
               </div>
-
-              {visibleInputs.showPhone && (
-                <div className="input-change-phone">
-                  <input
-                    type="number"
-                    name="phone"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                  />
-                  <button className="save-name">
-                    <i className="fa-solid fa-minus"></i>
-                  </button>
-                </div>
-              )}
             </>
           )}
         </div>

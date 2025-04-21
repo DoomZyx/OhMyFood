@@ -10,19 +10,27 @@
  }
 }
 .profile-container {
-  width: 400px;
+ overflow-y: auto;
+ scrollbar-width: none;
+ -ms-overflow-style: none;
+  width: 650px;
+  height: 500px;
   border-radius: 100px;
   background-color: $background_grey__medium;
   position: absolute;
-  top: 10em;
-  left: 33%;
+  top: 11em;
+  left: 25%;
   z-index: 2;
+  padding: 1em;
+  &::-webkit-scrollbar {
+   display: none;
+  }
  .layout-user-profile { 
   padding: 1em;
   width: 100%;
+  gap: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 .user-circle {
  display: flex;
@@ -33,6 +41,7 @@
  border: 1px;
  border-radius: 150px;
  background-color: #9356dc;
+ margin-bottom: 1em;
  .fa-user {
   font-size: 4rem;
   color: #f4f4f4;
@@ -40,3 +49,66 @@
   }
  }
 }
+
+.profile-name,
+.profile-surname,
+.profile-phoneNumber {
+ width: 100%;
+ height: 9vh;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: space-between;
+ h4 {
+  background-color: #f4f4f4;
+  width: 350px;
+  border-radius: 50px;
+  padding: 1em;
+  font-size: 1.2em;
+  position: absolute;
+  left: 6%;
+ }
+}
+.modify-userdata {
+ background: $button_background;
+ border-radius: 90px;
+ width: 100px;
+ color: white;
+ position: relative;
+ left: 37em;
+ padding: 1em;
+ font-weight: 500;
+}
+
+.profile-name input,
+.profile-surname input,
+.profile-phoneNumber input {
+ background-color: #f4f4f4;
+ border: none;
+ width: 350px;
+ border-radius: 50px;
+ padding: 1em;
+ font-size: 1.2em;
+ position: absolute;
+ left: 6%;
+}
+
+ .input-change-firstname,
+ .input-change-lastname,
+ .input-change-phone  {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 95%;
+  height: 100%;
+  gap: 20px;
+  .cancel-modif,
+  .save-modif {
+   background: $button_background;
+   border-radius: 60px;
+   width: 80px;
+   height: 40px;
+   color: white;
+   font-weight: 500;
+  }
+ }
