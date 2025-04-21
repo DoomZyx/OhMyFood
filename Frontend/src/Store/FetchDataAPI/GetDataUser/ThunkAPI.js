@@ -1,4 +1,4 @@
-import { signupUser, loginUser, getUserProfile } from "../../../API/Account/API";
+import { signupUser, loginUser, getUserProfile, updateUserAPI } from "../../../API/Account/API";
 import { login, setError, setUser } from "../../User/authSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -49,7 +49,7 @@ export const updateUserProfile = createAsyncThunk(
   "auth/updateUserProfile",
   async (updatedData, thunkAPI) => {
     try {
-      const response = await updateUserAPI(updatedData); // appel API PUT/POST
+      const response = await updateUserAPI(updatedData); 
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

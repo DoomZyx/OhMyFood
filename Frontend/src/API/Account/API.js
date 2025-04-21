@@ -65,22 +65,24 @@ export async function getUserProfile(token) {
  }
 }
 
-export const updateUserAPI = async (data) => {
+export const updateUserAPI = async (formData) => {
   const token = sessionStorage.getItem("token");
 
   const response = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
     method: "PUT", 
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data),
+    body: formData,
   });
-
+  console.log("📦 API Response:", response.status);
+  
   if (!response.ok) {
     const errorData = await response.json();
+    console.log("📦 API Body:", errorData);
     throw new Error(errorData.message || "Erreur lors de la mise à jour");
   }
 
-  return await response.json(); 
+  return await response.json();
+ 
 };

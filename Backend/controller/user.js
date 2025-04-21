@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 
+
 exports.getUserProfile = (req, res, next) => {
  try {
    // Récupère le header d'authentification
@@ -51,6 +52,11 @@ exports.updateUser = async (req, res) => {
    const user = await User.findById(userId);
    if (!user) return res.status(404).json({ message: "Utilisateur non trouvé" });
 
+   // Mise à jour des autres champs
+   user.firstName = firstName ?? user.firstName;
+   user.lastName = lastName ?? user.lastName;
+   user.phoneNumber = phoneNumber ?? user.phoneNumber;
+
    //vérification de l'ancien mot de passe
    if (newPassword) {
      if (!oldPassword || !(await bcrypt.compare(oldPassword, user.password))) {
@@ -59,16 +65,15 @@ exports.updateUser = async (req, res) => {
      user.password = await bcrypt.hash(newPassword, 10);
    }
 
-   // Mise à jour des autres champs
-   user.firstName = firstName ?? user.firstName;
-   user.lastName = lastName ?? user.lastName;
-   user.phoneNumber = phoneNumber ?? user.phoneNumber;
+   if (req.file) {
+      user.profilePicture = req.filename;
+   }
 
    await user.save();
 
    res.status(200).json(user); // grâce à .toJSON() le mdp sera exclu
  } catch (err) {
-   console.error("❌ Erreur updateUser:", err.message);
+   console.error("Erreur updateUser:", err.message);
    res.status(500).json({ message: "Erreur serveur" });
  }
 };

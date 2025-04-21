@@ -5,6 +5,7 @@ import foodplate1 from "../../../public/images/foodplate1.webp";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
+import { updateUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
 import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
 
 function UserInfo() {
@@ -62,6 +63,25 @@ function UserInfo() {
     }));
   };
 
+  const handleSave = (field) => {
+    const form = new FormData();
+    form.append("firstName", formData.firstName);
+    form.append("lastName", formData.lastName);
+    form.append("phoneNumber", formData.phoneNumber);
+  
+    if (formData.avatar) {
+      form.append("avatar", formData.avatar);
+    }
+
+    dispatch(updateUserProfile(form)).then(() => {
+      // Cache l’input concerné
+      setVisibleInputs((prev) => ({
+        ...prev,
+        [field]: false,
+      }));
+    });
+  };
+
   if (!user) {
     return <div>Chargement du profil...</div>;
   }
@@ -104,7 +124,7 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif">
+                    <button className="save-modif" onClick={() => handleSave("showPrenom")}>
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
@@ -138,7 +158,7 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif">
+                    <button className="save-modif" onClick={() => handleSave("showNom")}>
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
@@ -172,7 +192,7 @@ function UserInfo() {
                     >
                       Annuler
                     </button>
-                    <button className="save-modif">
+                    <button className="save-modif" onClick={() => handleSave("showPhone")}>
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
