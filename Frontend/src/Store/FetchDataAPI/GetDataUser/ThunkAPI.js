@@ -44,3 +44,15 @@ export const fetchUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async (updatedData, thunkAPI) => {
+    try {
+      const response = await updateUserAPI(updatedData); // appel API PUT/POST
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

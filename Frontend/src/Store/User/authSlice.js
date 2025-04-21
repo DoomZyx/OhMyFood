@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { signupThunk, fetchUserProfile } from "../FetchDataAPI/GetDataUser/ThunkAPI";
+import {
+  signupThunk,
+  fetchUserProfile,
+  updateUserProfile,
+} from "../FetchDataAPI/GetDataUser/ThunkAPI";
 
 const authSlice = createSlice({
   name: "auth",
@@ -56,16 +60,28 @@ const authSlice = createSlice({
       .addCase(signupThunk.rejected, (state, action) => {
         state.error = action.payload; 
       });
-
-      builder.addCase(fetchUserProfile.pending, (state) => {
-        state.error = null
-      })
-      builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.user = action.payload; 
-      })
-      builder.addCase(fetchUserProfile.rejected, (state, action) => {
-        state.error = action.payload;
-      });
+    // Gestion de login
+      builder
+        .addCase(fetchUserProfile.pending, (state) => {
+          state.error = null;
+        })
+        .addCase(fetchUserProfile.fulfilled, (state, action) => {
+          state.user = action.payload;
+        })
+        .addCase(fetchUserProfile.rejected, (state, action) => {
+          state.error = action.payload;
+        });
+    // Gestion de updateUserProfile
+      builder
+        .addCase(updateUserProfile.pending, (state) => {
+          state.error = null;
+        })
+        .addCase(updateUserProfile.fulfilled, (state, action) => {
+          state.user = action.payload;
+        })
+        .addCase(updateUserProfile.rejected, (state, action) => {
+          state.error = action.payload;
+        });
   },
 });
 
