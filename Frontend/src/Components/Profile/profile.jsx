@@ -10,11 +10,13 @@ import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI"
 function UserInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  console.log("👤 USER DU STORE:", user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   // Appel du profil utilisateur si authentifié mais pas encore chargé
   useEffect(() => {
     if (isAuthenticated && (!user || user.id === "")) {
+      console.log("📡 fetchUserProfile lancé");
       dispatch(fetchUserProfile(sessionStorage.getItem("token")));
     }
   }, [dispatch, isAuthenticated, user?.id]);
@@ -34,24 +36,25 @@ function UserInfo() {
       [field]: !prev[field],
     }));
   };
+  
+  // Stocke les valeurs modifiables des inputs
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+  });
 
   // Remplit formData avec les valeurs de l'utilisateur (à l’arrivée des données)
   useEffect(() => {
     if (user) {
       setFormData({
-        nom: user.nom || "",
-        prenom: user.prenom || "",
-        phone: user.phone || "",
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        phoneNumber: user.phoneNumber || "",
       });
     }
   }, [user]);
 
-  // Stocke les valeurs modifiables des inputs
-  const [formData, setFormData] = useState({
-    nom: "",
-    prenom: "",
-    phone: "",
-  });
 
   // Met à jour la valeur d’un input dans formData
   const handleChange = (e) => {
@@ -71,72 +74,78 @@ function UserInfo() {
       <img src={foodplate1} alt="foodplate" />
 
       <div className="profile-container">
-        
         <div className="layout-user-profile">
-          <h2>Informations personnelles</h2>
 
           <div className="user-circle">
             <i className="fa-solid fa-user"></i>
           </div>
+          {isAuthenticated && user && (
+            <>
+              <div className="profile-name">
+                <h3>{user.firstName}</h3>
+                <button onClick={() => toggleInput("showPrenom")}>
+                  Modifier
+                </button>
+              </div>
+              {visibleInputs.showPrenom && (
+                <div className="input-change-surname">
+                  <input
+                    type="text"
+                    name="prenom"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                  />
+                  <button
+                    className="cancel-modif"
+                    onClick={() => toggleInput("showPrenom")}
+                  >
+                    Annuler
+                  </button>
+                  <button className="save-name">Sauvegarder</button>
+                </div>
+              )}
 
-          <div className="profile-name">
-            <h3>{user.prenom}</h3>
-            <button onClick={() => toggleInput("showPrenom")}>Modifier</button>
-          </div>
+              <div className="profile-surname">
+                <h3>{user.lastName}</h3>
+                <button onClick={() => toggleInput("showNom")}>Modifier</button>
+              </div>
 
-          {visibleInputs.showPrenom && (
-            <div className="input-change-surname">
-              <input
-                type="text"
-                name="prenom"
-                value={formData.prenom}
-                onChange={handleChange}
-              />
-              <button className="cancel-modif" onClick={() => toggleInput("showPrenom")} >Annuler</button>
-              <button className="save-name">
-                Sauvegarder
-              </button>
-            </div>
+              {visibleInputs.showNom && (
+                <div className="input-change-surname">
+                  <input
+                    type="text"
+                    name="nom"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                  />
+                  <button className="save-name">
+                    <i className="fa-solid fa-minus"></i>
+                  </button>
+                </div>
+              )}
+
+              <div className="profile-phoneNumber">
+                <h3>{user.phoneNumber}</h3>
+                <button onClick={() => toggleInput("showPhone")}>
+                  Modifier
+                </button>
+              </div>
+
+              {visibleInputs.showPhone && (
+                <div className="input-change-phone">
+                  <input
+                    type="number"
+                    name="phone"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                  />
+                  <button className="save-name">
+                    <i className="fa-solid fa-minus"></i>
+                  </button>
+                </div>
+              )}
+            </>
           )}
-
-          <div className="profile-surname">
-            <h3>{user.nom}</h3>
-            <button onClick={() => toggleInput("showNom")}>Modifier</button>
-          </div>
-
-          {visibleInputs.showNom && (
-            <div className="input-change-surname">
-              <input
-                type="text"
-                name="nom"
-                value={formData.nom}
-                onChange={handleChange}
-              />
-              <button className="save-name">
-                <i className="fa-solid fa-minus"></i>
-              </button>
-            </div>
-          )}
-
-          <div className="profile-phoneNumber">
-            <h3>{user.phone}</h3>
-            <button onClick={() => toggleInput("showPhone")}>Modifier</button>
-          </div>
-
-          {visibleInputs.showPhone && (
-            <div className="input-change-phone">
-              <input
-                type="number"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-              <button className="save-name">
-                <i className="fa-solid fa-minus"></i>
-              </button>
-            </div>
-          )}
-
         </div>
       </div>
     </div>

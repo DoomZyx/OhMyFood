@@ -1,3 +1,5 @@
+@use "../../Utils/variables" as *;
+
 .background-profile {
  z-index: -1;
  display: flex;
@@ -8,9 +10,13 @@
  }
 }
 .profile-container {
- position: absolute;
- z-index: 2;
- width: 100%;
+  width: 400px;
+  border-radius: 100px;
+  background-color: $background_grey__medium;
+  position: absolute;
+  top: 10em;
+  left: 33%;
+  z-index: 2;
  .layout-user-profile { 
   padding: 1em;
   width: 100%;
