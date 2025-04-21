@@ -12,8 +12,10 @@ exports.signup = (req, res, next) => {
         password: hash,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber
+        phoneNumber: req.body.phoneNumber,
+        address: req.body.address
       });
+      console.log("📥 Adresse reçue dans backend :", req.body);
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))

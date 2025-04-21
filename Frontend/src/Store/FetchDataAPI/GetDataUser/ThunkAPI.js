@@ -1,5 +1,5 @@
 import { signupUser, loginUser, getUserProfile, updateUserAPI } from "../../../API/Account/API";
-import { login, setError, setUser } from "../../User/authSlice";
+import { login, setError } from "../../User/authSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const signupThunk = createAsyncThunk(
@@ -21,10 +21,8 @@ export const loginThunk = (email, password) => async (dispatch) => {
     if (result && result.token) {
       dispatch(login({ token: result.token, user: {} })); // Initialise Redux avec un token et un user vide
       
-      // 🔥 Maintenant, on récupère l'utilisateur via `fetchUserProfile`
       dispatch(fetchUserProfile(result.token));
 
-      console.log("📌 Après dispatch login :", { token: result.token });
     } else {
       dispatch(setError("Email ou mot de passe incorrect."));
     }

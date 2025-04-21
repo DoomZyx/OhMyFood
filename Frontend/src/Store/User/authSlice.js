@@ -16,6 +16,8 @@ const authSlice = createSlice({
       firstName: "",
       lastName: "",
       email: "",
+      phoneNumber: "",
+      address: "",
     },
   },
   reducers: {

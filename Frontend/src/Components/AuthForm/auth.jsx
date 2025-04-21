@@ -18,13 +18,22 @@ function AuthForms() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [errorRegister, setErrorRegister] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // Fonction appelée lors de la soumission du formulaire d'inscription
   const handleRegister = async (e) => {
     e.preventDefault();
+    console.log("📤 Données envoyées :", {
+      email: emailRegister,
+      password: passwordRegister,
+      firstName,
+      lastName,
+      phoneNumber: number,
+      address: address,
+    });
 
     try {
       const data = await signupUser({
@@ -33,10 +42,11 @@ function AuthForms() {
         firstName,
         lastName: lastName,
         phoneNumber: number,
+        address,
       });
 
       console.log("Inscription réussie :", data);
-      setActiveForm("connexion")
+      setActiveForm("connexion");
     } catch (error) {
       if (error.response) {
         setErrorRegister(error.message || "Impossible de contacter le serveur");
@@ -115,6 +125,12 @@ function AuthForms() {
                 onChange={(e) => setNumber(e.target.value)}
                 placeholder="Votre numéro de téléphone"
               ></input>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Votre adresse"
+              ></input>
               <Link to="/">
                 <p className="rest-sub-link">
                   Vous êtes restaurateur ? Cliquez ici
@@ -156,7 +172,9 @@ function AuthForms() {
                 placeholder="Mot de passe"
               ></input>
               <Link to="/">
-              <p className="rest-link">Connectez vous ici en tant que restaurateur</p>
+                <p className="rest-link">
+                  Connectez vous ici en tant que restaurateur
+                </p>
               </Link>
               <button type="submit" className="register-button">
                 Se connecter

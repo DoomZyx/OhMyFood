@@ -11,7 +11,7 @@ import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI"
 function UserInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  console.log(user.imageUrl);
+  console.log(user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   // Appel du profil utilisateur si authentifié mais pas encore chargé
@@ -28,6 +28,7 @@ function UserInfo() {
     showPrenom: false,
     showPhone: false,
     showImage: false,
+    showAddress: false,
   });
 
   // Affiche ou cache dynamiquement un input
@@ -44,6 +45,7 @@ function UserInfo() {
     lastName: "",
     phoneNumber: "",
     avatar: "",
+    address: "",
   });
   console.log(formData);
 
@@ -55,6 +57,7 @@ function UserInfo() {
         lastName: user.lastName || "",
         phoneNumber: user.phoneNumber || "",
         avatar: user.imageUrl || "",
+        address: user.address || "",
       });
     }
   }, [user]);
@@ -73,6 +76,7 @@ function UserInfo() {
     form.append("firstName", formData.firstName);
     form.append("lastName", formData.lastName);
     form.append("phoneNumber", formData.phoneNumber);
+    form.append("address", formData.address);
 
     if (formData.avatar) {
       form.append("avatar", formData.avatar);
@@ -262,6 +266,42 @@ function UserInfo() {
                     <button
                       className="save-modif"
                       onClick={() => handleSave("showPhone")}
+                    >
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="profile-phoneNumber">
+                {!visibleInputs.showAddress ? (
+                  <>
+                    <h4>{user.address}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showAddress")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-address">
+                    <label htmlFor="address"></label>
+                    <input
+                      id="address"
+                      type="text"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showAddress")}
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showAddress")}
                     >
                       <i className="fa-solid fa-check"></i>
                     </button>

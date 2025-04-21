@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   imageUrl: { type: String, required: false },
+  address: { type: String, required: true}
 });
 
 // Retire le mdp pour éviter de l'envoyer dans les réponses et de l'afficher dans la console 

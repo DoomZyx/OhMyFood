@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const mongoose = require("./connection/connection");
 
 
@@ -13,9 +14,6 @@ const cartRoutes = require('./routes/cart');
 
 const app = express();
 
-const path = require("path");
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 const cors = require("cors");
 
 app.use(
@@ -23,11 +21,11 @@ app.use(
     origin: ["http://localhost:5173", "http://192.168.1.17:5173"], 
   })
 );
-
-app.use(bodyParser.json());
-
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.use(bodyParser.json());
 
 app.use("/api/restaurants", restaurantsRoutes);
 
