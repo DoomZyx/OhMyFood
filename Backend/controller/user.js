@@ -50,7 +50,7 @@ exports.getUserProfile = (req, res, next) => {
 exports.updateUser = async (req, res) => {
  try {
    const userId = req.user.id;
-   const { firstName, lastName, phoneNumber, address, oldPassword, newPassword } = req.body;
+   const { firstName, lastName, phoneNumber, address, town, postalCode, oldPassword, newPassword } = req.body;
 
    const user = await User.findById(userId);
    if (!user) return res.status(404).json({ message: "Utilisateur non trouvé" });
@@ -60,6 +60,8 @@ exports.updateUser = async (req, res) => {
    user.lastName = lastName ?? user.lastName;
    user.phoneNumber = phoneNumber ?? user.phoneNumber;
    user.address = address ?? user.address;
+   user.town = town ?? user.town;
+   user.postalCode = postalCode ?? user.postalCode;  
 
    //vérification de l'ancien mot de passe
    if (newPassword) {

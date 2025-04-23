@@ -99,7 +99,9 @@
 
 .profile-name,
 .profile-surname,
-.profile-phoneNumber {
+.profile-phoneNumber,
+.profile-town,
+.profile-postalCode {
  width: 100%;
  height: 9vh;
  display: flex;
@@ -139,7 +141,9 @@
 
 .profile-name input,
 .profile-surname input,
-.profile-phoneNumber input {
+.profile-phoneNumber input,
+.profile-town input,
+.profile-postalCode input {
  background-color: #f4f4f4;
  border: none;
  width: 350px;
@@ -153,7 +157,9 @@
  .input-change-firstname,
  .input-change-lastname,
  .input-change-phone,
- .input-change-address  {
+ .input-change-address,
+ .input-change-town,
+ .input-change-postalCode {
   display: flex;
   justify-content: flex-end;
   align-items: center;

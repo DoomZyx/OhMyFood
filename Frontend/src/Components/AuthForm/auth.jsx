@@ -19,6 +19,8 @@ function AuthForms() {
   const [lastName, setLastName] = useState("");
   const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [town, setTown] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [errorRegister, setErrorRegister] = useState("");
 
   const dispatch = useDispatch();
@@ -33,6 +35,8 @@ function AuthForms() {
       lastName,
       phoneNumber: number,
       address: address,
+      town: town,
+      postalCode: postalCode,
     });
 
     try {
@@ -43,6 +47,8 @@ function AuthForms() {
         lastName: lastName,
         phoneNumber: number,
         address,
+        town,
+        postalCode
       });
 
       console.log("Inscription réussie :", data);
@@ -131,6 +137,18 @@ function AuthForms() {
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Votre adresse"
               ></input>
+              <input 
+              type="text"
+              value={town}
+              onChange={(e) => setTown(e.target.value)}
+              placeholder="Votre ville"
+              />
+              <input 
+              type="text" 
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
+              placeholder="Votre code postal"
+              />
               <Link to="/">
                 <p className="rest-sub-link">
                   Vous êtes restaurateur ? Cliquez ici
@@ -171,11 +189,6 @@ function AuthForms() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mot de passe"
               ></input>
-              <Link to="/">
-                <p className="rest-link">
-                  Connectez vous ici en tant que restaurateur
-                </p>
-              </Link>
               <button type="submit" className="register-button">
                 Se connecter
               </button>

@@ -11,7 +11,6 @@ import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI"
 function UserInfo() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   // Appel du profil utilisateur si authentifié mais pas encore chargé
@@ -29,6 +28,8 @@ function UserInfo() {
     showPhone: false,
     showImage: false,
     showAddress: false,
+    showTown: false,
+    showPostalCode: false,
   });
 
   // Affiche ou cache dynamiquement un input
@@ -46,8 +47,9 @@ function UserInfo() {
     phoneNumber: "",
     avatar: "",
     address: "",
+    town: "",
+    postalCode: "",
   });
-  console.log(formData);
 
   // Remplit formData avec les valeurs de l'utilisateur (à l’arrivée des données)
   useEffect(() => {
@@ -58,6 +60,8 @@ function UserInfo() {
         phoneNumber: user.phoneNumber || "",
         avatar: user.imageUrl || "",
         address: user.address || "",
+        town: user.town || "",
+        postalCode: user.postalCode || "",
       });
     }
   }, [user]);
@@ -77,6 +81,8 @@ function UserInfo() {
     form.append("lastName", formData.lastName);
     form.append("phoneNumber", formData.phoneNumber);
     form.append("address", formData.address);
+    form.append("town", formData.town);
+    form.append("postalCode", formData.postalCode);
 
     if (formData.avatar) {
       form.append("avatar", formData.avatar);
@@ -141,23 +147,23 @@ function UserInfo() {
                     className="profile-img"
                   />
                   <div className="layout-btn-image-profile">
-                  <label htmlFor="avatar-upload" className="upload-btn">
-                  <i className="fa-solid fa-folder"></i>
-                  </label>
-                  <input
-                    id="avatar-upload"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        avatar: e.target.files[0],
-                      }))
-                    }
-                  />
-                  <button onClick={() => handleSave("showImage")}>
-                    <i className="fa-solid fa-check"></i>
-                  </button>
+                    <label htmlFor="avatar-upload" className="upload-btn">
+                      <i className="fa-solid fa-folder"></i>
+                    </label>
+                    <input
+                      id="avatar-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          avatar: e.target.files[0],
+                        }))
+                      }
+                    />
+                    <button onClick={() => handleSave("showImage")}>
+                      <i className="fa-solid fa-check"></i>
+                    </button>
                   </div>
                 </div>
               )}
@@ -301,7 +307,79 @@ function UserInfo() {
                     </button>
                     <button
                       className="save-modif"
-                      onClick={() => handleSave("showAddress")}
+                      onClick={() => handleSave("showTown")}
+                    >
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="profile-town">
+                {!visibleInputs.showTown ? (
+                  <>
+                    <h4>{user.town}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showTown")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-town">
+                    <label htmlFor="town"></label>
+                    <input
+                      id="town"
+                      type="text"
+                      name="town"
+                      value={formData.town}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showTown")}
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showTown")}
+                    >
+                      <i className="fa-solid fa-check"></i>
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="profile-postalCode">
+                {!visibleInputs.showPostalCode ? (
+                  <>
+                    <h4>{user.postalCode}</h4>
+                    <button
+                      className="modify-userdata"
+                      onClick={() => toggleInput("showPostalCode")}
+                    >
+                      Modifier
+                    </button>
+                  </>
+                ) : (
+                  <div className="input-change-postalCode">
+                    <label htmlFor="postalCode"></label>
+                    <input
+                      id="postalCode"
+                      type="text"
+                      name="postalCode"
+                      value={formData.postalCode}
+                      onChange={handleChange}
+                    />
+                    <button
+                      className="cancel-modif"
+                      onClick={() => toggleInput("showPostalCode")}
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showPostalCode")}
                     >
                       <i className="fa-solid fa-check"></i>
                     </button>

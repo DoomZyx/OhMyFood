@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema(
     phoneNumber: { type: String, required: true },
     imageUrl: { type: String, required: false },
     address: { type: String, required: true },
+    town: { type: String, required: true },
+    postalCode: { type: String, required: false },
 
     owner: { type: Boolean, ref:'Owner', default: false },
     deliverer: { type: Boolean, ref:'Deliverer', default: false },
