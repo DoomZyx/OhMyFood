@@ -13,6 +13,8 @@ function UserInfo() {
   const { user } = useSelector((state) => state.auth);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+  const [previewImage, setPreviewImage] = useState(null);
+
   // Appel du profil utilisateur si authentifié mais pas encore chargé
   useEffect(() => {
     if (isAuthenticated && (!user || user.id === "")) {
@@ -142,9 +144,9 @@ function UserInfo() {
               ) : (
                 <>
                   <div className="input-upload-photo">
-                    {user.imageUrl ? (
+                    {previewImage ? (
                       <img
-                        src={`http://localhost:3000${user.imageUrl}`}
+                        src={previewImage}
                         alt="Photo de profil"
                         className="profile-img"
                       />
@@ -165,17 +167,35 @@ function UserInfo() {
                       id="avatar-upload"
                       type="file"
                       accept="image/*"
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          avatar: e.target.files[0],
-                        }))
-                      }
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          setFormData((prev) => ({
+                            ...prev,
+                            avatar: file,
+                          }));
+
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setPreviewImage(reader.result);
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
                     />
-                    <button className="cancel-pic" onClick={() => toggleInput("showImage")}>
+                    <button
+                      className="cancel-pic"
+                      onClick={() => {
+                        toggleInput("showImage");
+                        setPreviewImage(null);
+                      }}
+                    >
                       <i className="fa-solid fa-xmark"></i>
                     </button>
-                    <button className="save-modif" onClick={() => handleSave("showImage")}>
+                    <button
+                      className="save-modif"
+                      onClick={() => handleSave("showImage")}
+                    >
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
