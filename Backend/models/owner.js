@@ -1,0 +1,44 @@
+const mongoose = require("mongoose");
+
+const restaurateurSchema = new mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    restaurant: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Restaurants",
+      required: true,
+    },
+    siret: {
+      type: String,
+      required: true,
+      validate: {
+        validator: (v) => /^\d{14}$/.test(v),
+        message: "Numéro SIRET invalide",
+      },
+    },
+
+    TVANumber: {
+      type: String,
+      required: true,
+      validate: {
+        validator: (v) => /^FR\d{11}$/.test(v),
+        message: "Numéro TVA invalide (ex: FR12345678901)",
+      },
+    },
+
+    documents: {
+      restaurantPhotoUrl: { type: String, required: true },
+      identityDocumentUrl: { type: String, required: false }, 
+      proofOfOwnershipUrl: { type: String, required: false }, // Kbis
+    },
+    verified: { type: Boolean, default: false },
+  },
+
+  { collection: "Owner" }
+);
+
+module.exports = mongoose.model("Restaurateur", restaurateurSchema);

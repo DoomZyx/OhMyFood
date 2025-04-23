@@ -57,7 +57,7 @@ function Menus({ restaurant_id }) {
   
   const handleAddToCart = async (menuId) => {
     try {
-      await addToCart(Number(menuId), 1); //Converti l'id en chaine pour suivre le model mongoose
+      await addToCart(menuId, 1);
       console.log("token", sessionStorage.getItem("token"));
       console.log("Ajouté au panier");
     } catch (err) {

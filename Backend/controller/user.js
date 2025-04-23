@@ -1,8 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const { createRestaurant } = require("../controller/restaurants");
+const { verifySiret } = require("../API/siretValidator");
 
 
+// Utilisateur type 
 
 exports.getUserProfile = (req, res, next) => {
  try {
@@ -77,4 +80,52 @@ exports.updateUser = async (req, res) => {
    console.error("Erreur updateUser:", err.message);
    res.status(500).json({ message: "Erreur serveur" });
  }
+};
+
+// Pour le restaurateur 
+
+
+const createRestaurateur = async (req, res) => {
+  try {
+    const { siret, userId, name, lieu, imageUrl } = req.body;
+
+    // Étape 1 : Vérification SIRET via Pappers
+    const result = await verifySiret(siret);
+
+    if (!result.valid) {
+      return res.status(400).json({ message: "SIRET invalide ou introuvable", error: result.error });
+    }
+
+    // Étape 2 : Création du restaurant
+    const restaurant = await createRestaurant({
+      name,
+      lieu,
+      imageUrl,
+      businessRegistrationNumber: siret,
+      menus: []
+    });
+
+    // Étape 3 : Création du profil restaurateur
+    const restaurateur = await createOwner({
+      user: userId,
+      restaurant: restaurant,
+      businessRegistrationNumber: siret,
+      verified: true 
+    });
+
+    // Étape 4 : Mise à jour de l’utilisateur
+    await User.findByIdAndUpdate(userId, {
+      owner: true
+    });
+
+    res.status(201).json({
+      message: "SIRET validé",
+      entreprise: result,
+      restaurateur
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erreur serveur", error: error.message });
+  }
 };
