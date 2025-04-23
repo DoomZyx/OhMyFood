@@ -20,18 +20,7 @@ const restaurateurSchema = new mongoose.Schema(
         message: "Numéro SIRET invalide",
       },
     },
-
-    TVANumber: {
-      type: String,
-      required: true,
-      validate: {
-        validator: (v) => /^FR\d{11}$/.test(v),
-        message: "Numéro TVA invalide (ex: FR12345678901)",
-      },
-    },
-
     documents: {
-      restaurantPhotoUrl: { type: String, required: true },
       identityDocumentUrl: { type: String, required: false }, 
       proofOfOwnershipUrl: { type: String, required: false }, // Kbis
     },

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./_profile.scss";
-import foodplate1 from "../../../public/images/foodplate1.webp";
+import foodplate1 from "/public/images/foodplate1.webp";
 
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
-import { updateUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
-import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
+import { useDispatch } from "../../../../node_modules/react-redux/dist/react-redux";
+import { updateUserProfile } from "../../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
+import { fetchUserProfile } from "../../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
 
 function UserInfo() {
   const dispatch = useDispatch();

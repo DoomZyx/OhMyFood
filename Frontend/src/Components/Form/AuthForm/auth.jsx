@@ -28,16 +28,6 @@ function AuthForms() {
   // Fonction appelée lors de la soumission du formulaire d'inscription
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log("📤 Données envoyées :", {
-      email: emailRegister,
-      password: passwordRegister,
-      firstName,
-      lastName,
-      phoneNumber: number,
-      address: address,
-      town: town,
-      postalCode: postalCode,
-    });
 
     try {
       const data = await signupUser({
