@@ -67,14 +67,23 @@
   gap: 120px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  input[type="file"] {
-    display: none;
-  }
+}
   .layout-btn-image-profile {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 20px;
+    input[type="file"] {
+      display: none;
+    }
+    button {
+      background: $button_background;
+      padding: 0.7em;
+      font-size: 1.4em;
+      color: white;
+      border-radius: 50%;
+    }
   }
   .upload-btn {
     background: $button_background;
@@ -89,13 +98,7 @@
   .upload-btn:hover {
     opacity: 0.8;
   }
-  button {
-    background: $button_background;
-    padding: 0.7em;
-    font-size: 1.4em;
-    border-radius: 50%;
-  }
-}
+
 
 .profile-name,
 .profile-surname,
@@ -175,4 +178,4 @@
    color: white;
    font-weight: 500;
   }
- }
+}

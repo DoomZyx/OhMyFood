@@ -140,12 +140,23 @@ function UserInfo() {
                   </>
                 )
               ) : (
-                <div className="input-upload-photo">
-                  <img
-                    src={`http://localhost:3000${user.imageUrl}`}
-                    alt="Photo de profil"
-                    className="profile-img"
-                  />
+                <>
+                  <div className="input-upload-photo">
+                    {user.imageUrl ? (
+                      <img
+                        src={`http://localhost:3000${user.imageUrl}`}
+                        alt="Photo de profil"
+                        className="profile-img"
+                      />
+                    ) : (
+                      <div className="layout-nopic">
+                        <div className="user-circle">
+                          <i className="fa-solid fa-user"></i>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="layout-btn-image-profile">
                     <label htmlFor="avatar-upload" className="upload-btn">
                       <i className="fa-solid fa-folder"></i>
@@ -161,11 +172,14 @@ function UserInfo() {
                         }))
                       }
                     />
-                    <button onClick={() => handleSave("showImage")}>
+                    <button className="cancel-pic" onClick={() => toggleInput("showImage")}>
+                      <i className="fa-solid fa-xmark"></i>
+                    </button>
+                    <button className="save-modif" onClick={() => handleSave("showImage")}>
                       <i className="fa-solid fa-check"></i>
                     </button>
                   </div>
-                </div>
+                </>
               )}
 
               <div className="profile-name">
