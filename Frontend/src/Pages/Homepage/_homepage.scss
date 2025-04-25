@@ -1,7 +1,7 @@
 @use "../../utils.scss" as *;
 @use "../../Utils/variables" as variables;
 
-form {
+.location-search form {
   @include flex__center_row;
   @include center_form;
 }

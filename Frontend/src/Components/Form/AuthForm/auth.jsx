@@ -1,13 +1,13 @@
 import { useState } from "react";
-import "../AuthForm/_authForm.scss";
+import "./_authForm.scss";
 import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { login } from "../../Store/User/authSlice";
+import { login } from "../../../Store/User/authSlice";
 import { useNavigate } from "react-router-dom";
 
-import { signupUser } from "../../API/Account/API";
-import { loginUser } from "../../API/Account/API";
+import { signupUser } from "../../../API/Account/API";
+import { loginUser } from "../../../API/Account/API";
 
 function AuthForms() {
   const [activeForm, setActiveForm] = useState("inscription");

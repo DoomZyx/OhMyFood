@@ -1,5 +1,5 @@
 import "./_login.scss";
-import AuthForms from "../../Components/AuthForm/auth";
+import AuthForms from "../../Components/Form/AuthForm/auth";
 import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";

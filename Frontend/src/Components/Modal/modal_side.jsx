@@ -72,10 +72,7 @@ function SideModal() {
           </Link>
         </div>
         <div className="second-layout-side">
-          <Link>
-            <p className="become-owner">Ajouter votre restaurant</p>
-          </Link>
-          <Link>
+          <Link to="/subscription">
             <p className="professional-account">
               Créer votre compte professionnel
             </p>
