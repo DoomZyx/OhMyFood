@@ -1,5 +1,7 @@
-@use "../../utils.scss" as *;
 @use "../../Utils/variables" as variables;
+@use "../../Utils/mixins" as *;
+@use "../../Utils/mixin_menucards" as *;
+@use "../../Utils/responsive" as *;
 
 .location-search form {
   @include flex__center_row;

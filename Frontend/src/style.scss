@@ -7,11 +7,11 @@
 @use './Components/Buttons/buttons';
 @use './Components/Animations/Loader/circle';
 @use './Components/Animations/Loader/loader';
-@use './Components/MenuChecked/checked';
+@use './Components/Animations/MenuChecked/checked';
 
 
 @use './Components/Footer/footer';
-@use './Components/Homepage/Functionning/functionning';
+@use './Pages/Homepage/H-Components/Functionning/functionning';
 @use './Components/Header/header';
 
 @use './Pages/MenuPage/menu';

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
-import { getRestaurants } from "../../../API/Restaurants/API";
+import { getRestaurants } from "../../../../API/Restaurants/API";
 
 function Restaurants() {
   const [data, setData] = useState([]);

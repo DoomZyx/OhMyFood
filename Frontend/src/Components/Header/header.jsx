@@ -1,5 +1,5 @@
 import logo from "../../../assets/logo/ohmyfood.png";
-import Nav from "./Nav/nav";
+import Nav from "../Nav/nav";
 import SideModal from "../Modal/modal_side";
 import LocationSearch from "./locationSearch/location-search";
 

@@ -56,7 +56,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
   input[type="text"] {
     border: none;
     border-radius: 40px;
@@ -76,6 +76,43 @@
   }
 }
 
+.statut-select {
+  display: flex;
+  gap: 1em;
+}
+
+.input-files-layout {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.input-kbis,
+.input-identityCard,
+.input-restaurant-photos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+
+.upload-btn-owner {
+  width: 40px;
+  height: 40px;
+  background: $button_background;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    color: white;
+    font-size: 1em;
+  }
+}
+
 .switch-btn {
   position: relative;
   background: $button_background;
@@ -85,13 +122,19 @@
   border-radius: 50px;
   margin: 2em;
 }
-button[type="submit"] {
+.register-owner-btn,
+.register-deliverer-btn {
+  width: 100px;
+  height: 40px;
   background: $button_background;
   color: white;
-  padding: 0.5rem 2rem;
   border: none;
   border-radius: 50px;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.form-container-add input[type="file"] {
+  display: none;
 }
 
 .form.true {

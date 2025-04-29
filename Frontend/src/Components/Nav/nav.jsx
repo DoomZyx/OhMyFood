@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../../Store/User/authSlice";
-import Cart from "../../Panier/Cart";
+import { logout } from "../../Store/User/authSlice";
+import Cart from "../../Features/Panier/Cart";
 import "./_nav.scss";
 
 function Nav() {

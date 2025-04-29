@@ -1,5 +1,5 @@
 import Header from "../../Components/Header/header"
-import RegistrationForm from "../../Components/Form/RegistrationForm/registrationForm"
+import RegistrationForm from "../../Features/Form/RegistrationForm/registrationForm";
 import Footer from "../../Components/Footer/footer"
 
 

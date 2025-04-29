@@ -1,5 +1,6 @@
-@use "../../../utils.scss" as *;
-@use "../../../Utils/variables" as variables;
+@use "../../../../Utils/variables" as variables;
+@use "../../../../Utils/mixins" as *;
+@use"../../../../Utils/responsive" as *;
 
 .functionning {
   display: flex;

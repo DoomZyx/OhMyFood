@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./_registrationForm.scss";
 import foodplate2 from "/public/images/foodplate2.webp";
 
 const RegistrationForm = () => {
   const [switchUpForm, setSwitchUpForm] = useState("owner");
   const [errorOwnerRegister, setErrorOwnerRegister] = useState("");
+  const [imagesPreview, setImagesPreview] = useState([]);
 
   const [formDataOwner, setFormDataOwner] = useState({
     name: "",
@@ -42,7 +43,7 @@ const RegistrationForm = () => {
   const handleChangeDeliverer = (e) => {
     const { id, value, type, checked, files } = e.target;
 
-    setFormDataOwner((prev) => ({
+    setFormDataDeliverer((prev) => ({
       ...prev,
       [id]: type === "checkbox" ? checked : type === "file" ? files[0] : value,
     }));
@@ -79,6 +80,25 @@ const RegistrationForm = () => {
       }
     }
   };
+
+  const handleImageChangeowner = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Créer l'aperçu pour afficher l'image uploadé
+      const previewUrl = URL.createObjectURL(selectedFile);
+      setImagesPreview(previewUrl);
+
+      // Stocker le fichier pour l'envoyer au submit
+      setFormDataDeliverer(selectedFile);
+    }
+  };
+
+  // Suppression des URLs pour éviter les fuites mémoires
+  useEffect(() => {
+    return () => {
+      imagesPreview.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [imagesPreview]);
 
   return (
     <>
@@ -165,20 +185,6 @@ const RegistrationForm = () => {
                     onChange={handleChangeOwner}
                   />
 
-                  <div className="statut-select">
-                    <label htmlFor="legalStatus">Statut juridique</label>
-                    <select
-                      id="legalStatus"
-                      value={formDataOwner.legalStatus}
-                      onChange={handleChangeOwner}
-                    >
-                      <option value="">Choisir un statut</option>
-                      <option value="EI">Auto-entrepreneur</option>
-                      <option value="SARL">SARL</option>
-                      <option value="SAS">SAS</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                  </div>
                   <label htmlFor="siret"></label>
                   <input
                     type="text"
@@ -187,6 +193,7 @@ const RegistrationForm = () => {
                     value={formDataOwner.siret}
                     onChange={handleChangeOwner}
                   />
+
                   <div className="checkbox-owner-container">
                     <div className="checkbox-layout">
                       <label htmlFor="dineIn">Sur place</label>
@@ -219,31 +226,72 @@ const RegistrationForm = () => {
                     </div>
                   </div>
 
-                  <label htmlFor="proofOfOwnershipUrl"></label>
-                  <input
-                    type="file"
-                    name="proofOfOwnershipUrl"
-                    id="proofOfOwnershipUrl"
-                    accept="image/*"
-                    onChange={handleChangeOwner}
-                  />
+                  <div className="statut-select">
+                    <label htmlFor="legalStatus">Statut juridique</label>
+                    <select
+                      id="legalStatus"
+                      value={formDataOwner.legalStatus}
+                      onChange={handleChangeOwner}
+                    >
+                      <option value="">Choisir un statut</option>
+                      <option value="EI">Auto-entrepreneur</option>
+                      <option value="SARL">SARL</option>
+                      <option value="SAS">SAS</option>
+                      <option value="Autre">Autre</option>
+                    </select>
+                  </div>
 
-                  <label htmlFor="identityDocumentUrl"></label>
-                  <input
-                    type="file"
-                    name="identityDocumentUrl"
-                    id="identityDocumentUrl"
-                    accept="image/*"
-                    onChange={handleChangeOwner}
-                  />
+                  <div className="input-files-layout">
+                    <div className="input-identityCard">
+                      <p>Votre pièce d'identité</p>
+                      <label
+                        className="upload-btn-owner"
+                        htmlFor="identityDocumentUrl"
+                      >
+                        <i className="fa-solid fa-folder"></i>
+                      </label>
+                      <input
+                        type="file"
+                        name="identityDocumentUrl"
+                        id="identityDocumentUrl"
+                        accept="image/*"
+                        onChange={handleImageChangeowner}
+                      />
+                      <img src={imagesPreview} alt="" />
+                    </div>
 
-                  <label htmlFor="imageUrl"></label>
-                  <input
-                    type="file"
-                    id="imageUrl"
-                    accept="image/*"
-                    onChange={handleChangeOwner}
-                  />
+                    <div className="input-restaurant-photos">
+                      <p>Photos du restaurant</p>
+                      <label className="upload-btn-owner" htmlFor="imageUrl">
+                        <i className="fa-solid fa-folder"></i>
+                      </label>
+                      <input
+                        type="file"
+                        id="imageUrl"
+                        accept="image/*"
+                        onChange={handleImageChangeowner}
+                      />
+                      <img src={imagesPreview} alt="" />
+                    </div>
+
+                    <div className="input-kbis">
+                      <p>Joignez votre KBIS</p>
+                      <label
+                        className="upload-btn-owner"
+                        htmlFor="proofOfOwnershipUrl"
+                      >
+                        <i className="fa-solid fa-folder"></i>
+                      </label>
+                      <input
+                        type="file"
+                        name="proofOfOwnershipUrl"
+                        id="proofOfOwnershipUrl"
+                        accept="image/*"
+                        onChange={handleImageChangeowner}
+                      />
+                      <img src={imagesPreview} alt="" />
+                    </div>
+                  </div>
 
                   <button type="submit" className="register-owner-btn">
                     Envoyer
@@ -320,7 +368,9 @@ const RegistrationForm = () => {
                     onChange={handleChangeDeliverer}
                   />
 
-                  <button type="submit">Envoyer</button>
+                  <button className="register-deliverer-btn" type="submit">
+                    Envoyer
+                  </button>
                 </form>
               </div>
             </div>
