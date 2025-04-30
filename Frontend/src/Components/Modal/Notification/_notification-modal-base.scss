@@ -1,3 +1,5 @@
+@use "../../../Utils/variables" as *;
+
 .authenticated-modal-overlay {
   position: fixed;
   top: 0;
@@ -8,12 +10,14 @@
 }
 
 .authenticated-modal-content {
+  border: 4px solid white;
+  background: $button_background;
   position: fixed;
   top: 10%;
   right: 10%;
   border-radius: 15px;
   width: 10%;
-  height: 10%;
+  height: 7%;
   background-color: #ffffff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
   padding: 1em;

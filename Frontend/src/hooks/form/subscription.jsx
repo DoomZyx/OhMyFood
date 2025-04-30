@@ -31,7 +31,7 @@ export function useSubscription() {
       });
 
       console.log("Inscription réussie :", data);
-      setActiveForm("connexion");
+      setActiveForm("connexion", { state: { isRegistered: true } });
     } catch (error) {
       if (error.response) {
         setErrorRegister(error.message || "Impossible de contacter le serveur");

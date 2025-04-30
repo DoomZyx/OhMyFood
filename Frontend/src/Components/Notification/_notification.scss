@@ -1,0 +1,13 @@
+@use "../../Utils/variables" as *;
+
+.connection-successful-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  color: white;
+  gap: 10px;
+  i {
+   color: white;
+  }
+}

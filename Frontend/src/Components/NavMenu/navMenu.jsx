@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import ModalSide from "../Modal/Model/NavMenu/modal_NavMenu-model";
+import ModalSide from "../Modal/NavMenu/modal_NavMenu-model";
 import logo from "../../../assets/logo/ohmyfood.png";
 import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";

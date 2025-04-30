@@ -14,7 +14,7 @@ function Nav() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
+    navigate("/", { state: { isDisconnected: true } });
   };
 
   return (
