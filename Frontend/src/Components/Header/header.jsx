@@ -1,6 +1,6 @@
 import logo from "../../../assets/logo/ohmyfood.png";
 import Nav from "../Nav/nav";
-import SideModal from "../Modal/modal_side";
+import NavMenu from "../NavMenu/navMenu";
 import LocationSearch from "./locationSearch/location-search";
 
 function Header() {
@@ -8,7 +8,7 @@ function Header() {
     <>
       <header>
         <>
-          <SideModal />
+          <NavMenu />
         </>
         <div className="logo">
           <img src={logo} alt="logo" />

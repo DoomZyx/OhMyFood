@@ -1,25 +1,27 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import ModalSide from "./Model/modal.-side-model";
+import ModalSide from "../Modal/Model/modal_NavMenu-model";
 import logo from "../../../assets/logo/ohmyfood.png";
 import { useDispatch } from "../../../node_modules/react-redux/dist/react-redux";
 import { fetchUserProfile } from "../../Store/FetchDataAPI/GetDataUser/ThunkAPI";
-import "./_modal_side.scss"
+import "./_navMenu.scss"
 
-function SideModal() {
+function NavMenu() {
   const { user } = useSelector((state) => state.auth);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const dispatch = useDispatch();
 
+
+  // Vérifie que le token de l'utilisateur est présent en fonction de l'id User 
   useEffect(() => {
     if (isAuthenticated && (!user || user.id === "")) {
       dispatch(fetchUserProfile(sessionStorage.getItem("token")));
     }
   }, [dispatch, isAuthenticated, user?.id]);
   
-
+  // Gestionnaire d'état de la modale 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -95,4 +97,4 @@ function SideModal() {
   );
 }
 
-export default SideModal;
+export default NavMenu;

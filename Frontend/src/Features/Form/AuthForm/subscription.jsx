@@ -40,7 +40,7 @@ function RegisterForms() {
           Connexion
         </button>
         <div className="form-sub-wrapper">
-          <h2 className="register-title">Inscription</h2>
+          <h2 className="register-title">Créez votre compte</h2>
           <form className="registerForm" onSubmit={handleRegister}>
             <label htmlFor="email"></label>
             <input
@@ -91,11 +91,6 @@ function RegisterForms() {
               onChange={(e) => setPostalCode(e.target.value)}
               placeholder="Votre code postal"
             />
-            <Link to="/">
-              <p className="rest-sub-link">
-                Vous êtes restaurateur ? Cliquez ici
-              </p>
-            </Link>
             <button type="submit" className="register-button">
               S'inscrire
             </button>

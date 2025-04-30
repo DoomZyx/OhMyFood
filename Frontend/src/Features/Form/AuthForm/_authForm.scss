@@ -1,13 +1,16 @@
 @use "../../../Utils/variables" as *;
 
 .form-sub-wrapper {
+ background-color: white;
  display: flex;
  flex-direction: column;
- justify-content: center;
  align-items: center;
  width: 700px;
- height: auto;
+ max-height: 70vh;
  padding: 1em;
+ border-radius: 40px;
+ overflow-y: scroll;
+ scrollbar-width: none;
 }
 .form-login-wrapper {
  display: flex;
@@ -22,7 +25,7 @@
 .form {
  position: absolute;
  width: 100%;
- height: auto;
+ height: 100%;
  top: 0;
  left: 0;
  transition: transform 0.5s ease;
@@ -43,22 +46,26 @@
 }
 .register-switch:hover,
 .connection-switch:hover {
- background-color: #E9E9E9;
- color: black;
+ filter: invert(1);
 }
-.register-title,
 .login-title {
  display: flex;
  justify-content: center;
  align-items: center;
  font-size: 3em;
  margin-bottom: 2em;
- color: black;
+ color: BLACK;
 }
 .register-title {
- text-shadow: 0 0 10px #000;
- color: white !important;
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ font-size: 3em;
+ margin-bottom: 2.5em;
+  text-shadow: 0 0 10px #000;
+  color: white !important;
 }
+
 .registerForm,
 .loginForm {
  display: flex;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { clearCart, getCart, removeFromCart } from "../../API/Cart/API";
-import Modal from "../../Components/Modal/Model/modal";
+import ModalCart from "../../Components/Modal/Model/modal-cart-model";
 import "./_Cart.scss";
 
 export default function Cart({ isOpen, onClose }) {
@@ -47,8 +47,8 @@ export default function Cart({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-        <h2 className="cart-title"> MES COMMANDES </h2>
+    <ModalCart isOpen={isOpen} onClose={onClose}>
+      <h2 className="cart-title"> MES COMMANDES </h2>
       <div className="cart-modal-overlay">
         <div className="layout-cart">
           {cart && cart.items.length > 0 ? (
@@ -86,6 +86,6 @@ export default function Cart({ isOpen, onClose }) {
           </div>
         </div>
       </div>
-    </Modal>
+    </ModalCart>
   );
 }

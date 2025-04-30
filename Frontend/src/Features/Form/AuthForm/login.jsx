@@ -4,7 +4,7 @@ import { useLoginForm } from "../../../hooks/form/login";
 function LoginUser() {
   const { activeForm, setActiveForm } = useSwitchContext();
   const { email, setEmail, password, setPassword, handleLogin, errorLogin } =
-    useLoginForm;
+    useLoginForm();
   return (
     <>
       <div
