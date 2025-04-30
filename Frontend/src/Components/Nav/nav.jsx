@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Store/User/authSlice";
-import Cart from "../../Features/Panier/Cart";
+import Cart from "../../Features/Cart/Cart";
 import "./_nav.scss";
 
 function Nav() {

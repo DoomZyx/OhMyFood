@@ -1,0 +1,22 @@
+.authenticated-modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.authenticated-modal-content {
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  border-radius: 15px;
+  width: 10%;
+  height: 10%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  overflow-y: auto;
+  z-index: 1001;
+}

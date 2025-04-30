@@ -1,7 +1,7 @@
 import { useCart } from "../../hooks/Cart/Carthooks";
 import { getCart } from "../../API/Cart/API";
 import { useEffect } from "react";
-import ModalCart from "../../Components/Modal/Model/modal-cart-model";
+import ModalCart from "../../Components/Modal/Cart/modal-cart-model";
 import "./_Cart.scss";
 
 export default function Cart({ isOpen, onClose }) {

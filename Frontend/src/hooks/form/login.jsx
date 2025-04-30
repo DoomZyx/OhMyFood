@@ -22,7 +22,7 @@ export function useLoginForm() {
 
       dispatch(login({ token: data.token, ...data.user }));
 
-      navigate("/");
+      navigate("/", { state: { isLoggedIn: true } });
     } catch (error) {
       if (error.response) {
         setErrorLogin(error.message || "Erreur lors de la connexion");
