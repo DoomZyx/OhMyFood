@@ -4,9 +4,10 @@ const SwitchContext = createContext();
 
 export function SwitchProvider({ children }) {
   const [activeForm, setActiveForm] = useState("inscription");
+  const [isRegistered, setIsRegistered] = useState(false);
 
   return (
-    <SwitchContext.Provider value={{ activeForm, setActiveForm }}>
+    <SwitchContext.Provider value={{ activeForm, setActiveForm, isRegistered, setIsRegistered }}>
       {children}
     </SwitchContext.Provider>
   );

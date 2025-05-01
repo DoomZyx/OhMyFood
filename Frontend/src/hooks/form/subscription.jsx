@@ -3,7 +3,7 @@ import { signupUser } from "../../API/Account/API";
 import { useSwitchContext } from "../../Provider/SwitchForm/switchProvider";
 
 export function useSubscription() {
- const { activeForm, setActiveForm } = useSwitchContext();
+ const { activeForm, setActiveForm, isRegistered, setIsRegistered } = useSwitchContext();
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -31,7 +31,8 @@ export function useSubscription() {
       });
 
       console.log("Inscription réussie :", data);
-      setActiveForm("connexion", { state: { isRegistered: true } });
+      setActiveForm("connexion");
+      setIsRegistered(true)
     } catch (error) {
       if (error.response) {
         setErrorRegister(error.message || "Impossible de contacter le serveur");
@@ -56,6 +57,6 @@ export function useSubscription() {
     postalCode,
     setPostalCode,
     errorRegister,
-    handleRegister,
+    handleRegister
   };
 }

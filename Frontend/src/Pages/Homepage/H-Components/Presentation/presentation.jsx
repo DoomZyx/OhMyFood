@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 function Presentation() {
   const location = useLocation();
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showRegisteredModal, setShowRegisteredModal] = useState(false);
+  
 
   // Vérifie si l'état est vrai ou faux
   useEffect(() => {
@@ -23,12 +23,6 @@ function Presentation() {
     }
   }, [location.state]);
 
-  useEffect(() => {
-    if (location.state?.isRegistered) {
-      setShowRegisteredModal(true);
-    }
-  }, [location.state]);
-
   return (
     <>
       {showAuthModal && (
@@ -38,17 +32,6 @@ function Presentation() {
         >
           <div className="connection-successful-layout">
             <p>Connexion réussi !</p>
-            <i className="fa-solid fa-check"></i>
-          </div>
-        </AuthenticatedModal>
-      )}
-      {showRegisteredModal && (
-        <AuthenticatedModal
-          isOpen={showRegisteredModal}
-          onClose={() => setShowRegisteredModal(false)}
-        >
-          <div className="registered-successful-layout">
-            <p>Votre inscription est validée</p>
             <i className="fa-solid fa-check"></i>
           </div>
         </AuthenticatedModal>

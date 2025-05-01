@@ -1,12 +1,51 @@
 import { useSwitchContext } from "../../../Provider/SwitchForm/switchProvider";
 import { useLoginForm } from "../../../hooks/form/login";
+import NotificationModal from "../../../Components/Modal/Notification/notification-modal-base";
+import "../../../Components/Notification/_notification.scss";
+
+import { useEffect, useState } from "react";
 
 function LoginUser() {
   const { activeForm, setActiveForm } = useSwitchContext();
   const { email, setEmail, password, setPassword, handleLogin, errorLogin } =
     useLoginForm();
+  const { isRegistered, setIsRegistered } = useSwitchContext();
+
+  const [showRegisteredModal, setShowRegisteredModal] = useState(false);
+
+  // Ce useEffect s'exécute :
+  // Au montage du composant (si isRegistered === true)
+  // À chaque fois que isRegistered change
+  // Si isRegistered est à true et que la modale n'est pas encore affichée,
+  // on l'affiche, puis on la referme au bout de 4 secondes.
+  // Ensuite, on remet isRegistered à false pour réinitialiser l'état.
+
+  useEffect(() => {
+    if (!isRegistered || showRegisteredModal) return;
+
+    setShowRegisteredModal(true);
+
+    const timer = setTimeout(() => {
+      setShowRegisteredModal(false);
+      setIsRegistered(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [isRegistered, showRegisteredModal, setIsRegistered]);
+
   return (
     <>
+      {showRegisteredModal && (
+        <NotificationModal
+          isOpen={showRegisteredModal}
+          onClose={() => setShowRegisteredModal(false)}
+        >
+          <div className="registered-successful-layout">
+            <p>Votre inscription est validée</p>
+            <i className="fa-solid fa-check"></i>
+          </div>
+        </NotificationModal>
+      )}
       <div
         className={`form connexionForm ${
           activeForm === "connexion" ? "active" : "right"
