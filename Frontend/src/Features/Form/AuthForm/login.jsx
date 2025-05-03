@@ -21,16 +21,17 @@ function LoginUser() {
   // Ensuite, on remet isRegistered à false pour réinitialiser l'état.
 
   useEffect(() => {
+    // Exécute seulement si isRegistered est true et que la modale n'est pas déjà visible
     if (!isRegistered || showRegisteredModal) return;
 
     setShowRegisteredModal(true);
 
     const timer = setTimeout(() => {
       setShowRegisteredModal(false);
-      setIsRegistered(false);
+      setIsRegistered(false); // Réinitialise après affichage
     }, 4000);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Nettoie le timer si le composant se démonte trop vite
   }, [isRegistered, showRegisteredModal, setIsRegistered]);
 
   return (
@@ -41,7 +42,7 @@ function LoginUser() {
           onClose={() => setShowRegisteredModal(false)}
         >
           <div className="registered-successful-layout">
-            <p>Votre inscription est validée</p>
+            <p>Inscription réussi !</p>
             <i className="fa-solid fa-check"></i>
           </div>
         </NotificationModal>

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import "./_registrationForm.scss";
 import foodplate2 from "/public/images/foodplate2.webp";
+import LegalStatus from "../../../Components/Buttons/Select/LegalStatus";
+import VehicleType from "../../../Components/Buttons/Select/VehicleType";
+import DeliveryRadius from "../../../Components/Buttons/Select/DeliveryRadius";
 
 const RegistrationForm = () => {
   const [switchUpForm, setSwitchUpForm] = useState("owner");
@@ -117,9 +120,11 @@ const RegistrationForm = () => {
               Livreur
             </button>
             <div className="form-owner-wrapper">
-              <h2 className="owner-title">
-                Renseignez les informations de votre restaurant
-              </h2>
+              <div className="h2Wrapper">
+                <h2 className="owner-title">
+                  RENSEIGNEZ LES INFORMATIONS DE VOTRE RESTAURANT
+                </h2>
+              </div>
               <div className="layout-form-owner-register">
                 <form className="owner-form" onSubmit={handleRegisterOwner}>
                   <label htmlFor="name"></label>
@@ -194,6 +199,10 @@ const RegistrationForm = () => {
                     onChange={handleChangeOwner}
                   />
 
+                  <div className="statut-select">
+                    <LegalStatus />
+                  </div>
+
                   <div className="checkbox-owner-container">
                     <div className="checkbox-layout">
                       <label htmlFor="dineIn">Sur place</label>
@@ -226,21 +235,6 @@ const RegistrationForm = () => {
                     </div>
                   </div>
 
-                  <div className="statut-select">
-                    <label htmlFor="legalStatus">Statut juridique</label>
-                    <select
-                      id="legalStatus"
-                      value={formDataOwner.legalStatus}
-                      onChange={handleChangeOwner}
-                    >
-                      <option value="">Choisir un statut</option>
-                      <option value="EI">Auto-entrepreneur</option>
-                      <option value="SARL">SARL</option>
-                      <option value="SAS">SAS</option>
-                      <option value="Autre">Autre</option>
-                    </select>
-                  </div>
-
                   <div className="input-files-layout">
                     <div className="input-identityCard">
                       <p>Votre pièce d'identité</p>
@@ -257,7 +251,7 @@ const RegistrationForm = () => {
                         accept="image/*"
                         onChange={handleImageChangeowner}
                       />
-                      <img src={imagesPreview} alt="" />
+                      <img src={imagesPreview} alt="" style={{ display: "none" }} />
                     </div>
 
                     <div className="input-restaurant-photos">
@@ -271,7 +265,7 @@ const RegistrationForm = () => {
                         accept="image/*"
                         onChange={handleImageChangeowner}
                       />
-                      <img src={imagesPreview} alt="" />
+                      <img src={imagesPreview} alt="" style={{ display: "none" }} />
                     </div>
 
                     <div className="input-kbis">
@@ -289,7 +283,7 @@ const RegistrationForm = () => {
                         accept="image/*"
                         onChange={handleImageChangeowner}
                       />
-                      <img src={imagesPreview} alt="" />
+                      <img src={imagesPreview} alt=""  style={{ display: "none" }}/>
                     </div>
                   </div>
 
@@ -316,9 +310,11 @@ const RegistrationForm = () => {
               Restaurateur
             </button>
             <div className="form-deliverer-wrapper">
+            <div className="h2Wrapper">
               <h2 className="form-deliverer-title">
-                Renseignez vos informations pour devenir livreur
+                RENSEIGNEZ VOS INFORMATIONS POUR DEVENIR LIVREUR
               </h2>
+              </div>
               <div className="layout-form-deliverer">
                 <form onSubmit={handleRegisterDeliverer}>
                   <label htmlFor="city"></label>
@@ -330,43 +326,37 @@ const RegistrationForm = () => {
 
                   <div className="layout-select">
                     <div className="vehicle-select">
-                      <label htmlFor="vehicle">Votre type de véhicule</label>
-                      <select
-                        id="vehicle"
-                        value={formDataDeliverer.vehicleType}
-                        onChange={handleChangeDeliverer}
-                      >
-                        <option value="">Choisissez votre véhicule</option>
-                        <option value="car">Voiture</option>
-                        <option value="bike">Deux-roues</option>
-                        <option value="electric">Véhicule électrique</option>
-                      </select>
+                      <VehicleType />
                     </div>
 
                     <div className="radius-select">
-                      <label htmlFor="deliveryRadius">Rayon de livraison</label>
-                      <select
-                        id="deliveryRadius"
-                        value={formDataDeliverer.deliveryRadius}
-                        onChange={handleChangeDeliverer}
-                      >
-                        <option value="">Choisir un rayon</option>
-                        <option value="5">5 km</option>
-                        <option value="10">10 km</option>
-                        <option value="15">15 km</option>
-                        <option value="20">20 km</option>
-                      </select>
+                      <DeliveryRadius />
                     </div>
                   </div>
 
-                  <label htmlFor="identityDocumentUrl"></label>
-                  <input
-                    type="file"
-                    name="identityDocumentUrl"
-                    id="identityDocumentUrl"
-                    accept="image/*"
-                    onChange={handleChangeDeliverer}
-                  />
+                  <div className="input-files-layout">
+                    <div className="input-identityCard">
+                      <p>Votre pièce d'identité</p>
+                      <label
+                        className="upload-btn-owner"
+                        htmlFor="identityDocumentUrl"
+                      >
+                        <i className="fa-solid fa-folder"></i>
+                      </label>
+                      <input
+                        type="file"
+                        name="identityDocumentUrl"
+                        id="identityDocumentUrl"
+                        accept="image/*"
+                        onChange={handleImageChangeowner}
+                      />
+                      <img
+                        src={imagesPreview}
+                        alt=""
+                        style={{ display: "none" }}
+                      />
+                    </div>
+                  </div>
 
                   <button className="register-deliverer-btn" type="submit">
                     Envoyer
