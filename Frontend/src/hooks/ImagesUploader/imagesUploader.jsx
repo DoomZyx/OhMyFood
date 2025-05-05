@@ -1,30 +1,9 @@
 import { useState, useEffect } from "react";
 
 export function useImageUploader(setFormDataOwner) {
-  const [imagePreviews, setImagePreviews] = useState({});
-
-  const handleSingleFileChange = (e) => {
-    const id = e.target.id;
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const preview = {
-      file,
-      url: URL.createObjectURL(file),
-    };
-
-    setImagePreviews((prev) => ({
-      ...prev,
-      [id]: preview,
-    }));
-
-    setFormDataOwner((prev) => ({
-      ...prev,
-      [id]: file,
-    }));
-
-    e.target.value = ""; // pour pouvoir réuploader le même fichier si besoin
-  };
+  const [imageIDPreviews, setImageIDPreviews] = useState([]);
+  const [imageUrlPreviews, setImageUrlPreviews] = useState([]);
+  const [imageOwnershipPreviews, setImageOwnershipPreviews] = useState([]);
 
   const handleMultiFileChange = (e) => {
     const id = e.target.id;
@@ -36,38 +15,24 @@ export function useImageUploader(setFormDataOwner) {
       url: URL.createObjectURL(file),
     }));
 
-    setImagePreviews((prev) => {
-      const existing = prev[id];
-
-      const existingArray = Array.isArray(existing)
-        ? existing
-        : existing
-        ? [existing] // si c'était un objet unique, transforme-le en tableau
-        : [];
-
-      const newValue = [...existingArray, ...newPreviews];
-
-      console.log("Ajout à imagePreviews", id, newValue);
-
-      return {
-        ...prev,
-        [id]: newValue,
-      };
-    });
+    if (id === "identityDocumentUrl") {
+      setImageIDPreviews((prev) => [...prev, ...newPreviews]);
+    } else if (id === "imageUrl") {
+      setImageUrlPreviews((prev) => [...prev, ...newPreviews]);
+    } else if (id === "proofOfOwnershipUrl") {
+      setImageOwnershipPreviews((prev) => [...prev, ...newPreviews]);
+    }
 
     if (typeof setFormDataOwner === "function") {
       setFormDataOwner((prev) => {
-        const existing = prev[id];
-
-        const existingArray = Array.isArray(existing)
-          ? existing
-          : existing
-          ? [existing]
+        const existing = Array.isArray(prev[id])
+          ? prev[id]
+          : prev[id]
+          ? [prev[id]]
           : [];
-
         return {
           ...prev,
-          [id]: [...existingArray, ...files],
+          [id]: [...existing, ...files],
         };
       });
     }
@@ -75,21 +40,24 @@ export function useImageUploader(setFormDataOwner) {
     e.target.value = "";
   };
 
+  // Nettoyage des blobs
   useEffect(() => {
     return () => {
-      Object.values(imagePreviews).forEach((val) => {
-        if (Array.isArray(val)) {
-          val.forEach((preview) => URL.revokeObjectURL(preview.url));
-        } else if (val?.url) {
-          URL.revokeObjectURL(val.url);
-        }
-      });
+      [
+        ...imageIDPreviews,
+        ...imageUrlPreviews,
+        ...imageOwnershipPreviews,
+      ].forEach((preview) => URL.revokeObjectURL(preview.url));
     };
   }, []);
 
   return {
-    imagePreviews,
+    imageIDPreviews,
+    setImageIDPreviews,
+    imageUrlPreviews,
+    setImageUrlPreviews,
+    imageOwnershipPreviews,
+    setImageOwnershipPreviews,
     handleMultiFileChange,
-    handleSingleFileChange,
   };
 }

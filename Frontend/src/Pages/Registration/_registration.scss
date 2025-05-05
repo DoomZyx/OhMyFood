@@ -83,7 +83,6 @@
     padding: 1em;
     background-color: #f4f4f4
   }
-
   ::placeholder {
     font-size: 0.8rem;
     color: black;
@@ -97,6 +96,12 @@
   .checkbox-layout {
     display: flex;
     flex-direction: row;
+  }
+  .image-prev {
+    width: 250px;
+    margin: 10px;
+    border-radius: 8px;
+    object-fit: cover;
   }
 }
 
@@ -191,6 +196,20 @@
   margin-top: 3rem;
   margin-bottom: 1.5em;
   padding: 1.5em;
+}
+
+.delete-image-uploaded {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .form-container-add input[type="file"] {

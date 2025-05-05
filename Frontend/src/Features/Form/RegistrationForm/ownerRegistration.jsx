@@ -13,9 +13,58 @@ export function OwnerRegistration() {
     handleRegisterOwner,
   } = useOwnerForm();
 
-  const { imagePreviews, handleMultiFileChange, handleSingleFileChange } =
-    useImageUploader(setFormDataOwner);
-  const [isModal, setModal] = useState(false);
+  const {
+    imageIDPreviews,
+    setImageIDPreviews,
+    imageUrlPreviews,
+    setImageUrlPreviews,
+    imageOwnershipPreviews,
+    setImageOwnershipPreviews,
+    handleMultiFileChange,
+  } = useImageUploader(setFormDataOwner);
+
+  const [currentPreview, setCurrentPreview] = useState(null); // 'identity' | 'restaurant' | 'kbis'
+
+  // Utilitaire pour savoir quelles images afficher dans la modale
+  const getPreviewArray = () => {
+    if (currentPreview === "identity") return imageIDPreviews;
+    if (currentPreview === "restaurants") return imageUrlPreviews;
+    if (currentPreview === "kbis") return imageOwnershipPreviews;
+    return [];
+  };
+
+  const getCurrentPreviewFieldName = () => {
+    if (currentPreview === "identity") return "identityDocumentUrl";
+    if (currentPreview === "restaurants") return "imageUrl";
+    if (currentPreview === "kbis") return "proofOfOwnershipUrl";
+    return "";
+  };
+
+  const handleRemoveImage = (indexToRemove, field) => {
+    const updatePreview = (setFn, previews) => {
+      const validArray = Array.isArray(previews) ? previews : [];
+      setFn(validArray.filter((_, i) => i !== indexToRemove));
+    };
+
+    if (field === "identityDocumentUrl") {
+      updatePreview(setImageIDPreviews, imageIDPreviews);
+    } else if (field === "imageUrl") {
+      updatePreview(setImageUrlPreviews, imageUrlPreviews);
+    } else if (field === "proofOfOwnershipUrl") {
+      updatePreview(setImageOwnershipPreviews, imageOwnershipPreviews);
+    }
+
+    if (typeof setFormDataOwner === "function") {
+      setFormDataOwner((prev) => {
+        const existing = Array.isArray(prev[field]) ? prev[field] : [];
+        return {
+          ...prev,
+          [field]: existing.filter((_, i) => i !== indexToRemove),
+        };
+      });
+    }
+  };
+  
 
   return (
     <>
@@ -141,49 +190,32 @@ export function OwnerRegistration() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    setModal(true);
+                    setCurrentPreview("identity");
                   }}
                 >
                   Aperçu
                 </button>
                 <label
-                  className="upload-btn-owner"
                   htmlFor="identityDocumentUrl"
+                  className="upload-btn-owner"
                 >
                   <i className="fa-solid fa-folder"></i>
                 </label>
                 <input
                   type="file"
-                  name="identityDocumentUrl"
                   id="identityDocumentUrl"
                   accept="image/*"
-                  onChange={handleMultiFileChange}
                   multiple
+                  onChange={handleMultiFileChange}
                 />
               </div>
-
-              <Modal isOpen={isModal} onClose={() => setModal(false)}>
-                {Array.isArray(imagePreviews.identityDocumentUrl) &&
-                  imagePreviews.identityDocumentUrl.map((preview, index) => (
-                    <img
-                      key={index}
-                      src={preview.url}
-                      alt={`preview-${index}`}
-                      style={{
-                        width: "250px",
-                        margin: "10px",
-                        borderRadius: "8px",
-                      }}
-                    />
-                  ))}
-              </Modal>
 
               <div className="input-restaurant-photos">
                 <p>Photos du restaurant</p>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    setModal(true);
+                    setCurrentPreview("restaurants");
                   }}
                 >
                   Aperçu
@@ -199,28 +231,12 @@ export function OwnerRegistration() {
                 />
               </div>
 
-              <Modal isOpen={isModal} onClose={() => setModal(false)}>
-                {Array.isArray(imagePreviews.imageUrl) &&
-                  imagePreviews.imageUrl.map((preview, index) => (
-                    <img
-                      key={index}
-                      src={preview.url}
-                      alt={`preview-${index}`}
-                      style={{
-                        width: "250px",
-                        margin: "10px",
-                        borderRadius: "8px",
-                      }}
-                    />
-                  ))}
-              </Modal>
-
               <div className="input-kbis">
                 <p>Joignez votre KBIS</p>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    setModal(true);
+                    setCurrentPreview("kbis");
                   }}
                 >
                   Aperçu
@@ -239,20 +255,45 @@ export function OwnerRegistration() {
                   onChange={handleMultiFileChange}
                 />
               </div>
-              <Modal isOpen={isModal} onClose={() => setModal(false)}>
-                {Array.isArray(imagePreviews.proofOfOwnershipUrl) &&
-                  imagePreviews.proofOfOwnershipUrl.map((preview, index) => (
-                    <img
-                      key={index}
-                      src={preview.url}
-                      alt={`preview-${index}`}
-                      style={{
-                        width: "250px",
-                        margin: "10px",
-                        borderRadius: "8px",
-                      }}
-                    />
-                  ))}
+              <Modal
+                isOpen={!!currentPreview}
+                onClose={() => setCurrentPreview(null)}
+              >
+                {getPreviewArray().length > 0 ? (
+                  <div
+                    style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}
+                  >
+                    {getPreviewArray().map((preview, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          position: "relative",
+                          display: "inline-block",
+                        }}
+                      >
+                        <img
+                          className="image-prev"
+                          src={preview.url}
+                          alt={`preview-${index}`}
+                        />
+                        <button
+                          className="delete-image-uploaded"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleRemoveImage(
+                              index,
+                              getCurrentPreviewFieldName()
+                            );
+                          }}
+                        >
+                          ✖
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p>Aucune image sélectionnée</p>
+                )}
               </Modal>
             </div>
 
