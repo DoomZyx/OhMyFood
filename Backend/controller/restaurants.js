@@ -8,8 +8,21 @@ exports.createRestaurant = (req, res, next) => {
     const restaurant = new Restaurant({
       _id: restaurantObject._id,
       name: restaurantObject.name,
-      lieu: restaurantObject.lieu,
+      adress: {
+        street: restaurantObject.street,
+        city: restaurantObject.city,
+        code: restaurantObject.code
+      },
       imageUrl: restaurantObject.imageUrl,
+      openingHours: restaurantObject.openingHours,
+      restaurantPhoneNumber: restaurantObject.restaurantPhoneNumber,
+      services: {
+        dineIn: restaurantObject.dineIn,
+        takeout: restaurantObject.takeout,
+        delivery: restaurantObject.delivery
+      },
+      deliveryZone: restaurantObject.deliveryZone,
+      typeOfBusinnes: restaurantObject.typeOfBusinnes,
       userId: req.auth.userId,
     });
 

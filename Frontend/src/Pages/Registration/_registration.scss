@@ -146,18 +146,18 @@
 }
 
 .upload-btn-owner {
-  width: 40px;
-  height: 40px;
-  background: $button_background;
+  width: 28px;
+  height: 28px;
+  background: white;
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  box-shadow: 0px 0px  2px 1px rgb(0,0,0);
+
   cursor: pointer;
   align-items: center;
   i {
-    color: white;
-    font-size: 1em;
+    color: black;
+    font-size: 0.8em;
   }
 }
 
@@ -196,6 +196,15 @@
   margin-top: 3rem;
   margin-bottom: 1.5em;
   padding: 1.5em;
+}
+
+.prev-btn {
+  position: absolute;
+  left: 82%;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-radius: 220px;
+  background: white;
 }
 
 .delete-image-uploaded {

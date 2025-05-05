@@ -188,12 +188,13 @@ export function OwnerRegistration() {
               <div className="input-identityCard">
                 <p>Votre pièce d'identité</p>
                 <button
+                  className="prev-btn"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPreview("identity");
                   }}
                 >
-                  Aperçu
+                  <i className="fa-solid fa-eye"></i>
                 </button>
                 <label
                   htmlFor="identityDocumentUrl"
@@ -213,12 +214,13 @@ export function OwnerRegistration() {
               <div className="input-restaurant-photos">
                 <p>Photos du restaurant</p>
                 <button
+                  className="prev-btn"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPreview("restaurants");
                   }}
                 >
-                  Aperçu
+                  <i className="fa-solid fa-eye"></i>
                 </button>
                 <label className="upload-btn-owner" htmlFor="imageUrl">
                   <i className="fa-solid fa-folder"></i>
@@ -234,12 +236,13 @@ export function OwnerRegistration() {
               <div className="input-kbis">
                 <p>Joignez votre KBIS</p>
                 <button
+                  className="prev-btn"
                   onClick={(e) => {
                     e.preventDefault();
                     setCurrentPreview("kbis");
                   }}
                 >
-                  Aperçu
+                  <i className="fa-solid fa-eye"></i>
                 </button>
                 <label
                   className="upload-btn-owner"
