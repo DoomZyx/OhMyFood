@@ -14,7 +14,7 @@ function App() {
         <Route path="/menus/:id" element={<Menus />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/subscription" element={< Registration/>} />
+        <Route path="/subscription" element={<Registration />} />
       </Routes>
     </Router>
   );
