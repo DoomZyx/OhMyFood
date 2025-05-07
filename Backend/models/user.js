@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
     town: { type: String, required: true },
     postalCode: { type: String, required: false },
 
-    owner: { type: Boolean, ref:'Owner', default: false },
+    owner: { type: Boolean, default: false },
     deliverer: { type: Boolean, ref:'Deliverer', default: false },
   },
 );

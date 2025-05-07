@@ -50,10 +50,13 @@ const customStyles = {
 
 export function DeliveryRadius() {
   const handleChange = (selectedOption) => {
-    console.log(selectedOption); // console.log a remplacer
+    setFormDataOwner((prev) => ({
+      ...prev,
+      deliveryZone: selectedOption ? selectedOption.value : "",
+    }));
   };
   return (
-    <div className="legalStatusSelect" style={{ width: 300 }}>
+    <div className="DeliveryZoneSelect" style={{ width: 300 }}>
       <Select
         options={options}
         onChange={handleChange}

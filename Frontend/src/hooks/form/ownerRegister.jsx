@@ -1,26 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSiretValidator } from "../../hooks/SiretValidator/siretValidator";
+import { createRestaurant } from "../../API/Restaurants/API";
 
 export function useOwnerForm() {
- const [errorOwnerRegister, setErrorOwnerRegister] = useState("");
+  const navigate = useNavigate();
+  const [errorOwnerRegister, setErrorOwnerRegister] = useState("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [formDataOwner, setFormDataOwner] = useState({
-     name: "",
-     street: "",
-     city: "",
-     postalCode: "",
-     imageUrl: "",
-     opening: "",
-     phoneNumber: "",
-     dineIn: false,
-     takeout: false,
-     delivery: false,
-     deliveryZone: "",
-     statut: "",
-     siret: "",
-     identityDocumentUrl: null,
-     proofOfOwnershipUrl: null,
-   });
+    name: "",
+    street: "",
+    city: "",
+    postalCode: "",
+    imageUrl: "",
+    opening: "",
+    phoneNumber: "",
+    dineIn: false,
+    takeout: false,
+    delivery: false,
+    deliveryZone: "",
+    statut: "",
+    siret: "",
+    identityDocumentUrl: null,
+    proofOfOwnershipUrl: null,
+  });
 
-   const handleChangeOwner = (e) => {
+  const handleChangeOwner = (e) => {
     const { id, value, type, checked, files } = e.target;
 
     setFormDataOwner((prev) => ({
@@ -30,28 +35,36 @@ export function useOwnerForm() {
   };
 
   const handleRegisterOwner = async (e) => {
-   e.preventDefault();
+    e.preventDefault();
 
-   try {
-     const data = await signupOwner(formDataOwner);
-     console.log("Inscription réussi :", data);
-     // navigate()
-   } catch (error) {
-     if (error.response) {
-       setErrorOwnerRegister(
-         error.message || "Impossible de se connecter au serveur"
-       );
-     }
-   }
- };
+    try {
+      await createRestaurant(formDataOwner);
+      setShowSuccessModal(true);
+    } catch (error) {
+      setErrorOwnerRegister(
+        error.message || "Impossible de créer le restaurant"
+      );
+    }
+  };
 
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    navigate("/");
+  };
 
- return (
+  const { siretStatus, siretMessage, validateSiret } = useSiretValidator();
+
+  return {
     errorOwnerRegister,
     setErrorOwnerRegister,
     formDataOwner,
     setFormDataOwner,
     handleChangeOwner,
-    handleRegisterOwner
- );
+    handleRegisterOwner,
+    siretStatus,
+    siretMessage,
+    validateSiret,
+    showSuccessModal,
+    handleCloseModal
+  };
 }

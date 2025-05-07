@@ -2,7 +2,10 @@ import { useOwnerForm } from "../../../hooks/form/ownerRegister";
 import LegalStatus from "../../../Components/Buttons/Select/LegalStatus";
 import { useImageUploader } from "../../../hooks/ImagesUploader/imagesUploader";
 import Modal from "../../../Components/Modal/Basic/basicModal";
+import NotificationModal from "../../../Components/Modal/Notification/notification-modal-base";
 import { useState } from "react";
+import { useSiretValidator } from "../../../hooks/SiretValidator/siretValidator";
+import DeliveryRadius from "../../../Components/Buttons/Select/DeliveryRadius";
 
 export function OwnerRegistration() {
   const {
@@ -11,6 +14,8 @@ export function OwnerRegistration() {
     errorOwnerRegister,
     handleChangeOwner,
     handleRegisterOwner,
+    showSuccessModal,
+    handleCloseModal
   } = useOwnerForm();
 
   const {
@@ -22,6 +27,8 @@ export function OwnerRegistration() {
     setImageOwnershipPreviews,
     handleMultiFileChange,
   } = useImageUploader(setFormDataOwner);
+
+  const { siretStatus, siretMessage, validateSiret } = useSiretValidator();
 
   const [currentPreview, setCurrentPreview] = useState(null); // 'identity' | 'restaurant' | 'kbis'
 
@@ -64,7 +71,6 @@ export function OwnerRegistration() {
       });
     }
   };
-  
 
   return (
     <>
@@ -112,15 +118,6 @@ export function OwnerRegistration() {
               onChange={handleChangeOwner}
             />
 
-            <label htmlFor="opening"></label>
-            <input
-              type="text"
-              id="opening"
-              placeholder="Vos heures d'ouverture"
-              value={formDataOwner?.opening}
-              onChange={handleChangeOwner}
-            />
-
             <label htmlFor="phoneNumber"></label>
             <input
               type="text"
@@ -130,26 +127,49 @@ export function OwnerRegistration() {
               onChange={handleChangeOwner}
             />
 
-            <label htmlFor="deliveryZone"></label>
-            <input
-              type="text"
-              id="deliveryZone"
-              placeholder="Votre rayon de livraison"
-              value={formDataOwner?.deliveryZone}
-              onChange={handleChangeOwner}
-            />
-
             <label htmlFor="siret"></label>
             <input
               type="text"
               id="siret"
               placeholder="N°SIRET"
               value={formDataOwner?.siret}
-              onChange={handleChangeOwner}
+              onChange={(e) => {
+                handleChangeOwner(e);
+                validateSiret(e.target.value);
+              }}
             />
+            {siretStatus !== null && (
+              <p style={{ color: siretStatus ? "green" : "red" }}>
+                {siretMessage}
+              </p>
+            )}
+            <label htmlFor="opening"></label>
+            <textarea
+              type="text"
+              id="opening"
+              placeholder="Vos heures d'ouverture (Lundi : 10:00 - 14:00 / 18:00 - 22:00)"
+              value={formDataOwner?.opening}
+              onChange={handleChangeOwner}
+              rows="12"
+              required
+              title="(ex : 08:00 - 14:00)"
+            />
+            <div className="layout-select">
+              <div className="statut-select">
+                <LegalStatus />
+              </div>
 
-            <div className="statut-select">
-              <LegalStatus />
+              <div className="radius-select">
+                <DeliveryRadius
+                  value={formDataOwner.deliveryZone}
+                  onChange={(selectedOption) =>
+                    setFormDataOwner((prev) => ({
+                      ...prev,
+                      deliveryZone: selectedOption ? selectedOption.value : "",
+                    }))
+                  }
+                />
+              </div>
             </div>
 
             <div className="checkbox-owner-container">
@@ -309,6 +329,16 @@ export function OwnerRegistration() {
           )}
         </div>
       </div>
+
+      <NotificationModal isOpen={showSuccessModal} onClose={handleCloseModal}>
+        <div className="success-notification">
+          <h2>Félicitations !</h2>
+          <p>Votre restaurant a été créé avec succès.</p>
+          <button onClick={handleCloseModal}>
+            Retour à l'accueil
+          </button>
+        </div>
+      </NotificationModal>
     </>
   );
 }

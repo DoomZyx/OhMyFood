@@ -8,7 +8,7 @@ const restaurateurSchema = new mongoose.Schema(
       required: true,
     },
     restaurant: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Number,
       ref: "Restaurants",
       required: true,
     },
@@ -29,5 +29,8 @@ const restaurateurSchema = new mongoose.Schema(
 
   { collection: "Owner" }
 );
+
+// Ajout d'un index sur le restaurant pour optimiser les recherches
+restaurateurSchema.index({ restaurant: 1 });
 
 module.exports = mongoose.model("Restaurateur", restaurateurSchema);

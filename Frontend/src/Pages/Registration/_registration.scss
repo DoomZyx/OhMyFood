@@ -50,7 +50,7 @@
 .layout-form-deliverer {
   position: relative;
   bottom: 120px;
-  width: 850px;
+  width: 750px;
   height: 600px;
   padding: 1rem;
   background-color: white;
@@ -83,6 +83,14 @@
     padding: 1em;
     background-color: #f4f4f4
   }
+  textarea {
+    border: none;
+    border-radius: 10px;
+    width: clamp(600px, 10vw, 600px);
+    height: 8dvh;
+    padding: 1em;
+    background-color: #f4f4f4;
+  }
   ::placeholder {
     font-size: 0.8rem;
     color: black;
@@ -108,7 +116,6 @@
 .statut-select {
   display: flex;
   gap: 1em;
-  margin: 2em;
 }
 
 .layout-select {
@@ -235,4 +242,36 @@
 
 .deliverer-register-container.falsy {
   transform: translateX(100%);
+}
+
+.success-notification {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+
+  h2 {
+    color: #2ecc71;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  button {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #27ae60;
+    }
+  }
 }

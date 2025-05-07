@@ -10,6 +10,7 @@ const authSlice = createSlice({
   initialState: {
     token: sessionStorage.getItem("token") || null,
     isAuthenticated: !!sessionStorage.getItem("token"),
+    showAuthModal: false,
     user: {
       id: "",
       userName: "",
@@ -26,11 +27,13 @@ const authSlice = createSlice({
       state.token = token;
       sessionStorage.setItem("token", token);
       state.isAuthenticated = true;
+      state.showAuthModal = false,
       state.user = user; 
     },
     logout: (state) => {
       (state.token = null), sessionStorage.removeItem("token");
       state.isAuthenticated = false;
+      state.showAuthModal = true,
       state.user = {
         id: "",
         userName: "",
@@ -39,12 +42,17 @@ const authSlice = createSlice({
         email: "",
       };
     },
-
     setUser: (state, action) => {
       state.user = action.payload;
     },
     setError: (state, action) => {
       state.error = action.payload;
+    },
+    showAuthModal: (state) => {
+      state.showAuthModal = true;
+    },
+    hideAuthModal: (state) => {
+      state.showAuthModal = false;
     },
   },
   extraReducers: (builder) => {
@@ -87,5 +95,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout, setUser, setError } = authSlice.actions;
+export const { login, logout, setUser, setError, showAuthModal, hideAuthModal } = authSlice.actions;
 export default authSlice.reducer;

@@ -5,6 +5,7 @@ import Menus from "./Pages/MenuPage/menu";
 import Login from "./Pages/Login/login";
 import Profile from "./Pages/ProfilePage/profile";
 import Registration from "./Pages/Registration/registration";
+import ProtectedRoute from "./Components/ProtectedRoute/protectedRoute";
 
 function App() {
   return (
@@ -13,8 +14,22 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/menus/:id" element={<Menus />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/subscription" element={<Registration />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/subscription"
+          element={
+            <ProtectedRoute>
+              <Registration />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

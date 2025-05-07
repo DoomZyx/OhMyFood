@@ -48,8 +48,12 @@ const customStyles = {
 };
 
 export function LegalStatus() {
-  const handleChange = (selectedOption) => {
-    console.log(selectedOption); // console.log a remplacer
+    const handleChange = (selectedOption) => {
+      setFormDataOwner((prev) => ({
+        ...prev,
+        legalStatus: selectedOption ? selectedOption.value : "",
+      }));
+    };
   };
   return (
     <div className="legalStatusSelect" style={{ width: 300}}>
