@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     if (!requireAuth()) {
-      navigate("/"); // redirige vers accueil
+      navigate("/"); 
     }
   }, [token]);
 

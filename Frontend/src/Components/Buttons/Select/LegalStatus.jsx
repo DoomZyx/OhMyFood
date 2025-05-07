@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { useState } from "react";
 
 const options = [
   { value: "EI", label: "Auto-entrepreneur" },
@@ -47,17 +48,27 @@ const customStyles = {
   }),
 };
 
-export function LegalStatus() {
-    const handleChange = (selectedOption) => {
-      setFormDataOwner((prev) => ({
-        ...prev,
-        legalStatus: selectedOption ? selectedOption.value : "",
-      }));
-    };
+export function LegalStatus({ setFormDataOwner }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (option) => {
+    setSelectedOption(option);
+    setFormDataOwner(prev => ({
+      ...prev,
+      statut: option.value
+    }));
   };
+
   return (
     <div className="legalStatusSelect" style={{ width: 300}}>
-      <Select options={options} onChange={handleChange} styles={customStyles} isSearchable={false} placeholder="Votre statut juridique" />
+      <Select 
+        value={selectedOption}
+        options={options} 
+        onChange={handleChange} 
+        styles={customStyles} 
+        isSearchable={false} 
+        placeholder="Votre statut juridique" 
+      />
     </div>
   );
 }

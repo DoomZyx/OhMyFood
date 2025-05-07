@@ -1,5 +1,5 @@
 import Select from "react-select";
-
+import { useState } from "react";
 
 const options = [
  {value: "5", label: "5 km"},
@@ -48,21 +48,26 @@ const customStyles = {
   }),
 };
 
-export function DeliveryRadius() {
-  const handleChange = (selectedOption) => {
-    setFormDataOwner((prev) => ({
+export function DeliveryRadius({ setFormDataOwner }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (option) => {
+    setSelectedOption(option);
+    setFormDataOwner(prev => ({
       ...prev,
-      deliveryZone: selectedOption ? selectedOption.value : "",
+      deliveryZone: option.value
     }));
   };
+
   return (
     <div className="DeliveryZoneSelect" style={{ width: 300 }}>
       <Select
+        value={selectedOption}
         options={options}
         onChange={handleChange}
         styles={customStyles}
         isSearchable={false}
-        placeholder="Votre rayon de livraison"
+        placeholder="Zone de livraison"
       />
     </div>
   );
