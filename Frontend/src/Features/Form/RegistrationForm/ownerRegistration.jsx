@@ -156,7 +156,15 @@ export function OwnerRegistration() {
             />
             <div className="layout-select">
               <div className="statut-select">
-                <LegalStatus />
+                <LegalStatus
+                  value={formDataOwner.statut}
+                  onChange={(selectedOption) =>
+                    setFormDataOwner((prev) => ({
+                      ...prev,
+                      statut: selectedOption ? selectedOption.value : ",",
+                    }))
+                  }
+                />
               </div>
 
               <div className="radius-select">
@@ -165,7 +173,7 @@ export function OwnerRegistration() {
                   onChange={(selectedOption) =>
                     setFormDataOwner((prev) => ({
                       ...prev,
-                      deliveryZone: selectedOption ? selectedOption.value : "",
+                      deliveryZone: selectedOption ? selectedOption.value : "", // On prend sa valeur sinon on met une chaine vide
                     }))
                   }
                 />
@@ -334,9 +342,7 @@ export function OwnerRegistration() {
         <div className="success-notification">
           <h2>Félicitations !</h2>
           <p>Votre restaurant a été créé avec succès.</p>
-          <button onClick={handleCloseModal}>
-            Retour à l'accueil
-          </button>
+          <button onClick={handleCloseModal}>Retour à l'accueil</button>
         </div>
       </NotificationModal>
     </>

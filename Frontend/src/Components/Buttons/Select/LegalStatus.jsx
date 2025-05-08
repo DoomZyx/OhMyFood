@@ -1,12 +1,6 @@
 import Select from "react-select";
 import { useState } from "react";
 
-const options = [
-  { value: "EI", label: "Auto-entrepreneur" },
-  { value: "SARL", label: "SARL" },
-  { value: "SAS", label: "SAS" },
-  { value: "other", label: "Autre" },
-];
 
 const customStyles = {
   control: (base) => ({
@@ -21,7 +15,7 @@ const customStyles = {
      #9356dc -11.44%,
      #ff79da 123.93%
    )`,
-    color: "#ffffff",
+   color: "#ffffff",
   }),
   placeholder: (base) => ({
     ...base,
@@ -30,10 +24,10 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     background: state.isSelected
-      ? "linear-gradient(193.33deg,#9356dc -11.44%,#ff79da 123.93%)"
-      : state.isFocused
-      ? "#F0F0F0"
-      : "white",
+    ? "linear-gradient(193.33deg,#9356dc -11.44%,#ff79da 123.93%)"
+    : state.isFocused
+    ? "#F0F0F0"
+    : "white",
     color: state.isSelected ? "white" : "#333",
     borderRadius: 8,
     "&:hover": {
@@ -48,15 +42,22 @@ const customStyles = {
   }),
 };
 
-export function LegalStatus({ setFormDataOwner }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+export function LegalStatus({ value, onChange }) {
+
+  const options = [
+    { value: "EI", label: "Auto-entrepreneur" },
+    { value: "SARL", label: "SARL" },
+    { value: "SAS", label: "SAS" },
+    { value: "other", label: "Autre" },
+  ];
+  const [selectedOption, setSelectedOption] = useState(
+    options.find((opt) => opt.value === value) || null
+  );
+  
 
   const handleChange = (option) => {
     setSelectedOption(option);
-    setFormDataOwner(prev => ({
-      ...prev,
-      statut: option.value
-    }));
+    onChange(option);
   };
 
   return (

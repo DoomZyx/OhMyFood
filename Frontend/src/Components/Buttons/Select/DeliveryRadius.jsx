@@ -1,12 +1,6 @@
 import Select from "react-select";
 import { useState } from "react";
 
-const options = [
- {value: "5", label: "5 km"},
- {value: "10", label: "10 km"},
- {value: "15", label: "15 km"},
- {value: "20", label: "20 km"},
-]
 
 const customStyles = {
   control: (base) => ({
@@ -20,7 +14,7 @@ const customStyles = {
     193.33deg,
     #9356dc -11.44%,
     #ff79da 123.93%
-  )`,
+    )`,
     color: "#ffffff",
   }),
   placeholder: (base) => ({
@@ -30,13 +24,13 @@ const customStyles = {
   option: (provided, state) => ({
     ...provided,
     background: state.isSelected
-      ? "linear-gradient(193.33deg,#9356dc -11.44%,#ff79da 123.93%)"
+    ? "linear-gradient(193.33deg,#9356dc -11.44%,#ff79da 123.93%)"
       : state.isFocused
       ? "#F0F0F0"
       : "white",
-    color: state.isSelected ? "white" : "#333",
-    borderRadius: 8,
-    "&:hover": {
+      color: state.isSelected ? "white" : "#333",
+      borderRadius: 8,
+      "&:hover": {
       backgroundColor: "#f0e6ff",
       color: "#a56eff",
     },
@@ -48,15 +42,21 @@ const customStyles = {
   }),
 };
 
-export function DeliveryRadius({ setFormDataOwner }) {
-  const [selectedOption, setSelectedOption] = useState(null);
+export function DeliveryRadius({ value, onChange }) {
+  const options = [
+   {value: "5", label: "5 km"},
+   {value: "10", label: "10 km"},
+   {value: "15", label: "15 km"},
+   {value: "20", label: "20 km"},
+  ]
+  
+  const [selectedOption, setSelectedOption] = useState(
+    options.find((opt) => opt.value === value) || null
+  );
 
   const handleChange = (option) => {
     setSelectedOption(option);
-    setFormDataOwner(prev => ({
-      ...prev,
-      deliveryZone: option.value
-    }));
+    onChange(option);
   };
 
   return (
