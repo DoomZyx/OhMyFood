@@ -2,8 +2,11 @@ const Restaurant = require("../models/restaurants");
 const Restaurateur = require("../models/owner");
 const User = require("../models/user");
 const fs = require("fs");
+const { verifySiret } = require("../API/siretValidator");
 
 exports.registerOwnerAndRestaurant = async (req, res) => {
+  console.log("BODY REÇU ===>", req.body);
+  console.log("FILES REÇUS ===>", req.files);
   try {
     const userId = req.auth.userId;
     const {
@@ -11,36 +14,55 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       street,
       city,
       postalCode,
-      openinghours,
+      opening,
       phoneNumber,
+      deliveryZone,
+      statut,
+      siret,
       dineIn,
       takeout,
-      delivery,
-      deliveryZone,
-      typeOfBusiness,
-      siret
+      delivery
     } = req.body;
-    
+
     // Vérification des champs requis
-    if (!name || !street || !city || !postalCode || !openinghours || !phoneNumber || !deliveryZone || !typeOfBusiness || !siret) {
-      return res.status(400).json({ error: "Tous les champs doivent être remplis." });
+    if (
+      !name ||
+      !street ||
+      !city ||
+      !postalCode ||
+      !opening ||
+      !phoneNumber ||
+      !deliveryZone ||
+      !statut ||
+      !siret
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Tous les champs doivent être remplis." });
     }
-    
+
     // Vérification des fichiers
-    if (!req.files || !req.files.identityDocumentUrl || req.files.identityDocumentUrl.length === 0) {
-      return res.status(400).json({ error: "Une pièce d'identité est requise." });
+    if (
+      !req.files ||
+      !req.files.identityDocumentUrl ||
+      req.files.identityDocumentUrl.length === 0
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Une pièce d'identité est requise." });
     }
-    if (!req.files.proofOfOwnershipUrl || req.files.proofOfOwnershipUrl.length === 0) {
+    if (
+      !req.files.proofOfOwnershipUrl ||
+      req.files.proofOfOwnershipUrl.length === 0
+    ) {
       return res.status(400).json({ error: "Un KBIS est requis." });
     }
-    
-    // Validation SIRET 
-    const isValidSiret = /^[0-9]{14}$/.test(siret);
+
+    // Validation SIRET
+    const isValidSiret = await verifySiret()
     if (!isValidSiret) {
       return res.status(400).json({ error: "Numéro SIRET invalide." });
     }
-    console.log("BODY ===>", req.body);
-    console.log("FILES ===>", req.files);
 
     // Création du restaurant
     const newRestaurant = new Restaurant({
@@ -48,7 +70,7 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       name,
       address: { street, city, code: postalCode },
       imageUrl: req.files?.imageUrl?.map((file) => file.filename) || [],
-      openingHours: openinghours,
+      opening: opening,
       restaurantPhoneNumber: phoneNumber,
       services: {
         dineIn: dineIn === "true",
@@ -56,7 +78,7 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
         delivery: delivery === "true",
       },
       deliveryZone,
-      typeOfBusiness,
+      statut,
     });
 
     const savedRestaurant = await newRestaurant.save();
@@ -67,8 +89,12 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       restaurant: savedRestaurant._id,
       siret,
       documents: {
-        identityDocumentUrl: req.files.identityDocumentUrl.map((file) => file.filename),
-        proofOfOwnershipUrl: req.files.proofOfOwnershipUrl.map((file) => file.filename),
+        identityDocumentUrl: req.files.identityDocumentUrl.map(
+          (file) => file.filename
+        ),
+        proofOfOwnershipUrl: req.files.proofOfOwnershipUrl.map(
+          (file) => file.filename
+        ),
       },
     });
 
@@ -79,20 +105,23 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       message: "Profil restaurateur créé avec succès",
       restaurant: savedRestaurant,
     });
-
   } catch (error) {
     console.error(error);
 
     // Nettoyage des fichiers uploadés si erreur
     if (req.files) {
-      Object.values(req.files).flat().forEach((file) => {
-        fs.unlink(`uploads/${file.filename}`, (err) => {
-          if (err) console.error("Erreur suppression fichier:", err);
+      Object.values(req.files)
+        .flat()
+        .forEach((file) => {
+          fs.unlink(`uploads/${file.filename}`, (err) => {
+            if (err) console.error("Erreur suppression fichier:", err);
+          });
         });
-      });
     }
 
-    res.status(500).json({ error: "Erreur lors de la création du restaurant." });
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la création du restaurant." });
   }
 };
 

@@ -21,8 +21,8 @@ export function useOwnerForm() {
     deliveryZone: "",
     statut: "",
     siret: "",
-    identityDocumentUrl: null,
-    proofOfOwnershipUrl: null,
+    identityDocumentUrl: "",
+    proofOfOwnershipUrl: "",
   });
 
   const handleChangeOwner = (e) => {
@@ -37,15 +37,47 @@ export function useOwnerForm() {
   const handleRegisterOwner = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+
+    // Injection des champs simples (texte, booléens, etc.)
+    for (const key in formDataOwner) {
+      const value = formDataOwner[key];
+
+      // Si c’est un champ fichier → on traite à part
+      if (
+        key === "identityDocumentUrl" ||
+        key === "proofOfOwnershipUrl" ||
+        key === "imageUrl"
+      ) {
+        if (Array.isArray(value)) {
+          value.forEach((file) => {
+            if (file instanceof File) {
+              formData.append(key, file);
+            }
+          });
+        } else if (value instanceof File) {
+          formData.append(key, value);
+        }
+      } else {
+        // Pour les valeurs booléennes, on les force en string (sinon côté back ce sera "undefined")
+        const normalizedValue =
+          typeof value === "boolean" ? String(value) : value;
+        formData.append(key, normalizedValue);
+      }
+    }
+
     try {
-      await createRestaurant(formDataOwner);
+
+      await createRestaurant(formData);
+
+      // Succès
       setShowSuccessModal(true);
     } catch (error) {
-      setErrorOwnerRegister(
-        error.message || "Impossible de créer le restaurant"
-      );
+      console.error("Erreur lors de la création du restaurant :", error);
+      setErrorOwnerRegister(error.message || "Erreur inconnue");
     }
   };
+  
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);

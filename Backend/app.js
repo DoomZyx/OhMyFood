@@ -14,6 +14,8 @@ const cartRoutes = require('./routes/cart');
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+
 const cors = require("cors");
 
 app.use(
@@ -25,7 +27,6 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.use(bodyParser.json());
 
 app.use("/api/restaurants", restaurantsRoutes);
 

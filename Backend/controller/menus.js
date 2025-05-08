@@ -31,9 +31,7 @@ exports.createMenu = (req, res, next) => {
 exports.getMenusByRestaurant = async (req, res, next) => {
   try {
     const restaurant_id = Number(req.params.id);
-    console.log(`Recherche" des menus pour restaurant ID: ${restaurant_id}`); // 🔍 Debugging
     const menus = await Menu.find({ restaurant_id });
-    console.log(`Menus trouvés :`, menus); // 🔍 Debugging
     if (menus.length === 0) {
       return res
         .status(404)

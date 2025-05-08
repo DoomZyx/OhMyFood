@@ -5,8 +5,11 @@ const restaurantCtrl = require("../controller/restaurants");
 const auth = require("../middleware/auth");
 const upload = require("../middleware/multer-config");
 
-// Récupérer tous les restaurants
+
 router.get("/", restaurantCtrl.getAllRestaurants);
+
+// router.get("/:id", restaurantCtrl.getOneRestaurant); A rajouter 
+
 router.post(
   "/",
   auth,
@@ -17,6 +20,7 @@ router.post(
   ]),
   restaurantCtrl.registerOwnerAndRestaurant
 );
+
 router.put("/:id", auth, restaurantCtrl.modifyRestaurant);
 router.delete("/:id", auth, restaurantCtrl.deleteRestaurant);
 

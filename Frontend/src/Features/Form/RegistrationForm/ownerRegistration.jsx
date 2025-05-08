@@ -17,7 +17,7 @@ export function OwnerRegistration() {
     showSuccessModal,
     handleCloseModal
   } = useOwnerForm();
-
+console.log(formDataOwner);
   const {
     imageIDPreviews,
     setImageIDPreviews,
@@ -89,6 +89,7 @@ export function OwnerRegistration() {
               placeholder="Nom du restaurant"
               value={formDataOwner?.name}
               onChange={handleChangeOwner}
+              required
             />
 
             <label htmlFor="street"></label>
@@ -98,6 +99,7 @@ export function OwnerRegistration() {
               placeholder="Adresse"
               value={formDataOwner?.street}
               onChange={handleChangeOwner}
+              required
             />
 
             <label htmlFor="city"></label>
@@ -107,6 +109,7 @@ export function OwnerRegistration() {
               placeholder="Ville"
               value={formDataOwner?.city}
               onChange={handleChangeOwner}
+              required
             />
 
             <label htmlFor="postalCode"></label>
@@ -116,6 +119,7 @@ export function OwnerRegistration() {
               placeholder="Code postal"
               value={formDataOwner?.postalCode}
               onChange={handleChangeOwner}
+              required
             />
 
             <label htmlFor="phoneNumber"></label>
@@ -125,6 +129,7 @@ export function OwnerRegistration() {
               placeholder="Numéro du restaurant"
               value={formDataOwner?.phoneNumber}
               onChange={handleChangeOwner}
+              required
             />
 
             <label htmlFor="siret"></label>
@@ -137,6 +142,7 @@ export function OwnerRegistration() {
                 handleChangeOwner(e);
                 validateSiret(e.target.value);
               }}
+              required
             />
             {siretStatus !== null && (
               <p style={{ color: siretStatus ? "green" : "red" }}>
@@ -158,6 +164,7 @@ export function OwnerRegistration() {
               <div className="statut-select">
                 <LegalStatus
                   value={formDataOwner.statut}
+                  required
                   onChange={(selectedOption) =>
                     setFormDataOwner((prev) => ({
                       ...prev,
@@ -170,6 +177,7 @@ export function OwnerRegistration() {
               <div className="radius-select">
                 <DeliveryRadius
                   value={formDataOwner.deliveryZone}
+                  required
                   onChange={(selectedOption) =>
                     setFormDataOwner((prev) => ({
                       ...prev,
@@ -232,6 +240,7 @@ export function OwnerRegistration() {
                 </label>
                 <input
                   type="file"
+                  name="identityDocumentUrl"
                   id="identityDocumentUrl"
                   accept="image/*"
                   multiple
@@ -255,6 +264,7 @@ export function OwnerRegistration() {
                 </label>
                 <input
                   type="file"
+                  name="imageUrl"
                   id="imageUrl"
                   accept="image/*"
                   onChange={handleMultiFileChange}
