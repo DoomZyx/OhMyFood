@@ -17,7 +17,7 @@ router.post(
   ]),
   restaurantCtrl.registerOwnerAndRestaurant
 );
-router.put("/id", restaurantCtrl.modifyRestaurant);
-router.delete("/id", restaurantCtrl.deleteRestaurant);
+router.put("/:id", auth, restaurantCtrl.modifyRestaurant);
+router.delete("/:id", auth, restaurantCtrl.deleteRestaurant);
 
 module.exports = router;

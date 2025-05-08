@@ -26,7 +26,7 @@ export function useSiretValidator() {
       }
     } catch (err) {
       setSiretStatus(false);
-      setSiretMessage("Erreur de vérification");
+      setSiretMessage("N° SIRET invalide");
     }
   };
 
