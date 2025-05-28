@@ -36,11 +36,19 @@ function NavMenu() {
       <ModalSide isOpen={isSidebarOpen} onClose={toggleSidebar}>
         <div className="sidebar-layout">
           <div className="profile-link">
-            <div className="user-circle">
-              <i className="fa-solid fa-user"></i>
-            </div>
             {isAuthenticated && user && (
               <>
+                {!user.profilePicture ? (
+                  <div className="user-circle">
+                    <i className="fa-solid fa-user"></i>
+                  </div>
+                ) : (
+                  <img
+                    src={`http://localhost:3000${user.profilePicture}`}
+                    alt="Photo de profil"
+                    className="profile-img"
+                  />
+                )}
                 <div className="info-user">
                   <p className="user-firstName">{user.firstName}</p>
                   <p className="user-email">{user.email}</p>

@@ -25,9 +25,17 @@ padding-bottom: 1.5rem;
  display: flex;
  flex-direction: row;
 }
+.profile-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .profile-link {
- display: flex;
- flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 3em;
  & i {
    font-size: 2.4rem;
    position: relative;
@@ -43,6 +51,10 @@ padding-bottom: 1.5rem;
    background-color: #9356dc;
  }
  .info-user {
+  text-align: left;
+  margin-top: 1em;
+  position: relative;
+  right: 1em;
    & p {
      font-size: 1.15rem;
      position: relative;
