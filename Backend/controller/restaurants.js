@@ -74,7 +74,7 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       restaurant: newId,
       name,
       address: { street, lieu, code: postalCode },
-      imageUrl: req.files?.imageUrl?.map((file) => file.filename) || [],
+      imageUrl: req.files.imageUrl.map((file) => `/images/restaurants/${file.filename}`),
       openingHours: openingHours,
       restaurantPhoneNumber: restaurantPhoneNumber,
       services: {

@@ -31,7 +31,7 @@ function Restaurants() {
                 />
                 <div className="card-txt">
                   <h3>{restaurant.name}</h3>
-                  <p>{restaurant.lieu}</p>
+                  <p>{restaurant.lieu || restaurant.address.lieu}</p>
                 </div>
               </Link>
               <label className="btn__like">

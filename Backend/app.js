@@ -30,6 +30,7 @@ const profileRoute = require("./routes/user");
 const userRoutes = require("./routes/auth");
 
 const cartRoutes = require("./routes/cart");
+
 app.use(
   "/images/restaurants",
   express.static(path.join(__dirname, "images/restaurants"))
