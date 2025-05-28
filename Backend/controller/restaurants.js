@@ -5,37 +5,36 @@ const fs = require("fs");
 const { verifySiret } = require("../API/siretValidator");
 
 exports.registerOwnerAndRestaurant = async (req, res) => {
-  console.log("BODY REÇU ===>", req.body);
-  console.log("FILES REÇUS ===>", req.files);
   try {
     const userId = req.auth.userId;
     const {
       name,
       street,
-      city,
+      lieu,
       postalCode,
-      opening,
-      phoneNumber,
+      openingHours,
+      restaurantPhoneNumber,
       deliveryZone,
-      statut,
+      typeOfBusiness,
       siret,
       dineIn,
       takeout,
-      delivery
+      delivery,
     } = req.body;
 
     // Vérification des champs requis
     if (
       !name ||
       !street ||
-      !city ||
+      !lieu ||
       !postalCode ||
-      !opening ||
-      !phoneNumber ||
+      !openingHours ||
+      !restaurantPhoneNumber ||
       !deliveryZone ||
-      !statut ||
+      !typeOfBusiness ||
       !siret
     ) {
+      console.log("BODY REÇU ===>", req.body);
       return res
         .status(400)
         .json({ error: "Tous les champs doivent être remplis." });
@@ -47,6 +46,7 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
       !req.files.identityDocumentUrl ||
       req.files.identityDocumentUrl.length === 0
     ) {
+      console.log("FILES REÇUS ===>", req.files);
       return res
         .status(400)
         .json({ error: "Une pièce d'identité est requise." });
@@ -59,34 +59,40 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
     }
 
     // Validation SIRET
-    const isValidSiret = await verifySiret()
+    const isValidSiret = await verifySiret();
     if (!isValidSiret) {
       return res.status(400).json({ error: "Numéro SIRET invalide." });
     }
 
+    let lastId = await Restaurant.findOne().sort({ _id: -1 }).limit(1);
+    const newId = lastId ? lastId._id + 1 : 1;
+
     // Création du restaurant
     const newRestaurant = new Restaurant({
+      _id: newId,
       user: userId,
+      restaurant: newId,
       name,
-      address: { street, city, code: postalCode },
+      address: { street, lieu, code: postalCode },
       imageUrl: req.files?.imageUrl?.map((file) => file.filename) || [],
-      opening: opening,
-      restaurantPhoneNumber: phoneNumber,
+      openingHours: openingHours,
+      restaurantPhoneNumber: restaurantPhoneNumber,
       services: {
         dineIn: dineIn === "true",
         takeout: takeout === "true",
         delivery: delivery === "true",
       },
       deliveryZone,
-      statut,
+      typeOfBusiness,
     });
 
     const savedRestaurant = await newRestaurant.save();
 
     // Création du restaurateur lié
     const newOwner = new Restaurateur({
+      _id: newId,
       user: userId,
-      restaurant: savedRestaurant._id,
+      restaurant: newId,
       siret,
       documents: {
         identityDocumentUrl: req.files.identityDocumentUrl.map(
@@ -108,23 +114,22 @@ exports.registerOwnerAndRestaurant = async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    // Nettoyage des fichiers uploadés si erreur
-    if (req.files) {
-      Object.values(req.files)
-        .flat()
-        .forEach((file) => {
-          fs.unlink(`uploads/${file.filename}`, (err) => {
-            if (err) console.error("Erreur suppression fichier:", err);
-          });
-        });
-    }
+    // // Nettoyage des fichiers uploadés si erreur
+    // if (req.files) {
+    //   Object.values(req.files)
+    //     .flat()
+    //     .forEach((file) => {
+    //       fs.unlink(`uploads/${file.filename}`, (err) => {
+    //         if (err) console.error("Erreur suppression fichier:", err);
+    //       });
+    //     });
+    // }
 
     res
       .status(500)
       .json({ error: "Erreur lors de la création du restaurant." });
   }
 };
-
 
 exports.getAllRestaurants = (req, res, next) => {
   Restaurant.find()
@@ -140,7 +145,7 @@ exports.modifyRestaurant = (req, res, next) => {
   const restaurantObject = req.file
     ? {
         ...JSON.parse(req.body.restaurant),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
+        imageUrl: `${req.protocol}://${req.get("host")}/images/restaurants${
           req.file.filename
         }`,
       }

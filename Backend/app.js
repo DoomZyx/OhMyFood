@@ -30,9 +30,15 @@ const profileRoute = require("./routes/user");
 const userRoutes = require("./routes/auth");
 
 const cartRoutes = require("./routes/cart");
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use(
+  "/images/restaurants",
+  express.static(path.join(__dirname, "images/restaurants"))
+);
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(
+  "/images/profilePicture",
+  express.static(path.join(__dirname, "/images/profilePicture/"))
+);
 
 app.use("/api/restaurants", restaurantsRoutes);
 

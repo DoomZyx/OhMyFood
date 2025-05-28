@@ -102,12 +102,12 @@ console.log(formDataOwner);
               required
             />
 
-            <label htmlFor="city"></label>
+            <label htmlFor="lieu"></label>
             <input
               type="text"
-              id="city"
+              id="lieu"
               placeholder="Ville"
-              value={formDataOwner?.city}
+              value={formDataOwner?.lieu}
               onChange={handleChangeOwner}
               required
             />
@@ -122,12 +122,12 @@ console.log(formDataOwner);
               required
             />
 
-            <label htmlFor="phoneNumber"></label>
+            <label htmlFor="restaurantPhoneNumber"></label>
             <input
               type="text"
-              id="phoneNumber"
+              id="restaurantPhoneNumber"
               placeholder="Numéro du restaurant"
-              value={formDataOwner?.phoneNumber}
+              value={formDataOwner?.restaurantPhoneNumber}
               onChange={handleChangeOwner}
               required
             />
@@ -149,12 +149,12 @@ console.log(formDataOwner);
                 {siretMessage}
               </p>
             )}
-            <label htmlFor="opening"></label>
+            <label htmlFor="openingHours"></label>
             <textarea
               type="text"
-              id="opening"
+              id="openingHours"
               placeholder="Vos heures d'ouverture (Lundi : 10:00 - 14:00 / 18:00 - 22:00)"
-              value={formDataOwner?.opening}
+              value={formDataOwner?.openingHours}
               onChange={handleChangeOwner}
               rows="12"
               required
@@ -163,12 +163,12 @@ console.log(formDataOwner);
             <div className="layout-select">
               <div className="statut-select">
                 <LegalStatus
-                  value={formDataOwner.statut}
+                  value={formDataOwner.typeOfBusiness}
                   required
                   onChange={(selectedOption) =>
                     setFormDataOwner((prev) => ({
                       ...prev,
-                      statut: selectedOption ? selectedOption.value : ",",
+                      typeOfBusiness: selectedOption ? selectedOption.value : ",",
                     }))
                   }
                 />

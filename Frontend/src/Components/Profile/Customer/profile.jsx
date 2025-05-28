@@ -18,7 +18,6 @@ function UserInfo() {
   // Appel du profil utilisateur si authentifié mais pas encore chargé
   useEffect(() => {
     if (isAuthenticated && (!user || user.id === "")) {
-      console.log("📡 fetchUserProfile lancé");
       dispatch(fetchUserProfile(sessionStorage.getItem("token")));
     }
   }, [dispatch, isAuthenticated, user?.id]);
@@ -53,6 +52,8 @@ function UserInfo() {
     postalCode: "",
   });
 
+  console.log(formData);
+
   // Remplit formData avec les valeurs de l'utilisateur (à l’arrivée des données)
   useEffect(() => {
     if (user) {
@@ -60,7 +61,7 @@ function UserInfo() {
         firstName: user.firstName || "",
         lastName: user.lastName || "",
         phoneNumber: user.phoneNumber || "",
-        avatar: user.imageUrl || "",
+        avatar: user.profilePicture || "",
         address: user.address || "",
         town: user.town || "",
         postalCode: user.postalCode || "",
@@ -112,10 +113,10 @@ function UserInfo() {
           {isAuthenticated && user && (
             <>
               {!visibleInputs.showImage ? (
-                user.imageUrl ? (
+                user.profilePicture ? (
                   <>
                     <img
-                      src={`http://localhost:3000${user.imageUrl}`}
+                      src={`http://localhost:3000${user.profilePicture}`}
                       alt="Photo de profil"
                       className="profile-img"
                     />

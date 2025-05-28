@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const restaurateurSchema = new mongoose.Schema(
   {
+    _id: { type: Number, required: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -16,13 +17,13 @@ const restaurateurSchema = new mongoose.Schema(
       type: String,
       required: true,
       validate: {
-        validator: (v) => /^\d{14}$/.test(v),
+        validator: (v) => /^\d{17}$/.test(v),
         message: "Numéro SIRET invalide",
       },
     },
     documents: {
-      identityDocumentUrl: { type: String, required: false }, 
-      proofOfOwnershipUrl: { type: String, required: false }, // Kbis
+      identityDocumentUrl: [{ type: String, required: false }],
+      proofOfOwnershipUrl: [{ type: String, required: false }],
     },
     verified: { type: Boolean, default: false },
   },

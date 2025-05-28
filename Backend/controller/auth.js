@@ -15,9 +15,8 @@ exports.signup = (req, res, next) => {
         phoneNumber: req.body.phoneNumber,
         address: req.body.address,
         town: req.body.town,
-        postalCode: req.body.postalCode
+        postalCode: req.body.postalCode,
       });
-      console.log("Adresse reçue dans backend :", req.body);
       user
         .save()
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
