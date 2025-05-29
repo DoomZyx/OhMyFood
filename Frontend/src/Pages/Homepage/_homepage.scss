@@ -106,6 +106,10 @@ main .und_header {
       font-size: variables.$taller;
     }
 
+    .notif-content {
+      color: white;
+    }
+
     p {
       font-size: variables.$small;
       font-weight: 400;
@@ -125,6 +129,10 @@ main .und_header {
   main .restaurant h2 {
     padding-left: 12%;
   }
+
+  .notif-content {
+      color: white;
+    }
 
   .restaurant .card {
     width: 85%;

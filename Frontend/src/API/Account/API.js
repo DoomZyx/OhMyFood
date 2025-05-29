@@ -38,6 +38,7 @@ export async function loginUser({ email, password }) {
      throw new Error(`Erreur : ${response.status}`);
    }
    const result = await response.json();
+   console.log(result)
    return result;
  } catch (error) {
    console.error("Erreur lors de la connexion :", error);

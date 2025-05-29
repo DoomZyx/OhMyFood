@@ -87,8 +87,8 @@ function NavMenu() {
               Créer votre compte professionnel
             </p>
           </Link>
-          <Link>
-            <p className="delivery-person">Être livreur</p>
+          <Link to="/restaurants-profile">
+            <p className="my-restaurant-link">Mon restaurant</p>
           </Link>
           <Link to="">
             <p className="mention-legale">Mention légales</p>

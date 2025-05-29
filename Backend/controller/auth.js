@@ -48,6 +48,8 @@ exports.login = (req, res, next) => {
                      process.env.RANDOM_SECRET_KEY,
                      { expiresIn: "24h" }
                    ),
+                   owner: user.owner,
+                   deliverer: user.deliverer
                  });
              })
              .catch(error => res.status(500).json({ error }));

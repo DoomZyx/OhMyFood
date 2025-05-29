@@ -14,13 +14,18 @@
   background: $button_background;
   position: fixed;
   top: 10%;
-  right: 85%;
+  right: 75%;
   border-radius: 15px;
-  width: 10%;
-  height: 7%;
+  width: auto;
+  height: auto;
   background-color: #ffffff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
   padding: 1em;
   overflow-y: auto;
-  z-index: 9999;
+  z-index: 1001;
+
+
+ .notif-content {
+      color: white;
+    }
 }
