@@ -1,5 +1,5 @@
 import "./_login.scss";
-import Loader from "../../Components/Animations/Loader/loader";
+import Loader from "../../Components/Animations/Loader/FullPageLoader/loader";
 import Header from "../../Components/Header/header";
 import { SwitchProvider } from "../../Provider/SwitchForm/switchProvider";
 import RegisterForms from "../../Features/Form/AuthForm/subscription";

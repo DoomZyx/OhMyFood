@@ -88,7 +88,7 @@ function NavMenu() {
             </p>
           </Link>
           <Link to="/restaurants-profile">
-            <p className="my-restaurant-link">Mon restaurant</p>
+            <p className="my-restaurant-link">Mes restaurant</p>
           </Link>
           <Link to="">
             <p className="mention-legale">Mention légales</p>

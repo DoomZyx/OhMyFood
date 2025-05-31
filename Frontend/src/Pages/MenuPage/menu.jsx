@@ -7,11 +7,12 @@ import { useParams } from "react-router-dom";
 
 import "../../Components/Buttons/_buttons.scss";
 
-import Loader from "../../Components/Animations/Loader/loader";
+import Loader from "../../Components/Animations/Loader/FullPageLoader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
 function Menus({ restaurant_id }) {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [menus, setMenus] = useState([]);
   const { id } = useParams();
@@ -38,6 +39,7 @@ function Menus({ restaurant_id }) {
         try {
           const result = await getMenus(id);
           setMenus(result);
+          setLoading(false);
         } catch (error) {
           console.error("Erreur lors de la récupération des menus :", error);
         }
@@ -47,6 +49,10 @@ function Menus({ restaurant_id }) {
     }
   }, [id]);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   const groupedMenus = menus.reduce((acc, menu) => {
     if (!acc[menu.ordre]) {
       acc[menu.ordre] = [];
@@ -54,7 +60,7 @@ function Menus({ restaurant_id }) {
     acc[menu.ordre].push(menu);
     return acc;
   }, {});
-  
+
   const handleAddToCart = async (menuId) => {
     try {
       await addToCart(menuId, 1);
@@ -68,8 +74,6 @@ function Menus({ restaurant_id }) {
 
   return (
     <>
-      <Loader />
-
       <Header />
 
       {data && data.length > 0 ? (

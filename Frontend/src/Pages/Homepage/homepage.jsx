@@ -1,4 +1,3 @@
-import Loader from "../../Components/Animations/Loader/loader";
 import Header from "../../Components/Header/header";
 import Presentation from "./H-Components/Presentation/presentation";
 import Functionning from "./H-Components/Functionning/functionning";
@@ -16,7 +15,6 @@ function Homepage() {
 
   return (
     <>
-      <Loader />
       <Header />
       <div className="homepage">
         <main>

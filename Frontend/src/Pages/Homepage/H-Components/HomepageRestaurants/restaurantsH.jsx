@@ -2,25 +2,34 @@ import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { getRestaurants } from "../../../../API/Restaurants/API";
+import MiniLoader from "../../../../Components/Animations/Loader/MiniLoader/miniLoader";
 
 function Restaurants() {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await getRestaurants();
       setData(result);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
+
+  if (loading) {
+    return <MiniLoader />;
+  }
   return (
     <section className="restaurant">
       <div className="restaurant-title">
         <h2>Restaurants</h2>
       </div>
       <div className="flex-card">
-        {data && data.length > 0 ? (
+        {loading ? (
+          <MiniLoader />
+        ) : data && data.length > 0 ? (
           data.map((restaurant, index) => (
             <article className="card" key={restaurant._id || index}>
               <Link to={`/menus/${restaurant._id}`} className="card-link">
