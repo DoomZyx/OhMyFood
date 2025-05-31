@@ -1,9 +1,26 @@
-import {  useState } from "react";
-import { clearCart,getCart, removeFromCart } from "../../API/Cart/API";
+import {
+  clearCart,
+  getCart,
+  removeFromCart,
+  addToCart,
+} from "../../API/Cart/API";
+import { useCartContext } from "../../Provider/CartProvider/cartProvider";
 
 export function useCart() {
-  const [cart, setCart] = useState({ items: [] });
+  const { cart, setCart, loadingCart, setLoadingCart } = useCartContext();
 
+  const handleAddToCart = async (menuId) => {
+    try {
+      setLoadingCart(true);
+      await addToCart(menuId, 1);
+      const updatedCart = await getCart();
+      setCart(updatedCart);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingCart(false);
+    }
+  };
   // Calcul du total du panier à partir des items
   const total =
     cart.items?.reduce((acc, item) => {
@@ -40,8 +57,11 @@ export function useCart() {
   return {
     cart,
     setCart,
+    loadingCart,
+    setLoadingCart,
+    handleAddToCart,
     handleRemoveAll,
     handleRemoveItem,
-    total
+    total,
   };
 }

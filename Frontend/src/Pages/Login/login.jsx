@@ -1,5 +1,4 @@
 import "./_login.scss";
-import Loader from "../../Components/Animations/Loader/FullPageLoader/loader";
 import Header from "../../Components/Header/header";
 import { SwitchProvider } from "../../Provider/SwitchForm/switchProvider";
 import RegisterForms from "../../Features/Form/AuthForm/subscription";
@@ -11,7 +10,6 @@ import food1 from "../../../assets/images/food1.webp";
 function Login() {
   return (
     <>
-      <Loader />
       <Header />
       <main>
         <div className="image-form">

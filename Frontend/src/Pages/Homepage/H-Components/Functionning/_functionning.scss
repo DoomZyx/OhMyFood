@@ -23,6 +23,7 @@
 
   .functionning-step {
     @include flex__row;
+    position: relative;
     @include stylin_functionning;
   }
 

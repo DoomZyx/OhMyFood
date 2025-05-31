@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMenus } from "../../API/Menus/API";
 import { getRestaurants } from "../../API/Restaurants/API";
-import { addToCart } from "../../API/Cart/API";
+import { useCart } from "../../hooks/Cart/Carthooks";
 
 import { useParams } from "react-router-dom";
 
@@ -11,8 +11,10 @@ import Loader from "../../Components/Animations/Loader/FullPageLoader/loader";
 import Header from "../../Components/Header/header";
 import Footer from "../../Components/Footer/footer";
 
+
 function Menus({ restaurant_id }) {
   const [loading, setLoading] = useState(true);
+  const { handleAddToCart } = useCart();
   const [data, setData] = useState([]);
   const [menus, setMenus] = useState([]);
   const { id } = useParams();
@@ -61,16 +63,9 @@ function Menus({ restaurant_id }) {
     return acc;
   }, {});
 
-  const handleAddToCart = async (menuId) => {
-    try {
-      await addToCart(menuId, 1);
-      console.log("token", sessionStorage.getItem("token"));
-      console.log("Ajouté au panier");
-    } catch (err) {
-      console.error("Erreur lors de l'ajout au panier");
-      console.error(err);
-    }
-  };
+  const handleClick = (menuId) => {
+  handleAddToCart(menuId);
+};
 
   return (
     <>
@@ -115,24 +110,24 @@ function Menus({ restaurant_id }) {
                   <div
                     key={menu._id}
                     className="main__course"
-                    onClick={() => handleAddToCart(menu._id)}
+                    onClick={() => handleClick(menu._id)}
                     style={{ cursor: "pointer" }}
                   >
-                    <label>
-                      <input
-                        type="checkbox"
-                        onClick={(e) => e.stopPropagation()}
-                        className="toggle-heart"
-                      />
-                      <div className="plate__list">
-                        <h3>{menu.name}</h3>
-                        <h4>{menu.namesuite}</h4>
-                        <span className="plate__price">{menu.price} €</span>
-                        <div className="plate__validation">
-                          <i className="fa-solid fa-check"></i>
+                      <label>
+                        <input
+                          type="checkbox"
+                          onClick={(e) => e.stopPropagation()}
+                          className="toggle-heart"
+                        />
+                        <div className="plate__list">
+                          <h3>{menu.name}</h3>
+                          <h4>{menu.namesuite}</h4>
+                          <span className="plate__price">{menu.price} €</span>
+                          <div className="plate__validation">
+                            <i className="fa-solid fa-check"></i>
+                          </div>
                         </div>
-                      </div>
-                    </label>
+                      </label>
                   </div>
                 ))}
               </div>

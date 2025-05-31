@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store.js";
 import { AuthProvider } from "./Provider/Auth/authProvider.jsx";
 import { AuthOwnerProvider } from "./Provider/Auth/authOwnerProvider.jsx";
+import { CartProvider } from "./Provider/CartProvider/cartProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <AuthProvider>
           <AuthOwnerProvider>
-            <App />
+            <CartProvider>
+              <App />
+            </CartProvider>
           </AuthOwnerProvider>
         </AuthProvider>
       </BrowserRouter>
