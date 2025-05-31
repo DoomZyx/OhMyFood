@@ -76,6 +76,11 @@ main .und_header {
     gap: 20px;
   }
 
+  .loader-restaurants-wrapper {
+    position: absolute;
+    left: 45%
+  }
+
   .card {
     @include card_;
     background-color: white;

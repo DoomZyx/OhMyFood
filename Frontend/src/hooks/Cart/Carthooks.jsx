@@ -14,6 +14,8 @@ export function useCart() {
     clearLoadingCart,
     setLoadingCart,
     setClearLoadingCart,
+    clearLoadingItem,
+    setClearLoadingItem
   } = useCartContext();
 
   // Calcul du total du panier à partir des items
@@ -61,11 +63,14 @@ export function useCart() {
 
   const handleRemoveItem = async (menuId) => {
     try {
+      setClearLoadingItem(menuId)
       await removeFromCart(Number(menuId));
       const updated = await getCart();
       setCart(updated);
     } catch (err) {
       console.error("Erreur lors de la suppression:", err);
+    } finally {
+      setClearLoadingItem(null)
     }
   };
 
@@ -78,6 +83,8 @@ export function useCart() {
     handleRemoveAll,
     clearLoadingCart,
     setClearLoadingCart,
+    clearLoadingItem,
+    setClearLoadingItem,
     clearHandleClick,
     handleRemoveItem,
     total,

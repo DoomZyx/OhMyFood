@@ -14,9 +14,9 @@ export default function Cart({ isOpen, onClose }) {
     clearLoadingCart,
     clearHandleClick,
     handleRemoveItem,
+    clearLoadingItem,
     total,
   } = useCart();
-
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -30,7 +30,6 @@ export default function Cart({ isOpen, onClose }) {
     if (loadingCart || clearLoadingCart) {
       return <MiniLoader />;
     }
-
 
     if (!isAuthenticated) {
       return (
@@ -49,8 +48,13 @@ export default function Cart({ isOpen, onClose }) {
                 <button
                   className="delete-plate"
                   onClick={() => handleRemoveItem(menu._id)}
+                  disabled={clearLoadingItem === menu._id}
                 >
-                  <i className="fa-solid fa-minus"></i>
+                  {clearLoadingItem === menu._id ? (
+                    <MiniLoader className="mini-loader--small" />
+                  ) : (
+                    <i className="fa-solid fa-minus"></i>
+                  )}
                 </button>
                 <div className="thirster">
                   {menu.name}

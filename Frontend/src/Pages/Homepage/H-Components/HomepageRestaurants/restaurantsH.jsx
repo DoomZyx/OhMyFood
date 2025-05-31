@@ -5,10 +5,11 @@ import { getRestaurants } from "../../../../API/Restaurants/API";
 import MiniLoader from "../../../../Components/Animations/Loader/MiniLoader/miniLoader";
 
 function Restaurants() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const result = await getRestaurants();
       setData(result);
@@ -18,9 +19,6 @@ function Restaurants() {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <MiniLoader />;
-  }
   return (
     <section className="restaurant">
       <div className="restaurant-title">
@@ -28,7 +26,9 @@ function Restaurants() {
       </div>
       <div className="flex-card">
         {loading ? (
+          <div className="loader-restaurants-wrapper">
           <MiniLoader />
+          </div>
         ) : data && data.length > 0 ? (
           data.map((restaurant, index) => (
             <article className="card" key={restaurant._id || index}>

@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({ items: [] });
   const [loadingCart, setLoadingCart] = useState(false);
   const [clearLoadingCart, setClearLoadingCart] = useState(false);
+  const [clearLoadingItem, setClearLoadingItem] = useState(null);
 
   return (
     <CartContext.Provider
@@ -16,6 +17,8 @@ export const CartProvider = ({ children }) => {
         setLoadingCart,
         clearLoadingCart,
         setClearLoadingCart,
+        clearLoadingItem,
+        setClearLoadingItem,
       }}
     >
       {children}
