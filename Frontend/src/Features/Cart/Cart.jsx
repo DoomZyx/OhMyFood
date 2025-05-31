@@ -11,7 +11,8 @@ export default function Cart({ isOpen, onClose }) {
     cart,
     setCart,
     loadingCart,
-    handleRemoveAll,
+    clearLoadingCart,
+    clearHandleClick,
     handleRemoveItem,
     total,
   } = useCart();
@@ -26,9 +27,10 @@ export default function Cart({ isOpen, onClose }) {
   }, [isOpen, isAuthenticated]);
 
   function renderCartContent() {
-    if (loadingCart) {
+    if (loadingCart || clearLoadingCart) {
       return <MiniLoader />;
     }
+
 
     if (!isAuthenticated) {
       return (
@@ -62,7 +64,7 @@ export default function Cart({ isOpen, onClose }) {
             <p>{total.toFixed(2)} €</p>
           </div>
           <div className="layout-button-cart">
-            <button onClick={handleRemoveAll}>
+            <button onClick={clearHandleClick}>
               <i className="fa-solid fa-trash"></i>
             </button>
             <button className="cart-button-validation">

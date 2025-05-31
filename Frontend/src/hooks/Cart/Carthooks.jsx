@@ -7,20 +7,15 @@ import {
 import { useCartContext } from "../../Provider/CartProvider/cartProvider";
 
 export function useCart() {
-  const { cart, setCart, loadingCart, setLoadingCart } = useCartContext();
+  const {
+    cart,
+    setCart,
+    loadingCart,
+    clearLoadingCart,
+    setLoadingCart,
+    setClearLoadingCart,
+  } = useCartContext();
 
-  const handleAddToCart = async (menuId) => {
-    try {
-      setLoadingCart(true);
-      await addToCart(menuId, 1);
-      const updatedCart = await getCart();
-      setCart(updatedCart);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoadingCart(false);
-    }
-  };
   // Calcul du total du panier à partir des items
   const total =
     cart.items?.reduce((acc, item) => {
@@ -34,15 +29,35 @@ export function useCart() {
       return acc + price * quantity;
     }, 0) || 0; // acc = accumulateur, initialisé à 0
 
+  const handleAddToCart = async (menuId) => {
+    try {
+      setLoadingCart(true);
+      await addToCart(menuId, 1);
+      const updatedCart = await getCart();
+      setCart(updatedCart);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingCart(false);
+    }
+  };
+
   const handleRemoveAll = async () => {
     try {
+      setClearLoadingCart(true);
       await clearCart();
       const updated = await getCart();
       setCart(updated);
     } catch (err) {
       console.error("Erreur lors de la suppression:", err);
+    } finally {
+      setClearLoadingCart(false);
     }
   };
+
+  const clearHandleClick = () => {
+    handleRemoveAll()
+  }
 
   const handleRemoveItem = async (menuId) => {
     try {
@@ -61,6 +76,9 @@ export function useCart() {
     setLoadingCart,
     handleAddToCart,
     handleRemoveAll,
+    clearLoadingCart,
+    setClearLoadingCart,
+    clearHandleClick,
     handleRemoveItem,
     total,
   };
