@@ -10,6 +10,8 @@ I joined Ohmyfood as a junior developer. It is a young startup aiming to establi
 My mission is to develop a "mobile-first" website that lists the menus of gourmet restaurants.
 In addition to the standard reservation systems, customers will be able to customize their meal menus so the dishes are ready upon their arrival.
 The mission involves utilizing SASS, adhering to the FIGMA design created by the UX Designer, and creating CSS animations.
+
+
 FRANCAIS 
 ___________________________________________________________________________________________________________________________
 MISSION 🎯
