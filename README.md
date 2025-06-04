@@ -20,8 +20,9 @@ Ma mission est de développer un site “mobile first” qui répertorie les men
 En plus des systèmes classiques de réservation, les clients pourront composer le menu de leur repas pour que les plats soient prêts à leur arrivée.
 La mission consiste à savoir utiliser SASS, respecter la maquette FIGMA créer par l'UX Designer et créer des animations CSS.
 
-EN COURS 
+EN COURS / 
+IN PROGRESS
 
-Refonte du projet en React + Backend 
+Refonte du projet en React + Backend / Project redesign in React + Backend
 
-L'application permettra à l'utilisateur de créer un compte, de se connecter et passer commande directement sur l'application 
+L'application permettra à l'utilisateur de créer un compte, de se connecter et passer commande directement sur l'application / The application will allow users to create an account, log in, and place orders directly from the app.
